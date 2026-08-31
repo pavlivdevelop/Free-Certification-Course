@@ -6,12 +6,15 @@ on:
       - 'providers/**'
       - 'taxonomy/**'
       - 'data/catalog-*.csv'
-      - 'scripts/extract_official_credentials.py'
-      - 'scripts/build_official_catalog.py'
+      - 'scripts/**'
       - '.github/workflows/build-catalog.yml'
   workflow_dispatch:
   schedule:
     - cron: '17 3 * * 1'
+
+concurrency:
+  group: free-certification-catalog
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -22,6 +25,8 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
@@ -36,19 +41,23 @@ jobs:
           python - <<'PY'
           import csv
           from pathlib import Path
-          p=Path('data/catalog-expanded.csv')
-          rows=list(csv.DictReader(p.open(encoding='utf-8-sig')))
+          p = Path('data/catalog-expanded.csv')
+          rows = list(csv.DictReader(p.open(encoding='utf-8-sig')))
           assert len(rows) >= 5000, f'Expected >=5000 records, got {len(rows)}'
           assert all(r['ID'] and r['Organization'] and r['Certificate/Badge'] for r in rows)
-          names={(r['Organization'].lower(),r['Certificate/Badge'].lower(),r['Official URL']) for r in rows}
-          assert len(names)==len(rows), 'duplicate records detected'
-          candidates=sum(r['Record Type']=='credential-candidate' for r in rows)
-          print(f'records={len(rows)} candidates={candidates}')
+          names = {(r['Organization'].lower(), r['Certificate/Badge'].lower(), r['Official URL']) for r in rows}
+          assert len(names) == len(rows), 'duplicate records detected'
+          print(f'records={len(rows)}')
+          print(f'candidates={sum(r["Record Type"]=="credential-candidate" for r in rows)}')
+          print(f'free={sum(str(r["Price Status"]).startswith("✅") for r in rows)}')
           PY
-      - name: Commit generated data
+      - name: Publish generated data safely
         run: |
+          set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv status/CATALOG-STATS.md
           git diff --cached --quiet || git commit -m 'chore(data): refresh official credential catalog [skip ci]'
-          git push
+          git fetch origin main
+          git rebase origin/main
+          git push --force-with-lease origin HEAD:main
