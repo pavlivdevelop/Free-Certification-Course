@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Merge curated seed data with names extracted from official issuer pages.
-Never invent credential names from taxonomy combinations."""
+Never invent credential names from taxonomy combinations.
+"""
 from pathlib import Path
 import csv,json,hashlib,re
 from datetime import date
-ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/'data'; CRED=ROOT/'credentials'; STATUS=ROOT/'status'
+
+ROOT=Path(__file__).resolve().parents[1]
+DATA=ROOT/'data'; CRED=ROOT/'credentials'; STATUS=ROOT/'status'
 TODAY=str(date.today()); OUT=DATA/'catalog-expanded.csv'; OJSON=DATA/'catalog-expanded.json'; FREE=DATA/'free-core.csv'; COND=DATA/'conditional.csv'; CAND=CRED/'extracted-candidates.jsonl'
 FIELDS=['ID','Country','Organization','Certificate/Badge','Record Type','Category','Subcategory','Level','Price Status','Conditions','Exam/Assessment','Duration','Language','Available from Russia','Validity','Credly/Verification','LinkedIn','Official URL','Priority','Completion Status','Evidence Status','Last Reviewed','Source Page','Extraction Method','Confidence']
 MAP={
@@ -26,7 +29,7 @@ MAP={
 'Medical Devices':['medical device','biomedical','healthtech'],'Environment':['environment','climate','sustainability'],
 'Project/Product':['project management','product management','agile','scrum'],'UX/Design':['ux','accessibility','design thinking'],
 'Testing/QA':['testing','quality assurance','qa automation','performance testing'],'Open Source':['open source','linux','apache','eclipse'],
-'Game/XR':['game development','unity','unreal','xr',' ar ',' vr '],'Blockchain':['blockchain','web3','smart contract'],
+'Game/XR':['game development','unity','unreal',' xr ',' vr '],'Blockchain':['blockchain','web3','smart contract'],
 'Technical Writing':['technical writing','documentation']}
 def readp(p):
     with p.open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
@@ -41,7 +44,16 @@ def norm(r):
     return {'ID':rid,'Country':g('Country','country',d='International'),'Organization':org,'Certificate/Badge':title,'Record Type':g('Record Type','record_type',d='credential'),'Category':cat,'Subcategory':g('Subcategory',d=cat),'Level':g('Level',d='Discovery'),'Price Status':g('Price Status','price_status',d='⚪ unknown'),'Conditions':g('Conditions',d='Verify official page'),'Exam/Assessment':g('Exam/Assessment','Exam/assessment',d='Provider-specific'),'Duration':g('Duration',d='Varies'),'Language':g('Language',d='Provider-dependent'),'Available from Russia':g('Available from Russia',d='Unknown'),'Validity':g('Validity',d='Varies'),'Credly/Verification':g('Credly/Verification',d='Provider-defined'),'LinkedIn':g('LinkedIn',d='Varies'),'Official URL':g('Official URL','official_url'),'Priority':g('Priority',d='B'),'Completion Status':g('Completion Status',d='Не начато'),'Evidence Status':g('Evidence Status','evidence_status',d='official-page-extraction'),'Last Reviewed':g('Last Reviewed','last_reviewed',d=TODAY),'Source Page':g('Source Page','source_page'),'Extraction Method':g('Extraction Method','extraction_method',d='curated'),'Confidence':g('Confidence',d='candidate')}
 def main():
     rows=[]
-    for p in sorted(DATA.glob('catalog-*.csv')):rows += [norm(x) for x in readp(p) if x.get('Certificate/Badge') or x.get('credential_name')]
+    # Only curated/seed CSVs are valid inputs. Generated outputs such as
+    # catalog-expanded.csv must never be re-ingested on the next run.
+    seed_files=[]
+    for p in sorted(DATA.glob('catalog-*.csv')):
+        if p.name in {'catalog-expanded.csv','catalog.csv'}:
+            continue
+        seed_files.append(p)
+    if (DATA/'catalog.csv').exists() and (DATA/'catalog.csv').stat().st_size>20:
+        seed_files.append(DATA/'catalog.csv')
+    for p in seed_files: rows += [norm(x) for x in readp(p) if x.get('Certificate/Badge') or x.get('credential_name')]
     if CAND.exists():
         with CAND.open(encoding='utf-8') as f:
             for line in f:
