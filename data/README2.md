@@ -1,0 +1,1 @@
+See catalog.csv and catalog.json. This file intentionally contains no credential claims.
