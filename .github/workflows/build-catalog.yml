@@ -36,30 +36,18 @@ jobs:
         run: python scripts/extract_official_credentials.py
       - name: Build canonical dataset
         run: python scripts/build_official_catalog.py
-      - name: Validate dataset
+      - name: Validate generated catalog
+        run: python scripts/validate_catalog.py
+      - name: Validate minimum scale
         run: |
-          set -euo pipefail
           python - <<'PY'
           import csv
-          import json
           from pathlib import Path
-
-          csv_path = Path('data/catalog-expanded.csv')
-          json_path = Path('data/catalog-expanded.json')
-          rows = list(csv.DictReader(csv_path.open(encoding='utf-8-sig')))
+          p = Path('data/catalog-expanded.csv')
+          with p.open(encoding='utf-8-sig', newline='') as fh:
+              rows = list(csv.DictReader(fh))
           assert len(rows) >= 5000, f'Expected >=5000 records, got {len(rows)}'
-          required = {'ID', 'Organization', 'Certificate/Badge', 'Official URL', 'Record Type', 'Price Status'}
-          assert required.issubset(rows[0].keys()), f'Missing columns: {sorted(required - set(rows[0].keys()))}'
-          assert all(r['ID'] and r['Organization'] and r['Certificate/Badge'] and r['Official URL'] for r in rows), 'required fields contain blanks'
-          assert len({r['ID'] for r in rows}) == len(rows), 'duplicate IDs detected'
-          names = {(r['Organization'].strip().casefold(), r['Certificate/Badge'].strip().casefold(), r['Official URL'].strip()) for r in rows}
-          assert len(names) == len(rows), 'duplicate organization/name/URL records detected'
-          payload = json.loads(json_path.read_text(encoding='utf-8'))
-          assert isinstance(payload, list), 'expanded JSON must be an array'
-          assert len(payload) == len(rows), 'CSV/JSON record count mismatch'
-          print(f'records={len(rows)}')
-          print(f'candidates={sum(r["Record Type"]=="credential-candidate" for r in rows)}')
-          print(f'free={sum(str(r["Price Status"]).startswith("✅") for r in rows)}')
+          print(f'minimum_scale=passed records={len(rows)}')
           PY
       - name: Publish generated data safely
         run: |
