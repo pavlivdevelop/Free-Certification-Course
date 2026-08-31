@@ -1,6 +1,6 @@
 # Catalog statistics
 
-- records: 10465
+- records: 10808
 - free-core: 0
-- candidates: 10384
+- candidates: 10727
 - built: 2026-08-31
