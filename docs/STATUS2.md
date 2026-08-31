@@ -1,0 +1,1 @@
+Bulk data is locally generated. The repository contains the catalogue structure and multilingual documentation scaffolding.
