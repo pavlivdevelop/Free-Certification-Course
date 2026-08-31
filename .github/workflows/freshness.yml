@@ -1,6 +1,9 @@
 name: Credential freshness
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: '47 3 * * 1'
   push:
     paths:
       - 'data/catalog-expanded.csv'
@@ -8,9 +11,10 @@ on:
       - 'providers/**'
       - 'scripts/check_freshness.py'
       - '.github/workflows/freshness.yml'
-  schedule:
-    - cron: '17 3 * * 1'
-  workflow_dispatch:
+
+concurrency:
+  group: credential-freshness
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -18,17 +22,24 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
       - name: Check catalog freshness
         run: python scripts/check_freshness.py
-      - name: Commit report
+      - name: Publish report safely
         run: |
+          set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add status/freshness-report.json
-          git diff --cached --quiet || git commit -m "chore: refresh credential freshness report [skip ci]"
-          git push
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore(status): refresh credential freshness report [skip ci]'
+          git fetch origin main
+          git rebase origin/main
+          git push --force-with-lease origin HEAD:main
