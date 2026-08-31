@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "project": "OpenCertAtlas",
+  "catalog": {
+    "canonical_csv": "data/catalog-expanded.csv",
+    "canonical_json": "data/catalog-expanded.json",
+    "free_core": "data/free-core.csv",
+    "conditional": "data/conditional.csv"
+  },
+  "layers": {
+    "providers": "providers/",
+    "credentials": "credentials/",
+    "taxonomy": "taxonomy/",
+    "evidence": "evidence/",
+    "status": "status/",
+    "scripts": "scripts/",
+    "site": "site/"
+  },
+  "quality": {
+    "discovery_is_not_verification": true,
+    "reachability_is_not_status_proof": true,
+    "free_status_requires_evidence": true,
+    "credential_type_is_preserved": true,
+    "generated_data_must_pass_validator": true
+  },
+  "progress": {
+    "storage": "browser-local",
+    "portable_format": "JSON",
+    "levels": ["Explore", "Beginner", "Foundation", "Intermediate", "Advanced", "Professional", "Expert", "Master"]
+  },
+  "last_baseline_review": "2026-08-31"
+}
