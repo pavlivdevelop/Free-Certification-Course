@@ -1,0 +1,37 @@
+name: Repository hygiene
+
+on:
+  push:
+    paths:
+      - 'README.md'
+      - 'docs/**'
+      - 'site/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'docs/**'
+      - 'site/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repo-hygiene
+  cancel-in-progress: true
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Run repository hygiene checks
+        run: python scripts/check_repo_hygiene.py
