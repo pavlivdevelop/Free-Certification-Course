@@ -1,0 +1,1 @@
+The expanded catalogue is maintained as data/catalog.csv and data/catalog.json. It deliberately separates credential-bearing entries from source discovery records and paid reference certifications. See docs/METHODOLOGY.md.
