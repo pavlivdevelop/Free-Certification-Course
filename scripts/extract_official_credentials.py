@@ -6,7 +6,7 @@ converted into fake credentials. Every row keeps provenance and remains a candid
 until evidence verifies credential type and current free status.
 """
 from __future__ import annotations
-import csv, hashlib, json, re, sys
+import csv, hashlib, json, re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -19,8 +19,8 @@ PROVIDER_FILES=[ROOT/'providers/providers.csv', ROOT/'providers/providers-additi
 OUT=ROOT/'credentials/extracted-candidates.jsonl'
 EVID=ROOT/'evidence/extraction-evidence.jsonl'
 MAX_TOTAL=12000; MAX_PAGES_PROVIDER=35; TIMEOUT=18
-UA='Free-Certification-Course/2026 (+https://github.com/pavlivdevelop/Free-Certification-Course)'
-MARKERS=re.compile(r'\b(certificate|certification|credential|badge|microcredential|professional certificate|skill badge|digital credential|learning path|course|training|academy|exam)\b',re.I)
+UA='OpenCertAtlas/2026 (+https://github.com/pavlivdevelop/OpenCertAtlas)'
+MARKERS=re.compile(r'\b(certificate|certification|credential|badge|microcredential|professional certificate|skill badge|digital credential|learning path|course|training|academy|education|certif|exam)\b',re.I)
 PATH_HINTS=re.compile(r'/(course|courses|learn|learning|training|academy|education|certif|credential|badge|exam|skills?|certification)(/|$|[?#])',re.I)
 SKIP=re.compile(r'^(learn more|more|read more|sign in|login|register|home|menu|search|view all|contact|privacy|terms|cookies)$',re.I)
 S=requests.Session(); S.headers.update({'User-Agent':UA})
@@ -49,7 +49,8 @@ def fetch(url):
         r=S.get(url,timeout=TIMEOUT,allow_redirects=True)
         if r.ok and 'text/html' in r.headers.get('content-type','') and len(r.text)<5_000_000:
             return r.url,r.text
-    except requests.RequestException: pass
+    except requests.RequestException:
+        pass
     return None,None
 
 def discover(root_url,html,limit):
@@ -98,7 +99,7 @@ def crawl(org,country,seed):
     queue=[first]; seen={first}
     for u in discover(first,html,MAX_PAGES_PROVIDER*3):
         if u not in seen: queue.append(u)
-    sm=join_sitemap= f"{urlparse(first).scheme}://{urlparse(first).netloc}/sitemap.xml"
+    sm=f"{urlparse(first).scheme}://{urlparse(first).netloc}/sitemap.xml"
     _,smhtml=fetch(sm)
     if smhtml:
         for u in discover(sm,smhtml,MAX_PAGES_PROVIDER*2):
