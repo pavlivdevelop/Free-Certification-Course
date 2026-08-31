@@ -6,6 +6,7 @@ import re, sys
 
 ROOT=Path(__file__).resolve().parents[1]
 SUFFIXES={".md",".yml",".yaml",".py",".html",".json",".csv",".txt"}
+SELF=Path(__file__).resolve()
 PATTERNS={
     "legacy_repository_url": re.compile(r"pavlivdevelop/Free-Certification-Course", re.I),
     "legacy_product_title": re.compile(r"Free Certification Course", re.I),
@@ -17,7 +18,7 @@ PATTERNS={
 def main()->int:
     failures=[]
     for p in ROOT.rglob("*"):
-        if not p.is_file() or p.suffix.lower() not in SUFFIXES or ".git" in p.parts:
+        if p.resolve()==SELF or not p.is_file() or p.suffix.lower() not in SUFFIXES or ".git" in p.parts:
             continue
         try: text=p.read_text(encoding="utf-8")
         except UnicodeDecodeError: continue
