@@ -1,0 +1,62 @@
+provider_id,organization,country,domains,official_url,free_learning,free_credential,source_status,last_checked,check_after_days,next_check
+P-150,Arduino,Italy,Embedded;Electronics;IoT;Robotics,https://docs.arduino.cc/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-151,Espressif,China,Embedded;ESP32;IoT;Wireless,https://www.espressif.com/en/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-152,STMicroelectronics,Switzerland,Embedded;STM32;MCU;Electronics,https://www.st.com/content/st_com/en/about/training.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-153,Microchip Technology,United States,MCU;Embedded;FPGA;Electronics,https://www.microchip.com/en-us/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-154,Arm,United Kingdom,CPU;Embedded;Architecture;IoT,https://learn.arm.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-155,Nordic Semiconductor,Norway,Embedded;Bluetooth;IoT;Wireless,https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-SDK,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-156,Silicon Labs,United States,IoT;Wireless;Embedded;Bluetooth,https://www.silabs.com/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-157,Texas Instruments,United States,Embedded;Analog;Power;RF;Electronics,https://training.ti.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-158,Analog Devices,United States,Analog;RF;Signal Processing;Electronics,https://www.analog.com/en/education.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-159,Infineon,Germany,Semiconductors;Power Electronics;Automotive;Embedded,https://www.infineon.com/cms/en/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-160,NXP Semiconductors,Netherlands,Embedded;Automotive;Security;MCU,https://www.nxp.com/design/training:TRAINING,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-161,Renesas,Japan,Embedded;MCU;Automotive;Power,https://www.renesas.com/us/en/design-resources/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-162,Qualcomm,United States,Wireless;5G;AI;Mobile;Semiconductors,https://www.qualcomm.com/developer,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-163,MediaTek,Taiwan,Wireless;5G;AI;Mobile;Semiconductors,https://corp.mediatek.com/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-164,Broadcom,United States,Networking;Semiconductors;Wireless;Storage,https://www.broadcom.com/support/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-165,Marvell,United States,Networking;Storage;Semiconductors;Embedded,https://www.marvell.com/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-166,Xilinx / AMD Adaptive Computing,United States,FPGA;Embedded;AI;Semiconductors,https://www.amd.com/en/corporate/university-programs.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-167,Lattice Semiconductor,United States,FPGA;Embedded;Edge AI,https://www.latticesemi.com/Support,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-168,SiFive,United States,RISC-V;CPU;Embedded;Semiconductors,https://www.sifive.com/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-169,RISC-V International,Global,RISC-V;CPU;Embedded;Architecture,https://riscv.org/learn/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-170,Eclipse Foundation,Global,Open Source;Java;IoT;Cloud;Embedded,https://www.eclipse.org/org/workinggroups/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-171,Apache Airflow,Global,Data Engineering;Workflow;MLOps,https://airflow.apache.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-172,Apache Kafka,Global,Streaming;Data Engineering;Distributed Systems,https://kafka.apache.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-173,Apache Spark,Global,Big Data;Data Engineering;ML,https://spark.apache.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-174,TensorFlow,United States,Machine Learning;AI;Deep Learning,https://www.tensorflow.org/certificate,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-175,PyTorch,United States,Machine Learning;AI;Deep Learning,https://pytorch.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-176,Jupyter,Global,Python;Data Science;Scientific Computing,https://jupyter.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-177,NumPy,Global,Python;Mathematics;Scientific Computing,https://numpy.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-178,pandas,Global,Python;Data;Analytics,https://pandas.pydata.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-179,Scikit-learn,Global,Machine Learning;Python;Statistics,https://scikit-learn.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-180,The Carpentries,Global,Python;Data;Research Computing,https://carpentries.org/workshops/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-181,Software Carpentries,Global,Programming;Git;Software Engineering,https://software-carpentry.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-182,Data Carpentries,Global,Data;R;Python;Research,https://datacarpentries.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-183,RStudio / Posit,United States,R;Data Science;Shiny,https://posit.co/learn/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-184,Tableau,United States,Data Visualization;Analytics;BI,https://www.tableau.com/learn,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-185,Power BI / Microsoft,United States,BI;Data Analytics;AI,https://learn.microsoft.com/training/powerplatform/power-bi/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-186,Looker / Google,United States,BI;Analytics;Data,https://cloud.google.com/looker/docs,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-187,Qlik,United States,BI;Analytics;Data Engineering,https://learning.qlik.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-188,Alteryx,United States,Data Analytics;Automation;ETL,https://community.alteryx.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-189,KNIME,Switzerland,Data Science;Analytics;Low Code,https://www.knime.com/learning,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-190,Apache Software Foundation — Subprojects,Global,Open Source;Big Data;Backend;Infrastructure,https://www.apache.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-191,Web3 Foundation,Switzerland,Blockchain;Cryptography;Web3,https://web3.foundation/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-192,Hyperledger,Global,Blockchain;Distributed Ledger;Enterprise,https://www.hyperledger.org/learn,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-193,Chainlink,Global,Blockchain;Web3;Smart Contracts,https://docs.chain.link/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-194,DigitalOcean,United States,Cloud;Linux;DevOps;Kubernetes,https://www.digitalocean.com/community,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-195,Cloud Native Computing Foundation,Global,Kubernetes;Cloud Native;Observability;Security,https://www.cncf.io/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-196,Heroku,United States,Cloud;Platform;DevOps;Web,https://devcenter.heroku.com/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-197,Vercel,United States,Web;Frontend;Cloud;DevOps,https://vercel.com/academy,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-198,Netlify,United States,Web;Cloud;DevOps;Jamstack,https://www.netlify.com/learn/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-199,Sentry,United States,Observability;Error Monitoring;DevOps,https://sentry.io/resources/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-200,New Relic,United States,Observability;APM;SRE,https://learn.newrelic.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-201,PagerDuty,United States,SRE;Incident Management;Observability,https://www.pagerduty.com/resources/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-202,Atlassian,Australia,Jira;Confluence;DevOps;Agile,https://university.atlassian.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-203,Jira Service Management,Australia,ITSM;DevOps;Service Management,https://university.atlassian.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-204,GitHub Skills,United States,Git;GitHub;Actions;Copilot,https://skills.github.com/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-205,GitLab Learn,United States,Git;CI/CD;DevSecOps,https://about.gitlab.com/learn/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-206,OpenSSF Scorecard,Global,Software Supply Chain;Open Source Security,https://scorecard.dev/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-207,SLSA,Global,Software Supply Chain;Security;Build Integrity,https://slsa.dev/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-208,OWASP Foundation,Global,AppSec;Web Security;API Security,https://owasp.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-209,Cloud Security Alliance,Global,Cloud Security;Governance;Zero Trust,https://cloudsecurityalliance.org/education,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-210,ISC2 Learning,Global,Cybersecurity;Security Operations;Governance,https://www.isc2.org/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
