@@ -1,0 +1,3 @@
+The expanded discovery registry now covers major providers in AI, cloud, cybersecurity, networking, software, Linux, data, electronics, embedded, RF/SDR, telecom, robotics, CAD/CAE/BIM, manufacturing, energy, aerospace, GIS, quantum, health, environment, and professional technology.
+
+For providers without a currently verified free credential, the registry keeps them as discovery/reference sources rather than making a free-status claim.
