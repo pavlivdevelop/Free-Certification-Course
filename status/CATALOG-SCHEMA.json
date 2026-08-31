@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pavlivdevelop/OpenCertAtlas/schema/catalog-v1.json",
+  "title": "OpenCertAtlas catalog record",
+  "type": "object",
+  "required": ["ID", "Country", "Organization", "Certificate/Badge", "Category", "Official URL", "Record Type", "Price Status"],
+  "properties": {
+    "ID": {"type": "string", "minLength": 1},
+    "Country": {"type": "string"},
+    "Organization": {"type": "string", "minLength": 1},
+    "Certificate/Badge": {"type": "string", "minLength": 1},
+    "Category": {"type": "string"},
+    "Subcategory": {"type": "string"},
+    "Level": {"type": "string"},
+    "Price Status": {"type": "string", "pattern": "^(✅|⚠️|⚪|❌)"},
+    "Official URL": {"type": "string", "format": "uri"},
+    "Record Type": {"enum": ["credential", "credential-reference", "credential-candidate", "source-watch", "regional-source", "language-watch"]},
+    "Evidence Status": {"type": "string"},
+    "Extraction Method": {"type": "string"},
+    "Extraction Date": {"type": "string"}
+  },
+  "additionalProperties": true
+}
