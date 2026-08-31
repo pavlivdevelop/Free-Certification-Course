@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Extract concrete learning/credential names from issuer-owned pages.
+"""Source-first extraction of concrete course/certificate/badge names from issuer sites.
 
-Only names observed on official pages are emitted. Records remain candidates until
-free-status and credential type are supported by evidence. Taxonomy is never used
-as a source of invented credential names.
+Only names observed on issuer-owned HTML are emitted. No taxonomy combinations are
+converted into fake credentials. Every row keeps provenance and remains a candidate
+until evidence verifies credential type and current free status.
 """
 from __future__ import annotations
 import csv, hashlib, json, re, sys
@@ -18,22 +18,25 @@ ROOT=Path(__file__).resolve().parents[1]
 PROVIDER_FILES=[ROOT/'providers/providers.csv', ROOT/'providers/providers-additional.csv']
 OUT=ROOT/'credentials/extracted-candidates.jsonl'
 EVID=ROOT/'evidence/extraction-evidence.jsonl'
-MAX_TOTAL=12000; TIMEOUT=20
+MAX_TOTAL=12000; MAX_PAGES_PROVIDER=35; TIMEOUT=18
 UA='Free-Certification-Course/2026 (+https://github.com/pavlivdevelop/Free-Certification-Course)'
 MARKERS=re.compile(r'\b(certificate|certification|credential|badge|microcredential|professional certificate|skill badge|digital credential|learning path|course|training|academy|exam)\b',re.I)
-SKIP=re.compile(r'^(learn more|more|read more|sign in|login|register|home|menu|search|view all|contact|privacy|terms)$',re.I)
+PATH_HINTS=re.compile(r'/(course|courses|learn|learning|training|academy|education|certif|credential|badge|exam|skills?|certification)(/|$|[?#])',re.I)
+SKIP=re.compile(r'^(learn more|more|read more|sign in|login|register|home|menu|search|view all|contact|privacy|terms|cookies)$',re.I)
+S=requests.Session(); S.headers.update({'User-Agent':UA})
 
 def providers():
     out=[]; seen=set()
-    for p in PROVIDER_FILES:
-        if not p.exists(): continue
-        with p.open(encoding='utf-8-sig',newline='') as f:
+    for path in PROVIDER_FILES:
+        if not path.exists(): continue
+        with path.open(encoding='utf-8-sig',newline='') as f:
             for r in csv.DictReader(f):
                 org=r.get('Organization') or r.get('organization') or r.get('name')
                 url=r.get('Official URL') or r.get('official_url')
                 if not org or not url: continue
                 k=(org.strip().lower(),url.strip())
-                if k not in seen: seen.add(k); out.append((org.strip(),r.get('Country') or r.get('country') or 'International',url.strip()))
+                if k not in seen:
+                    seen.add(k); out.append((org.strip(),r.get('Country') or r.get('country') or 'International',url.strip()))
     return out
 
 def clean(s):
@@ -43,18 +46,27 @@ def clean(s):
 
 def fetch(url):
     try:
-        r=requests.get(url,headers={'User-Agent':UA},timeout=TIMEOUT,allow_redirects=True)
-        if r.ok and 'text/html' in r.headers.get('content-type','') and len(r.text)<4_000_000:
-            return r.url,r.text,r.status_code
+        r=S.get(url,timeout=TIMEOUT,allow_redirects=True)
+        if r.ok and 'text/html' in r.headers.get('content-type','') and len(r.text)<5_000_000:
+            return r.url,r.text
     except requests.RequestException: pass
-    return url,None,None
+    return None,None
 
-def extract(org,country,url,html):
-    soup=BeautifulSoup(html,'html.parser'); page=clean(soup.title.get_text(' ',strip=True) if soup.title else '')
-    found=[]
-    # Structured data: most precise source when an issuer publishes Course/Credential schema.
-    for s in soup.select('script[type="application/ld+json"]'):
-        try: obj=json.loads(s.string or s.get_text())
+def discover(root_url,html,limit):
+    soup=BeautifulSoup(html,'html.parser'); host=urlparse(root_url).netloc; out=[]; seen=set()
+    def add(u):
+        u=u.split('#')[0]
+        if not u.startswith(('http://','https://')) or urlparse(u).netloc!=host or u in seen: return
+        if any(x in u.lower() for x in ('/privacy','/terms','/login','/signin','/search','/cart','/account')): return
+        if PATH_HINTS.search(u): seen.add(u); out.append(u)
+    for a in soup.select('a[href]'): add(urljoin(root_url,a.get('href','')))
+    for loc in soup.select('loc'): add(loc.get_text(' ',strip=True))
+    return out[:limit]
+
+def extract_page(url,html):
+    soup=BeautifulSoup(html,'html.parser'); page=clean(soup.title.get_text(' ',strip=True) if soup.title else ''); found=[]
+    for sc in soup.select('script[type="application/ld+json"]'):
+        try: obj=json.loads(sc.string or sc.get_text())
         except Exception: continue
         stack=[]
         if isinstance(obj,dict) and isinstance(obj.get('@graph'),list): stack.extend(obj['@graph'])
@@ -63,41 +75,57 @@ def extract(org,country,url,html):
         for x in stack:
             if not isinstance(x,dict): continue
             typ=' '.join(x.get('@type',[]) if isinstance(x.get('@type'),list) else [str(x.get('@type',''))])
-            if not re.search(r'Course|Credential|Certification|LearningResource|EducationalOccupationalCredential',typ,re.I): continue
-            t=clean(x.get('name') or x.get('headline'))
-            if t and MARKERS.search(t+' '+typ): found.append((t,urljoin(url,x.get('url') or url),'jsonld',page,typ))
-    # Headings
+            if re.search(r'Course|Credential|Certification|LearningResource|EducationalOccupationalCredential',typ,re.I):
+                t=clean(x.get('name') or x.get('headline'))
+                if t: found.append((t,urljoin(url,x.get('url') or url),'jsonld',page,typ))
     for tag in soup.select('h1,h2,h3,h4,h5,h6'):
         t=clean(tag.get_text(' ',strip=True))
         if t and MARKERS.search(t): found.append((t,url,'heading',page,''))
-    # Same-origin links that point to training/credential pages or use credential wording.
     host=urlparse(url).netloc
     for a in soup.select('a[href]'):
         t=clean(a.get_text(' ',strip=True)); href=urljoin(url,a.get('href',''))
-        if not t or not href.startswith(('http://','https://')): continue
-        if urlparse(href).netloc!=host: continue
+        if not t or urlparse(href).netloc!=host: continue
         if MARKERS.search(t+' '+href): found.append((t,href,'anchor',page,''))
-    seen=set(); out=[]
+    out=[]; seen=set()
     for x in found:
         k=(x[0].lower(),x[1])
         if k not in seen: seen.add(k); out.append(x)
     return out
 
+def crawl(org,country,seed):
+    first,html=fetch(seed)
+    if not html: return []
+    queue=[first]; seen={first}
+    for u in discover(first,html,MAX_PAGES_PROVIDER*3):
+        if u not in seen: queue.append(u)
+    sm=join_sitemap= f"{urlparse(first).scheme}://{urlparse(first).netloc}/sitemap.xml"
+    _,smhtml=fetch(sm)
+    if smhtml:
+        for u in discover(sm,smhtml,MAX_PAGES_PROVIDER*2):
+            if u not in seen: queue.append(u)
+    results=[]
+    for u in queue[:MAX_PAGES_PROVIDER]:
+        if u==first: body=html; final=first
+        else: final,body=fetch(u)
+        if not body: continue
+        try: results.extend(extract_page(final,body))
+        except Exception: pass
+    return results
+
 def main():
-    prov=providers(); records=[]; evidence=[]; seen=set()
-    with ThreadPoolExecutor(max_workers=16) as ex:
-        fs={ex.submit(fetch,u):(o,c,u) for o,c,u in prov}
+    prov=providers(); records=[]; evidence=[]; seen=set(); today=datetime.now(timezone.utc).date().isoformat()
+    with ThreadPoolExecutor(max_workers=10) as ex:
+        fs={ex.submit(crawl,o,c,u):(o,c,u) for o,c,u in prov}
         for f in as_completed(fs):
-            org,country,u=fs[f]
-            try: final,html,status=f.result()
+            org,country,seed=fs[f]
+            try: items=f.result()
             except Exception: continue
-            if not html: continue
-            for title,link,method,page,typ in extract(org,country,final,html):
+            for title,link,method,page,typ in items:
                 rid=hashlib.sha1((org+'|'+title+'|'+link).encode()).hexdigest()[:14].upper()
                 if rid in seen: continue
-                seen.add(rid); observed=datetime.now(timezone.utc).date().isoformat()
-                rec={'ID':'CAND-'+rid,'Record Type':'credential-candidate','Country':country,'Organization':org,'Certificate/Badge':title,'Category':'Unclassified','Subcategory':'Unclassified','Level':'Discovery','Price Status':'⚪ unknown','Conditions':'Extracted from issuer-owned page; verify current credential and price before promoting','Exam/Assessment':'Provider-specific / unknown','Duration':'Varies','Language':'Provider-dependent','Available from Russia':'Unknown','Validity':'Varies','Credly/Verification':'Provider-defined','LinkedIn':'Varies','Official URL':link,'Priority':'B','Completion Status':'Не начато','Evidence Status':'official-page-extraction','Last Reviewed':observed,'Source Page':final,'Extraction Method':method,'Page Title':page,'Schema Type':typ,'Confidence':'candidate'}
-                records.append(rec); evidence.append({'record_id':rec['ID'],'official_url':link,'source_page':final,'method':method,'observed_name':title,'observed_at':observed,'provider':org})
+                seen.add(rid)
+                records.append({'ID':'CAND-'+rid,'Record Type':'credential-candidate','Country':country,'Organization':org,'Certificate/Badge':title,'Category':'Unclassified','Subcategory':'Unclassified','Level':'Discovery','Price Status':'⚪ unknown','Conditions':'Observed on issuer-owned page; verify exact credential type and current price before promotion','Exam/Assessment':'Provider-specific / unknown','Duration':'Varies','Language':'Provider-dependent','Available from Russia':'Unknown','Validity':'Varies','Credly/Verification':'Provider-defined','LinkedIn':'Varies','Official URL':link,'Priority':'B','Completion Status':'Не начато','Evidence Status':'official-page-extraction','Last Reviewed':today,'Source Page':page,'Extraction Method':method,'Schema Type':typ,'Confidence':'candidate'})
+                evidence.append({'record_id':'CAND-'+rid,'provider':org,'official_url':link,'source_page':seed,'method':method,'observed_name':title,'observed_at':today})
                 if len(records)>=MAX_TOTAL: break
             if len(records)>=MAX_TOTAL: break
     records.sort(key=lambda r:(r['Organization'].lower(),r['Certificate/Badge'].lower()))
@@ -107,4 +135,5 @@ def main():
     with EVID.open('w',encoding='utf-8') as f:
         for r in evidence: f.write(json.dumps(r,ensure_ascii=False)+'\n')
     print(f'extracted_candidates={len(records)} providers={len(prov)}')
-if __name__=='__main__': main()
+    return 0 if len(records)>=5000 else 2
+if __name__=='__main__': raise SystemExit(main())
