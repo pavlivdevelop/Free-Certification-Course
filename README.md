@@ -1,4 +1,4 @@
-# Free Certification Course
+# OpenCertAtlas
 
 Source-first knowledge base for certificates, certifications, digital badges and technical learning paths.
 
@@ -55,21 +55,23 @@ AI · Generative AI · LLM · AI Agents · RAG · Machine Learning · MLOps · P
 
 A badge stays a badge. A completion certificate stays a completion certificate. A professional exam certification is never labelled free without issuer evidence.
 
+See [`docs/STATUS-LABELS.md`](docs/STATUS-LABELS.md) for the canonical status specification.
+
 ## Personal learning system
 
 The browser application provides search, category/status filters, start and completion controls, XP, ranks, progress percentage and JSON export/import. Progress remains local to the user's browser; the public dataset contains no personal state.
 
 Progression: **Explore → Beginner → Foundation → Intermediate → Advanced → Professional → Expert → Master**.
 
-## Languages
-
-The web application supports a broad multilingual interface. The repository documentation currently provides full README translations for the major languages linked above, while the UI keeps the larger language selector available.
-
 ## Automation
 
 The extractor reads issuer-owned HTML using JSON-LD, headings, qualifying same-origin links and available sitemap URLs. Each extracted record keeps its source URL, source page, extraction method and extraction date. The builder validates uniqueness and the scale target.
 
 Scheduled freshness checks measure source reachability. Reachability alone never proves that a credential remains active or free; free-status promotion requires evidence.
+
+## Quality principles
+
+OpenCertAtlas treats provenance and classification as first-class data. Discovery is not verification, reachability is not proof of current status, and a credential candidate is not automatically a free credential. Generated datasets must pass structural, uniqueness and scale checks before publication.
 
 ## Repository use
 
