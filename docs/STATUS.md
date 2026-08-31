@@ -1,0 +1,1 @@
+2026-08-31: repository structure expanded. The large 640-record catalogue is generated locally; synchronization of machine-readable bulk data and workbook follows once binary/text write limits are confirmed.
