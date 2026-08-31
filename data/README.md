@@ -1,0 +1,1 @@
+The machine-readable catalogue lives in `catalog.csv`, `free-core.csv`, and `catalog.json`. `providers.csv` is the broader source registry. Source-registry rows do not claim that every provider currently offers a free certificate; they identify official portals that should be checked for current credentials.
