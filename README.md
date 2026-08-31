@@ -44,21 +44,21 @@ A badge stays a badge. A completion certificate stays a completion certificate. 
 - `status/` — manifests, progression and freshness reports.
 - `data/` — generated CSV/JSON datasets.
 - `scripts/` — deterministic catalog generation and freshness checking.
-- `site/` — browser-based personal roadmap UI.
+- `site/` — browser-based personal roadmap UI and `progress.html` local tracker.
 - `.github/workflows/` — scheduled generation and freshness checks.
 
 ## Personal roadmap
 
-Open `site/index.html` via GitHub Pages. Mark items as in progress or completed, earn XP, move through ranks, filter by skill track, and export/import your local progress JSON. No account or remote tracking is required.
+Open `site/index.html` via GitHub Pages for the full catalogue and filters. Open `site/progress.html` for a focused checklist: mark items as **Not started / In progress / Completed / Skipped**, earn XP, move through **Beginner → Foundation → Intermediate → Advanced → Professional → Expert**, and export/import your local progress JSON. No account or remote tracking is required.
 
 Languages: Русский · English · Українська · Deutsch · Español · Français · Português · Polski · 中文 · 日本語 · 한국어 · العربية.
 
 ## Automation
 
-`build-catalog.yml` rebuilds the 2k+ catalog from source registry + seed data. `freshness.yml` checks official URLs and review age weekly. Automation never upgrades a source-watch row into a free credential automatically; that still requires evidence.
+`build-catalog.yml` rebuilds the 2k+ catalog from source registry + seed data. `freshness.yml` checks official URLs and review age weekly. Automation never upgrades a `source-watch` row into a free credential automatically; that still requires evidence.
 
 ## Evidence basis
 
-Current provider documentation confirms the free-learning/credential models used by core sources such as IBM SkillsBuild, AWS Educate, Salesforce Trailhead, Cisco Networking Academy, HubSpot Academy, Raspberry Pi Training Hub and Linux Foundation free learning programs. citeturn808734search2turn808734search4turn808734search0turn961954search0turn961954search2turn685079search1turn685079search3turn685079search4turn685079search15turn685079search16
+Current provider documentation confirms the free-learning/credential models used by core sources such as IBM SkillsBuild, AWS Educate, Salesforce Trailhead, Cisco Networking Academy, HubSpot Academy, Raspberry Pi Training Hub and Linux Foundation free learning programs. The project keeps these models separate from paid professional exams and from unverified discovery records.
 
 Last baseline review: 2026-08-31.
