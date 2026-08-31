@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic structural/provenance validation for the generated OpenCertAtlas catalog."""
+"""Deterministic structural/provenance validation for OpenCertAtlas catalog data."""
 from __future__ import annotations
 
 import csv
@@ -11,24 +11,22 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 CSV_PATH = ROOT / "data/catalog-expanded.csv"
 JSON_PATH = ROOT / "data/catalog-expanded.json"
+MIN_RECORDS = 5_000
 
 REQUIRED = {
-    "ID",
-    "Organization",
-    "Certificate/Badge",
-    "Official URL",
-    "Record Type",
-    "Price Status",
+    "ID", "Organization", "Certificate/Badge", "Official URL", "Record Type", "Price Status"
 }
 ALLOWED_TYPES = {
-    "credential",
-    "credential-reference",
-    "credential-candidate",
-    "source-watch",
-    "regional-source",
-    "language-watch",
+    "credential", "credential-reference", "credential-candidate",
+    "source-watch", "regional-source", "language-watch",
 }
-ALLOWED_PRICES = {"✅", "⚠️", "⚪", "❌"}
+ALLOWED_PRICE_SYMBOLS = {"✅", "⚠️", "⚪", "❌"}
+
+# Never allow obvious synthetic/demo strings to pass as real credentials.
+PROHIBITED_PATTERNS = (
+    "generated certificate", "synthetic credential", "placeholder credential",
+    "fake certificate", "sample credential",
+)
 
 
 def fail(message: str) -> None:
@@ -44,6 +42,9 @@ def main() -> int:
     with CSV_PATH.open("r", encoding="utf-8-sig", newline="") as fh:
         rows = list(csv.DictReader(fh))
 
+    if len(rows) < MIN_RECORDS:
+        fail(f"minimum catalog size is {MIN_RECORDS}; got {len(rows)}")
+
     if not rows:
         fail("catalog CSV is empty")
 
@@ -53,6 +54,9 @@ def main() -> int:
 
     ids: set[str] = set()
     identity: set[tuple[str, str, str]] = set()
+    url_warnings = 0
+    type_counts: dict[str, int] = {}
+
     for index, row in enumerate(rows, start=2):
         for field in ("ID", "Organization", "Certificate/Badge", "Official URL"):
             if not str(row.get(field, "")).strip():
@@ -61,9 +65,10 @@ def main() -> int:
         record_type = str(row.get("Record Type", "")).strip()
         if record_type not in ALLOWED_TYPES:
             fail(f"row {index}: unsupported Record Type {record_type!r}")
+        type_counts[record_type] = type_counts.get(record_type, 0) + 1
 
         price = str(row.get("Price Status", "")).strip()
-        if not any(price.startswith(symbol) for symbol in ALLOWED_PRICES):
+        if not any(price.startswith(symbol) for symbol in ALLOWED_PRICE_SYMBOLS):
             fail(f"row {index}: unsupported Price Status {price!r}")
 
         url = str(row["Official URL"]).strip()
@@ -85,6 +90,14 @@ def main() -> int:
             fail(f"row {index}: duplicate organization/name/URL identity")
         identity.add(key)
 
+        text = f"{row['Organization']} {row['Certificate/Badge']}".casefold()
+        if any(pattern in text for pattern in PROHIBITED_PATTERNS):
+            fail(f"row {index}: prohibited synthetic-credential marker detected")
+
+        # Candidate/reference records may point to discovery pages, but URLs must still be usable.
+        if not parsed.path and not parsed.query:
+            url_warnings += 1
+
     try:
         payload = json.loads(JSON_PATH.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
@@ -95,14 +108,15 @@ def main() -> int:
     if len(payload) != len(rows):
         fail(f"CSV/JSON count mismatch: csv={len(rows)} json={len(payload)}")
 
-    type_counts: dict[str, int] = {}
-    for row in rows:
-        key = row["Record Type"]
-        type_counts[key] = type_counts.get(key, 0) + 1
+    csv_ids = {str(r["ID"]).strip() for r in rows}
+    json_ids = {str(r.get("ID", "")).strip() for r in payload}
+    if csv_ids != json_ids:
+        fail("CSV/JSON ID sets differ")
 
     print(f"catalog_records={len(rows)}")
     for key in sorted(type_counts):
         print(f"record_type[{key}]={type_counts[key]}")
+    print(f"url_shape_warnings={url_warnings}")
     print("catalog_validation=passed")
     return 0
 
