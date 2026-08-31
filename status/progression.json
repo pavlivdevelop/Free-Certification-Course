@@ -1,0 +1,21 @@
+{
+  "version": "2026.08",
+  "storage": "localStorage",
+  "statuses": ["Не начато", "В процессе", "Готово", "Отложено"],
+  "xp": {"Не начато": 0, "В процессе": 5, "Готово": 100, "Отложено": 0},
+  "ranks": [
+    {"name":"Explorer","min_xp":0},
+    {"name":"Foundation","min_xp":150},
+    {"name":"Builder","min_xp":500},
+    {"name":"Engineer","min_xp":1200},
+    {"name":"Specialist","min_xp":2500},
+    {"name":"Expert","min_xp":5000}
+  ],
+  "recommendation_rules": {
+    "prefer_free_verified": true,
+    "prefer_category_coverage": true,
+    "prefer_lower_level_before_higher": true,
+    "avoid_duplicate_provider_runs": true
+  },
+  "privacy": "Progress is stored locally; no account or remote tracking is required."
+}
