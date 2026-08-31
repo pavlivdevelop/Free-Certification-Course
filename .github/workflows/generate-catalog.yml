@@ -1,0 +1,31 @@
+name: Generate catalogue
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'data/catalog.csv'
+      - 'providers/providers.csv'
+      - 'taxonomy/taxonomy.json'
+      - 'credentials/generate_catalog.py'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+      - name: Generate 1,000+ catalogue
+        run: python credentials/generate_catalog.py
+      - name: Commit generated catalogue
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add credentials/catalog-master.csv credentials/parts
+          git diff --cached --quiet || git commit -m 'chore(data): regenerate expanded catalogue'
+          git push
