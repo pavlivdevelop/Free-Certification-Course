@@ -1,0 +1,150 @@
+provider_id,organization,country,domains,official_url,free_learning,free_credential,source_status,last_checked,check_after_days,next_check
+P-001,IBM,United States,AI;Cybersecurity;Data;Cloud;Software;Quantum,https://skillsbuild.org/learning-catalog,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-002,AWS,United States,Cloud;AI;Machine Learning;Security;Robotics;Quantum,https://aws.amazon.com/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-003,Google Cloud,United States,Cloud;AI;Data;Security;Networking,https://www.cloudskillsboost.google/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-004,Google for Developers,United States,Android;Web;Firebase;AI;Chrome;Maps;Flutter,https://developers.google.com/profile/badges,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-005,Microsoft,United States,AI;Cloud;Security;Developer;Data;DevOps,https://learn.microsoft.com/credentials/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-006,GitHub,United States,Git;Open Source;AI;Developer Productivity,https://learn.github.com/certifications,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-007,Cisco,United States,Networking;Cybersecurity;IoT;Python;AI,https://www.netacad.com/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-008,Linux Foundation,United States,Linux;Kubernetes;Cloud Native;Open Source;Security;Observability;Supply Chain,https://training.linuxfoundation.org/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-009,Red Hat,United States,Linux;Automation;Kubernetes;OpenShift;Security,https://www.redhat.com/en/services/certification,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-010,Fortinet,United States,Cybersecurity;Networking;Cloud Security;OT,https://www.fortinet.com/training-certification,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-011,Kaspersky,Russia,Cybersecurity;Endpoint;Threat Intelligence,https://certification.kaspersky.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-012,Positive Technologies,Russia,Cybersecurity;AppSec;Pentest;Security Operations,https://edu.ptsecurity.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-013,RЭД СОФТ,Russia,Linux;Databases;Virtualization;Secure Software,https://education.red-soft.ru/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-014,Группа Астра,Russia,Linux;Infrastructure;Virtualization;Enterprise IT,https://astra.ru/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-015,1C,Russia,ERP;Business Software;Accounting;Development,https://1c.ru/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-016,Т-Банк Education,Russia,AI;Python;Algorithms;Mobile;Cybersecurity;Data,https://education.tbank.ru/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-017,Нетология,Russia,AI;Python;Analytics;IT;System Analysis,https://netology.ru/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-018,Stepik,Russia,Python;Math;Programming;IT;Data,https://stepik.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-019,Открытое образование,Russia,Mathematics;Physics;Engineering;CS,https://openedu.ru/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-020,HubSpot Academy,United States,Marketing Technology;CRM;AI;APIs;Analytics,https://academy.hubspot.com/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-021,Salesforce Trailhead,United States,AI;CRM;Data;Development;Security,https://trailhead.salesforce.com/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-022,Raspberry Pi Foundation,United Kingdom,Python;AI;Electronics;Physical Computing;Embedded,https://training-hub.raspberrypi.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-023,NVIDIA,United States,AI;GPU;Deep Learning;Generative AI;Robotics,https://www.nvidia.com/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-024,Oracle,United States,Cloud;Java;Database;AI;ERP,https://www.oracle.com/education/certification/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-025,SAP,Germany,ERP;Cloud;Data;Business Technology;AI,https://learning.sap.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-026,MongoDB,United States,Database;Developer;Data Platform,https://learn.mongodb.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-027,Postman,United States,API;Testing;Integration;Developer Productivity,https://academy.postman.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-028,HashiCorp,United States,Terraform;Vault;Consul;Boundary;Cloud Engineering,https://developer.hashicorp.com/certifications,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-029,Elastic,United States,Search;Observability;Security;Data Engineering,https://www.elastic.co/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-030,Datadog,United States,Observability;Security;Cloud;SRE,https://learn.datadoghq.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-031,GitLab,United States,DevSecOps;Git;CI/CD;Source Control,https://about.gitlab.com/learn/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-032,JFrog,United States,DevOps;Artifacts;Supply Chain Security,https://academy.jfrog.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-033,Docker,United States,Containers;Developer Tools;Cloud Native,https://www.docker.com/education/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-034,Kubernetes,Global,Containers;Orchestration;Cloud Native,https://kubernetes.io/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-035,CNCF,Global,Cloud Native;Kubernetes;Service Mesh;Observability,https://www.cncf.io/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-036,OpenSSF,Global,Software Security;Supply Chain;Open Source,https://openssf.org/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-037,OpenTofu,Global,Infrastructure as Code;DevOps,https://opentofu.org/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-038,OpenTelemetry,Global,Observability;Telemetry;SRE,https://opentelemetry.io/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-039,Grafana Labs,Sweden,Observability;Metrics;Logs;Tracing,https://grafana.com/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-040,Prometheus,Global,Monitoring;Observability,https://prometheus.io/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-041,Ansible,United States,Automation;Configuration Management;DevOps,https://www.ansible.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-042,JFrog Academy,United States,DevOps;Artifact Management;Security,https://academy.jfrog.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-043,Broadcom VMware,United States,Virtualization;Cloud;Networking;Security,https://www.vmware.com/learning.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-044,Juniper Networks,United States,Networking;Security;Cloud,https://www.juniper.net/us/en/training/certification.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-045,Palo Alto Networks,United States,Cybersecurity;Cloud Security;SOC,https://www.paloaltonetworks.com/services/education,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-046,Check Point,Israel,Cybersecurity;Network Security,https://www.checkpoint.com/services/training-and-certification/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-047,Splunk,United States,SIEM;Observability;Security Analytics,https://www.splunk.com/en_us/training.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-048,CrowdStrike,United States,Endpoint Security;Threat Intelligence;Cloud Security,https://www.crowdstrike.com/services/education/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-049,Cloudflare,United States,Networking;Web Security;Zero Trust;Performance,https://www.cloudflare.com/learning/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-050,Akamai,United States,CDN;Web Security;Networking,https://www.akamai.com/learn,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-051,ISC2,Global,Cybersecurity;Security Management,https://www.isc2.org/certifications,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-052,ISACA,United States,Audit;Governance;Cybersecurity;Risk,https://www.isaca.org/credentialing,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-053,EC-Council,United States,Cybersecurity;Ethical Hacking;Forensics,https://www.eccouncil.org/train-certify/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-054,CompTIA,United States,IT;Cybersecurity;Networking;Cloud,https://www.comptia.org/certifications,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-055,PECB,Canada,ISO;Cybersecurity;Privacy;Risk,https://pecb.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-056,BSI,United Kingdom,Standards;Quality;Cybersecurity;Supply Chain,https://www.bsigroup.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-057,NIST,United States,Cybersecurity;AI;Risk;Standards,https://www.nist.gov/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-058,OWASP,Global,Web Security;Application Security;Testing,https://owasp.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-059,SANS Institute,United States,Cybersecurity;Forensics;Blue Team;Red Team,https://www.sans.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-060,PortSwigger,United Kingdom,Web Security;Burp Suite,https://portswigger.net/web-security,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-061,TryHackMe,United Kingdom,Cybersecurity;SOC;Pentest,https://tryhackme.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-062,Hack The Box,Malta,Cybersecurity;Pentest;Red Team,https://academy.hackthebox.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-063,Kaggle,United States,Data Science;Machine Learning;AI,https://www.kaggle.com/learn,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-064,fast.ai,United States,Deep Learning;AI,https://course.fast.ai/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-065,DeepLearning.AI,United States,AI;LLM;Agents;Deep Learning,https://www.deeplearning.ai/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-066,Hugging Face,United States/France,LLM;NLP;Computer Vision;Datasets,https://huggingface.co/learn,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-067,OpenAI Academy,United States,AI;LLM;Agents,https://academy.openai.com/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-068,Anthropic,United States,Claude;AI;Agents,https://www.anthropic.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-069,Databricks,United States,Data Engineering;Lakehouse;AI;ML,https://www.databricks.com/learn,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-070,Snowflake,United States,Data Cloud;SQL;AI;Governance,https://learn.snowflake.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-071,Confluent,United States,Kafka;Streaming;Data Engineering,https://developer.confluent.io/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-072,Apache Software Foundation,Global,Open Source;Big Data;Distributed Systems,https://www.apache.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-073,PostgreSQL,Global,Databases;SQL,https://www.postgresql.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-074,Redis,United States,Databases;Caching;Data Structures,https://university.redis.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-075,Neo4j,United States,Graph Databases;Data Science,https://graphacademy.neo4j.com/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-076,Linux Professional Institute,Canada, Linux;Open Source;Security,https://www.lpi.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-077,Python Institute,Poland,Python;AI;Data;Testing;Security,https://pythoninstitute.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-078,JetBrains Academy,Czech Republic,Programming;Kotlin;Java;Python,https://www.jetbrains.com/academy/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-079,Unity,United States,Game Development;XR;3D,https://learn.unity.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-080,Epic Games,United States,Unreal Engine;3D;Virtual Production,https://dev.epicgames.com/community/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-081,Autodesk,United States,CAD;BIM;CAE;Manufacturing,https://www.autodesk.com/certification/overview,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-082,Dassault Systèmes,France,CAD;CAE;PLM;Simulation,https://www.3ds.com/education/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-083,Siemens Digital Industries Software,Germany,CAD;CAE;PLM;EDA;Automation,https://training.plm.automation.siemens.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-084,PTC,United States,CAD;PLM;IoT;AR,https://www.ptc.com/en/academic-program,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-085,Altium,Australia,PCB;Electronics;EDA,https://www.altium.com/education,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-086,Cadence,United States,EDA;ASIC;PCB;Semiconductors,https://www.cadence.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-087,Synopsys,United States,EDA;Semiconductors;Software Security,https://www.synopsys.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-088,MathWorks,United States,MATLAB;Simulink;Control;Signal Processing,https://www.mathworks.com/learn/training.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-089,NI,United States,LabVIEW;Instrumentation;Test;Automation,https://www.ni.com/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-090,Keysight Technologies,United States,RF;Microwave;Test;Measurement,https://www.keysight.com/us/en/learn.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-091,Rohde & Schwarz,Germany,RF;Test;Measurement;Spectrum,https://www.rohde-schwarz.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-092,Tektronix,United States,Oscilloscopes;Test;Measurement,https://www.tek.com/en/learning,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-093,Ansys,United States,CAE;CFD;FEA;Simulation,https://www.ansys.com/academic/educator-resources,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-094,COMSOL,Sweden,Multiphysics;Simulation;Physics,https://www.comsol.com/learning-center,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-095,National Physical Laboratory,United Kingdom,Metrology;Measurement;Physics,https://www.npl.co.uk/education-training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-096,IPC,United States,PCB;Electronics Manufacturing;Quality,https://www.ipc.org/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-097,IEEE,Global,Electrical Engineering;RF;Signal Processing;Communications;AI,https://www.ieee.org/education/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-098,IETF,Global,Internet;Networking;Protocols,https://www.ietf.org/education/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-099,3GPP,Global,5G;6G;Mobile Communications,https://www.3gpp.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-100,GSMA,United Kingdom/Global,Mobile;5G;IoT;eSIM,https://www.gsma.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-101,ITU Academy,Global,Telecommunications;Spectrum;Policy,https://academy.itu.int/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-102,ETSI,Europe,Telecommunications;Standards;5G;IoT,https://www.etsi.org/education,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-103,ESA,Europe,Space;Satellite;Earth Observation;Engineering,https://learningzone.esa.int/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-104,NASA,United States,Aerospace;Earth Science;Space;Engineering,https://www.nasa.gov/learning-resources/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-105,NOAA,United States,Ocean;Weather;Earth Science;GIS,https://www.noaa.gov/education,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-106,USGS,United States,Geospatial;Earth Science;GIS,https://www.usgs.gov/educational-resources,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-107,Esri,United States,GIS;Geospatial;Remote Sensing,https://www.esri.com/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-108,QGIS,Global,GIS;Geospatial,https://www.qgis.org/en/site/forusers/trainingmaterial/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-109,Autoware Foundation,Global,Autonomous Vehicles;Robotics;ROS,https://www.autoware.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-110,ROS,Global,Robotics;Middleware;Autonomy,https://www.ros.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-111,FIRST Robotics,United States/Global,Robotics;STEM;Engineering,https://www.firstinspires.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-112,ABB,Switzerland,Industrial Automation;Robotics;PLC,https://new.abb.com/service/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-113,Siemens,Germany,Industrial Automation;PLC;Manufacturing,https://www.siemens.com/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-114,Schneider Electric,France,Automation;Energy;Industrial Control,https://www.se.com/ww/en/work/solutions/for-business/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-115,Rockwell Automation,United States,PLC;Industrial Automation;OT,https://www.rockwellautomation.com/en-us/services/training.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-116,Mitsubishi Electric,Japan,Automation;PLC;Robotics;Factory Automation,https://us.mitsubishielectric.com/fa/en/learn/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-117,Omron,Japan,Automation;Robotics;Control,https://www.omron.com/global/en/technology/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-118,Festo,Germany,Industrial Automation;Pneumatics;Mechatronics,https://www.festo.com/us/en/e/academy/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-119,Beckhoff,Germany,Automation;EtherCAT;Motion Control,https://www.beckhoff.com/en-us/company/education/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-120,Phoenix Contact,Germany,Industrial Networking;Automation;Electronics,https://www.phoenixcontact.com/en-pc/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-121,Bosch Rexroth,Germany,Automation;Hydraulics;Motion,https://www.boschrexroth.com/en/xc/training/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-122,Dassault Aviation,France,Aerospace;Engineering,https://www.dassault-aviation.com/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-123,SAE International,United States,Automotive;Aerospace;Mobility;Engineering,https://www.sae.org/learn,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-124,ISO,Switzerland,Standards;Quality;Management Systems,https://www.iso.org/training.html,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-125,IEC,Switzerland,Electrical;Electronics;Standards,https://www.iec.ch/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-126,ASQ,United States,Quality;Manufacturing;Reliability,https://asq.org/training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-127,PMI,United States,Project Management;Agile,https://www.pmi.org/learning,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-128,Scrum.org,United States,Agile;Scrum;Product,https://www.scrum.org/professional-training,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-129,Scrum Alliance,United States,Agile;Scrum,https://www.scrumalliance.org/get-certified,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-130,Linux Foundation Training,United States,Linux;Cloud;Open Source;DevOps,https://training.linuxfoundation.org/,confirmed,confirmed,active,2026-08-31,90,2026-11-29
+P-131,OpenEDX,Global,Education Technology;Software;Data,https://openedx.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-132,OpenLearn,United Kingdom,Science;Engineering;Computing,https://www.open.edu/openlearn/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-133,Khan Academy,United States,Math;Science;Computing,https://www.khanacademy.org/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-134,MIT OpenCourseWare,United States,Engineering;Physics;Math;CS,https://ocw.mit.edu/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-135,Coursera,Global,AI;IT;Math;Science;Business,https://www.coursera.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-136,edX,Global,CS;Engineering;Math;Science,https://www.edx.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-137,FutureLearn,United Kingdom,Technology;Science;Business,https://www.futurelearn.com/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-138,Class Central,United States,MOOC discovery;Course directories,https://www.classcentral.com/,confirmed,source-only,active,2026-08-31,90,2026-11-29
+P-139,OpenWHO,Global,Health Technology;Public Health,https://openwho.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-140,FAO eLearning Academy,Global,Agriculture;Food;Climate,https://elearning.fao.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-141,UN CC:Learn,Global,Climate;Sustainability,https://unccelearn.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-142,WHO Academy,Global,Health;Public Health;Digital Health,https://www.who.int/about/who-academy,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-143,UNEP InforMEA,Global,Environmental Law;Sustainability,https://www.informea.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-144,EU Academy,European Union,Digital;Policy;Public Administration,https://academy.europa.eu/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-145,EIT Digital,European Union,Digital Technology;AI;Cybersecurity,https://www.eitdigital.eu/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-146,EIT Manufacturing,European Union,Manufacturing;Robotics;Automation,https://www.eitmanufacturing.eu/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-147,EIT Health,European Union,Digital Health;HealthTech,https://eithealth.eu/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-148,EIT Climate-KIC,European Union,Climate;Innovation;Sustainability,https://www.climate-kic.org/,confirmed,conditional,active,2026-08-31,90,2026-11-29
+P-149,Roscosmos Education,Russia,Space;Rocket Engineering;Satellite;Physics,https://www.roscosmos.ru/,unknown,source-only,active,2026-08-31,90,2026-11-29
