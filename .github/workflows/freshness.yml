@@ -1,6 +1,13 @@
 name: Credential freshness
 
 on:
+  push:
+    paths:
+      - 'data/catalog-expanded.csv'
+      - 'data/catalog-expanded.json'
+      - 'providers/**'
+      - 'scripts/check_freshness.py'
+      - '.github/workflows/freshness.yml'
   schedule:
     - cron: '17 3 * * 1'
   workflow_dispatch:
@@ -16,7 +23,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Check catalog freshness and official source reachability
+      - name: Check catalog freshness
         run: python scripts/check_freshness.py
       - name: Commit report
         run: |
