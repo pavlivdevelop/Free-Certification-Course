@@ -1,0 +1,34 @@
+name: Provenance quality
+
+on:
+  push:
+    paths:
+      - 'data/catalog-expanded.csv'
+      - 'scripts/score_provenance.py'
+      - '.github/workflows/provenance-score.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '23 4 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Score provenance quality
+        run: python scripts/score_provenance.py
+      - name: Publish score report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: provenance-score
+          path: status/provenance-score.json
+          if-no-files-found: error
