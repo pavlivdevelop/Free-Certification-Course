@@ -1,64 +1,72 @@
 # Free Certification Course
 
-Source-first knowledge base for certificates, digital badges and technical learning credentials.
+Source-first knowledge base for certificates, certifications, digital badges and technical learning paths.
 
-## Current scale
+## Mission
 
-- **2,700+ tracked records** generated from a maintained provider/source registry.
-- **149 providers** across multiple countries and regions.
-- **100+ technical domains** from AI and Python to RF, semiconductors, robotics, physics, GIS, aerospace, energy and more.
-- Free-first filtering with explicit `✅ 0 ₽`, `⚠️ condition`, and `❌ paid/reference` states.
-- Personal learning roadmap with local progress, XP, ranks and export/import.
-- Automated weekly source freshness checks.
+Build the largest practical free-credential discovery library without manufacturing fake credentials. Concrete names come from issuer-owned pages; taxonomy expands coverage but never invents certificate names.
 
-## Record types
+## Scale target
 
-`credential` — named credential/badge from the seed catalog.
+The build pipeline is designed for **5,000–10,000+ observed records**. Large scale is achieved by extracting real names from official provider pages and preserving provenance, not by multiplying provider × topic combinations and calling them certificates.
 
-`credential-reference` — named professional certification tracked for context; free status is not claimed.
+## Coverage
 
-`source-watch` — provider × technical domain monitoring record. It is deliberately **not** presented as a certificate.
+AI · Generative AI · LLM · AI Agents · RAG · Machine Learning · MLOps · Python · Java · C/C++ · C# · Rust · Go · Web · Mobile · APIs · Databases · Data Engineering · Cybersecurity · AppSec · SOC · DFIR · Cloud · DevOps · SRE · Kubernetes · Networking · 5G/6G · Telecommunications · IoT · Embedded · RISC-V · FPGA · ASIC · Electronics · PCB · EDA · RF · SDR · Antennas · Microwave · EMC/EMI · DSP · Radar · Control Systems · Robotics · ROS · PLC/SCADA · Industrial Automation · Mechatronics · CAD/CAM/CAE · BIM · CFD/FEA · Digital Twins · CNC · 3D Printing · Metrology · Semiconductors · Materials · Mathematics · Statistics · Physics · Quantum · GIS · Remote Sensing · Aerospace · Avionics · Automotive · Energy · Medical Devices · Biotechnology · Chemistry · Environment · Smart Cities · Game/XR · Open Source · Software Supply Chain · Observability · Testing/QA · Technical Writing and more.
 
-`language-watch` — provider × language availability monitor.
+## Architecture
 
-`regional-source` — regional discovery source.
+`providers/` — providers, countries, official source URLs, language/region metadata.
 
-## Technical coverage
+`credentials/` — named credentials, extraction candidates and registry documentation.
 
-AI · Machine Learning · LLM · AI Agents · MLOps · Python · Java · C++ · C# · JavaScript · Web · Mobile · APIs · Databases · Data Engineering · Data Analytics · Cybersecurity · AppSec · SecOps · Digital Forensics · Cloud · Cloud Architecture · DevOps · SRE · Platform Engineering · Kubernetes · Containers · Networking · 5G · 6G · Telecommunications · IoT · Embedded · RISC-V · FPGA · ASIC · Electronics · PCB · EDA · RF · SDR · Antennas · Microwave · Signal Processing · DSP · Control Systems · Robotics · ROS · PLC · SCADA · Industrial Automation · Mechatronics · CAD · BIM · CAE · CFD · FEA · Digital Twins · CNC · 3D Printing · Metrology · Semiconductors · Materials Science · Physics · Mathematics · Statistics · Quantum Computing · GIS · Remote Sensing · Aerospace · Automotive · Energy · Renewables · Power Systems · Medical Devices · Biotechnology · Chemistry · Environmental Technology · Agricultural Technology · Technical Writing · Project Management · Product Management · UX Engineering · Accessibility · Open Source · Software Supply Chain · Observability · Testing · QA Automation · Game Development · XR · Blockchain · HealthTech · EdTech · Maritime · Rail · Smart Cities · Cyber-Physical Systems.
+`taxonomy/` — controlled technical domains and progression levels.
 
-## Free-status policy
+`evidence/` — provenance and extraction evidence.
 
-- ✅ **0 ₽** — the current official source supports free access/credential.
-- ⚠️ **condition** — student/educator, voucher, scholarship, campaign, partner access, or course-specific rule.
-- ❌ **paid/reference** — kept outside the free core.
+`status/` — freshness, catalog statistics and progression rules.
 
-A badge stays a badge. A completion certificate stays a completion certificate. A professional exam certification is not represented as free unless the issuer explicitly provides a free path.
+`data/` — generated CSV/JSON datasets.
 
-## Repository structure
+`scripts/` — deterministic extraction, normalization and freshness tooling.
 
-- `providers/` — provider and source registry.
-- `credentials/` — named credentials and reference certifications.
-- `taxonomy/` — controlled technical taxonomy.
-- `evidence/` — provenance and verification model.
-- `status/` — manifests, progression and freshness reports.
-- `data/` — generated CSV/JSON datasets.
-- `scripts/` — deterministic catalog generation and freshness checking.
-- `site/` — browser-based personal roadmap UI and `progress.html` local tracker.
-- `.github/workflows/` — scheduled generation and freshness checks.
+`site/` — compact browser application and portable personal progress tracker.
 
-## Personal roadmap
+`.github/workflows/` — scheduled extraction, validation and freshness automation.
 
-Open `site/index.html` via GitHub Pages for the full catalogue and filters. Open `site/progress.html` for a focused checklist: mark items as **Not started / In progress / Completed / Skipped**, earn XP, move through **Beginner → Foundation → Intermediate → Advanced → Professional → Expert**, and export/import your local progress JSON. No account or remote tracking is required.
+## Record model
 
-Languages: Русский · English · Українська · Deutsch · Español · Français · Português · Polski · 中文 · 日本語 · 한국어 · العربية.
+- `credential` — named credential/badge from the curated seed set.
+- `credential-reference` — legitimate professional certification tracked for context; free status is not implied.
+- `credential-candidate` — exact name observed on an issuer-owned page, awaiting evidence classification.
+- `source-watch` — provider/domain monitoring record; never displayed as a certificate.
+- `regional-source` — regional discovery source.
+- `language-watch` — language availability monitor.
+
+## Free-status model
+
+✅ `0 ₽` · ⚠️ conditional · ⚪ unknown · ❌ paid/reference.
+
+A badge stays a badge. A completion certificate stays a completion certificate. A professional exam certification is not marked free without issuer evidence.
+
+## Personal learning system
+
+The browser UI provides search, category/price/status filters, start/complete controls, XP, ranks, progress percentage and JSON export/import. Progress remains local to the user's browser; the public dataset does not contain personal state.
+
+Progression: **Explore → Beginner → Foundation → Intermediate → Advanced → Professional → Expert → Master**.
+
+## Languages
+
+Русский · English · Українська · Deutsch · Español · Français · Português · Polski · 中文 · 日本語 · 한국어 · العربية.
 
 ## Automation
 
-`build-catalog.yml` rebuilds the 2k+ catalog from source registry + seed data. `freshness.yml` checks official URLs and review age weekly. Automation never upgrades a `source-watch` row into a free credential automatically; that still requires evidence.
+The extractor reads issuer-owned HTML using JSON-LD, headings and qualifying same-origin links, and can inspect sitemap URLs. Every extracted record keeps the source URL, source page, extraction method and date. The builder validates uniqueness and the 5,000-record scale target.
 
-## Evidence basis
+Scheduled freshness checks measure source reachability. Reachability alone never proves that a credential remains free or active; promotion requires evidence.
 
-Current provider documentation confirms the free-learning/credential models used by core sources such as IBM SkillsBuild, AWS Educate, Salesforce Trailhead, Cisco Networking Academy, HubSpot Academy, Raspberry Pi Training Hub and Linux Foundation free learning programs. The project keeps these models separate from paid professional exams and from unverified discovery records.
+## Verification sources
+
+Current provider documentation supports the free-learning/credential models used by major sources such as IBM SkillsBuild, AWS Educate, Salesforce Trailhead, Cisco Networking Academy, HubSpot Academy, Google developer resources and Raspberry Pi training. citeturn208266search4turn208266search7turn208266search5turn208266search10
 
 Last baseline review: 2026-08-31.
