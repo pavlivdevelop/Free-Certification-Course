@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "project": "OpenCertAtlas",
-  "purpose": "Portable continuation context for future autonomous development sessions.",
+  "purpose": "Portable continuation context for autonomous development sessions.",
   "canonical_branch": "main",
   "principles": [
     "official-source-first",
@@ -9,38 +9,38 @@
     "reachability-is-not-status-proof",
     "credential-type-is-preserved",
     "free-status-requires-evidence",
+    "source-provenance-is-preserved-as-URL",
     "user-progress-is-local-by-default",
-    "generated-data-is-never-used-as-seed-input"
+    "generated-data-must-pass-validation-before-publication"
   ],
-  "completed_recently": [
-    "provenance quality scoring workflow",
-    "portable site smoke tests",
-    "brand alignment with OpenCertAtlas",
-    "catalog seed/input isolation",
-    "extractor user-agent alignment",
-    "legacy catalog artifact cleanup"
-  ],
-  "current_scale_target": "5000+ observed records; grow through official extraction/evidence and controlled source discovery",
-  "active_automation": [
-    "official catalog extraction/build/validation",
-    "source freshness monitoring",
-    "provenance scoring",
-    "site smoke tests"
+  "current_scale_target": "10000+ observed records; grow only through official extraction/evidence",
+  "verified_recent_build": {
+    "run": 33426301925,
+    "status": "success",
+    "extracted_candidates": 10394,
+    "catalog_records": 10465,
+    "credential_records": 81
+  },
+  "recent_engineering_changes": [
+    "GitHub-hosted runners are the primary execution environment.",
+    "checkout/setup-python workflows upgraded to current Node 24-compatible major actions.",
+    "freshness publication uses rebase and force-with-lease under a shared concurrency group.",
+    "official extractor preserves the actual source URL in Source Page provenance.",
+    "repository hygiene guard added.",
+    "GitHub Pages deployment workflow added.",
+    "root README aligned with OpenCertAtlas branding."
   ],
   "next_priority": [
-    "credential evidence promotion pipeline",
-    "provider-domain/source integrity checks",
+    "provenance confidence scoring",
+    "evidence promotion rules for credential/free classification",
     "learning-path prerequisite graph",
-    "recommendation engine based on level, prerequisites and local progress",
-    "multilingual catalog presentation layer",
-    "portable offline release bundle",
-    "schema/version migration checks",
-    "catalog quality dashboard"
+    "source health and review queue",
+    "schema validation in CI",
+    "portable offline distribution",
+    "multilingual presentation layer",
+    "site accessibility and keyboard navigation",
+    "release manifest and reproducible catalog snapshots"
   ],
-  "known_constraints": [
-    "Self-hosted runner is optional; GitHub-hosted runners are the primary CI execution environment.",
-    "No user computer intervention is required for normal catalog CI/CD.",
-    "Free status must never be inferred from provider metadata alone."
-  ],
+  "human_intervention": "Only required for account-level GitHub settings, Pages/environment approval, secrets, or other privileged UI actions not exposed through repository tooling.",
   "last_context_update": "2026-08-31"
 }
