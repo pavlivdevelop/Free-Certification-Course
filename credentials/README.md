@@ -1,24 +1,14 @@
-# Credentials layer
+# Credentials
 
-This directory is the named-credential layer of the knowledge base.
+`catalog-master.csv` is the unified catalogue.
 
-## Record policy
+Record types:
 
-A record here should name an actual certificate, certification, badge or completion credential issued by an identifiable organization.
+- `Credential / badge` — an existing curated certificate, credential or badge record.
+- `Learning-source discovery` — a source-backed discovery record that must pass verification before it can be promoted to a verified credential.
 
-### Status classes
+This distinction prevents the database from inventing certificates merely to reach a target count.
 
-- `free` — current official material supports a no-cost credential path.
-- `conditional` — no-cost only with a student/educator/voucher/scholarship/campaign/partner condition.
-- `paid-reference` — legitimate credential, but the ordinary exam or issuance is paid.
-- `review` — provider exists, but the specific free-credential claim needs source verification.
+The catalogue is split into small CSV parts under `credentials/parts/` so it can be maintained through GitHub's text-file API without requiring binary uploads.
 
-The generator keeps these classes separate from `source-watch` records so a broad provider/domain matrix cannot be mistaken for thousands of real certificates.
-
-## Progress fields
-
-Each generated credential is intended to support a local user state:
-
-`Не начато` → `В процессе` → `Готово` / `Отложено`.
-
-Completion is stored in the browser and can be exported/imported. The catalog itself never stores a person's identity or progress.
+The public catalogue should never contain personal completion data.
