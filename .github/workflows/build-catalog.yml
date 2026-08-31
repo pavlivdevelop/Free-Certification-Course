@@ -20,8 +20,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      - name: Merge provider source registry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          main=Path('providers/providers.csv')
+          extra=Path('providers/providers-additional.csv')
+          if extra.exists():
+              a=main.read_text(encoding='utf-8-sig').rstrip()+'\n'
+              b='\n'.join(extra.read_text(encoding='utf-8-sig').splitlines()[1:])
+              main.write_text(a+b+'\n',encoding='utf-8')
+          PY
       - name: Generate catalog
         run: python scripts/build_catalog.py
+      - name: Validate generated catalog
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          p=Path('data/catalog-expanded.csv')
+          rows=list(csv.DictReader(p.open(encoding='utf-8-sig')))
+          assert len(rows) >= 2000, len(rows)
+          assert all(r.get('ID') and r.get('Category') for r in rows)
+          print('records=',len(rows))
+          print('free_core=',sum(str(r.get('Price Status','')).startswith('✅') for r in rows))
+          print('source_watch=',sum(r.get('Record Type')=='source-watch' for r in rows))
+          PY
       - name: Commit generated data
         run: |
           git config user.name github-actions[bot]
