@@ -38,15 +38,25 @@ jobs:
         run: python scripts/build_official_catalog.py
       - name: Validate dataset
         run: |
+          set -euo pipefail
           python - <<'PY'
           import csv
+          import json
           from pathlib import Path
-          p = Path('data/catalog-expanded.csv')
-          rows = list(csv.DictReader(p.open(encoding='utf-8-sig')))
+
+          csv_path = Path('data/catalog-expanded.csv')
+          json_path = Path('data/catalog-expanded.json')
+          rows = list(csv.DictReader(csv_path.open(encoding='utf-8-sig')))
           assert len(rows) >= 5000, f'Expected >=5000 records, got {len(rows)}'
-          assert all(r['ID'] and r['Organization'] and r['Certificate/Badge'] for r in rows)
-          names = {(r['Organization'].lower(), r['Certificate/Badge'].lower(), r['Official URL']) for r in rows}
-          assert len(names) == len(rows), 'duplicate records detected'
+          required = {'ID', 'Organization', 'Certificate/Badge', 'Official URL', 'Record Type', 'Price Status'}
+          assert required.issubset(rows[0].keys()), f'Missing columns: {sorted(required - set(rows[0].keys()))}'
+          assert all(r['ID'] and r['Organization'] and r['Certificate/Badge'] and r['Official URL'] for r in rows), 'required fields contain blanks'
+          assert len({r['ID'] for r in rows}) == len(rows), 'duplicate IDs detected'
+          names = {(r['Organization'].strip().casefold(), r['Certificate/Badge'].strip().casefold(), r['Official URL'].strip()) for r in rows}
+          assert len(names) == len(rows), 'duplicate organization/name/URL records detected'
+          payload = json.loads(json_path.read_text(encoding='utf-8'))
+          assert isinstance(payload, list), 'expanded JSON must be an array'
+          assert len(payload) == len(rows), 'CSV/JSON record count mismatch'
           print(f'records={len(rows)}')
           print(f'candidates={sum(r["Record Type"]=="credential-candidate" for r in rows)}')
           print(f'free={sum(str(r["Price Status"]).startswith("✅") for r in rows)}')
@@ -57,7 +67,8 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv status/CATALOG-STATS.md
-          git diff --cached --quiet || git commit -m 'chore(data): refresh official credential catalog [skip ci]'
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore(data): refresh official credential catalog [skip ci]'
           git fetch origin main
           git rebase origin/main
           git push --force-with-lease origin HEAD:main
