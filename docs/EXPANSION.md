@@ -1,0 +1,1 @@
+The project is now positioned as a broad credential discovery library, not only a short free-certificate list. See TAXONOMY and source registry for the expanded technical scope.
