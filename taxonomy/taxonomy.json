@@ -1,0 +1,7 @@
+{
+  "version":"2026.08",
+  "categories":["AI","Machine Learning","LLM","AI Agents","MLOps","Python","Java","C++","C#","JavaScript","Web","Mobile","APIs","Databases","Data Engineering","Data Analytics","Cybersecurity","Application Security","Security Operations","Digital Forensics","Cloud","Cloud Architecture","DevOps","SRE","Platform Engineering","Kubernetes","Containers","Networking","5G","6G","Telecommunications","IoT","Embedded","RISC-V","FPGA","ASIC","Electronics","PCB","EDA","RF","SDR","Antennas","Microwave","Signal Processing","DSP","Control Systems","Robotics","ROS","PLC","SCADA","Industrial Automation","Mechatronics","CAD","BIM","CAE","CFD","FEA","Digital Twins","CNC","3D Printing","Metrology","Semiconductors","Materials Science","Physics","Mathematics","Statistics","Quantum Computing","GIS","Remote Sensing","Aerospace","Automotive","Energy","Renewables","Power Systems","Medical Devices","Biotechnology","Chemistry","Environmental Technology","Agricultural Technology","Technical Writing","Project Management","Product Management","UX Engineering","Accessibility","Open Source","Software Supply Chain","Observability","Testing","QA Automation","Game Development","XR","Blockchain","HealthTech","EdTech","Maritime Technology","Rail Technology","Smart Cities","Cyber-Physical Systems"],
+  "levels":["Beginner","Intermediate","Associate","Advanced","Professional","Expert","catalog"],
+  "free_status":["✅ 0 ₽","⚠️ condition","❌ paid/reference"],
+  "record_types":["credential","credential-reference","source-watch","language-watch","regional-source"]
+}
