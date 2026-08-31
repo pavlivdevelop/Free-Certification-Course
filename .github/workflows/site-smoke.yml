@@ -1,0 +1,33 @@
+name: Site smoke tests
+
+on:
+  push:
+    paths:
+      - 'site/**'
+      - 'scripts/smoke_site.py'
+      - '.github/workflows/site-smoke.yml'
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'scripts/smoke_site.py'
+      - '.github/workflows/site-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-smoke
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run deterministic smoke checks
+        run: python scripts/smoke_site.py
