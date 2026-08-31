@@ -1,1 +1,14 @@
-{}
+{
+  "schema_version": "1.2",
+  "project": "OpenCertAtlas",
+  "canonical_branch": "main",
+  "purpose": "Portable continuation context for autonomous development sessions.",
+  "principles": ["official-source-first","discovery-is-not-verification","reachability-is-not-status-proof","credential-type-is-preserved","free-status-requires-evidence","source-provenance-is-preserved-as-URL","user-progress-is-local-by-default","generated-data-must-pass-validation-before-publication"],
+  "current_scale_target": "10000+ observed records; grow only through official extraction/evidence",
+  "verified_recent_build": {"run": 33426301925,"status": "success","extracted_candidates": 10394,"catalog_records": 10465,"credential_records": 81},
+  "recent_engineering_changes": ["GitHub-hosted runners are primary execution environment.","Catalog/freshness/site/provenance workflows use current Node 24-compatible action majors.","Freshness publication is serialized and uses rebase plus force-with-lease.","Extractor preserves actual source-page URLs in provenance.","Root branding is OpenCertAtlas.","GitHub Pages deployment workflow is present.","Repository hygiene workflow is present.","Site smoke checks are hygiene-safe and use the OpenCertAtlas storage namespace.","Continuation context is kept in status/ROADMAP-CONTEXT.json."],
+  "current_verification": {"catalog_run": 33426301925,"catalog_conclusion": "success","catalog_records": 10465,"catalog_candidates": 10394,"site_smoke_run": 33426708694,"site_smoke_conclusion": "success","repo_hygiene_run": 33426956476,"repo_hygiene_conclusion": "failed on legacy references before latest hygiene-safe fix","latest_main_commit": "20405ac38ce13a48ce78d994f33fdd42e8104166"},
+  "next_priority": ["verify latest catalog build after current changes","verify repository hygiene after latest checker fix","evidence promotion rules for credential/free classification","learning-path prerequisite graph","source health and review queue","portable offline distribution","site accessibility and keyboard navigation","reproducible release snapshots"],
+  "human_intervention": "Only account-level GitHub settings, Pages/environment approval, secrets, or other privileged UI actions not exposed through repository tooling.",
+  "last_context_update": "2026-08-31"
+}
