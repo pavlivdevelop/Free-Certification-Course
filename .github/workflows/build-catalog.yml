@@ -1,13 +1,17 @@
-name: Build expanded catalog
+name: Build official catalog
 
 on:
   push:
     paths:
       - 'providers/**'
-      - 'data/catalog-01.csv'
-      - 'scripts/build_catalog.py'
+      - 'taxonomy/**'
+      - 'data/catalog-*.csv'
+      - 'scripts/extract_official_credentials.py'
+      - 'scripts/build_official_catalog.py'
       - '.github/workflows/build-catalog.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 1'
 
 permissions:
   contents: write
@@ -15,41 +19,36 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Merge provider source registry
+      - name: Install extraction dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Extract concrete names from issuer pages
+        run: python scripts/extract_official_credentials.py
+      - name: Build canonical dataset
+        run: python scripts/build_official_catalog.py
+      - name: Validate dataset
         run: |
           python - <<'PY'
-          from pathlib import Path
-          main=Path('providers/providers.csv')
-          extra=Path('providers/providers-additional.csv')
-          if extra.exists():
-              a=main.read_text(encoding='utf-8-sig').rstrip()+'\n'
-              b='\n'.join(extra.read_text(encoding='utf-8-sig').splitlines()[1:])
-              main.write_text(a+b+'\n',encoding='utf-8')
-          PY
-      - name: Generate catalog
-        run: python scripts/build_catalog.py
-      - name: Validate generated catalog
-        run: |
-          python - <<'PY'
-          import csv, json
+          import csv
           from pathlib import Path
           p=Path('data/catalog-expanded.csv')
           rows=list(csv.DictReader(p.open(encoding='utf-8-sig')))
-          assert len(rows) >= 2000, len(rows)
-          assert all(r.get('ID') and r.get('Category') for r in rows)
-          print('records=',len(rows))
-          print('free_core=',sum(str(r.get('Price Status','')).startswith('✅') for r in rows))
-          print('source_watch=',sum(r.get('Record Type')=='source-watch' for r in rows))
+          assert len(rows) >= 5000, f'Expected >=5000 records, got {len(rows)}'
+          assert all(r['ID'] and r['Organization'] and r['Certificate/Badge'] for r in rows)
+          names={(r['Organization'].lower(),r['Certificate/Badge'].lower(),r['Official URL']) for r in rows}
+          assert len(names)==len(rows), 'duplicate records detected'
+          candidates=sum(r['Record Type']=='credential-candidate' for r in rows)
+          print(f'records={len(rows)} candidates={candidates}')
           PY
       - name: Commit generated data
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv
-          git diff --cached --quiet || git commit -m "chore: rebuild expanded catalog [skip ci]"
+          git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv status/CATALOG-STATS.md
+          git diff --cached --quiet || git commit -m 'chore(data): refresh official credential catalog [skip ci]'
           git push
