@@ -1,1 +1,0 @@
-This repository is being expanded into a broad credential/source library. The current generated local dataset contains 640 records and 161 source organisations. The full generated files will be synchronized in a follow-up commit once the repository write path is ready.
