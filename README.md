@@ -2,13 +2,17 @@
 
 Source-first knowledge base for certificates, certifications, digital badges and technical learning paths.
 
+> **Language** · [Русский](docs/README.ru.md) · [English](docs/README.en.md) · [Українська](docs/README.uk.md) · [Deutsch](docs/README.de.md) · [Español](docs/README.es.md) · [Français](docs/README.fr.md) · [Português](docs/README.pt.md) · [Polski](docs/README.pl.md) · [中文](docs/README.zh.md) · [日本語](docs/README.ja.md) · [한국어](docs/README.ko.md) · [العربية](docs/README.ar.md)
+
+The language files contain the full README, not a shortened summary. Official company names, product names, credential names, standards and abbreviations remain unchanged.
+
 ## Mission
 
-Build the largest practical free-credential discovery library without manufacturing fake credentials. Concrete names come from issuer-owned pages; taxonomy expands coverage but never invents certificate names.
+Build a practical free-credential discovery library without manufacturing fake credentials. Concrete names come from issuer-owned pages; taxonomy expands coverage but never invents certificate names.
 
-## Scale target
+## Scale
 
-The build pipeline is designed for **5,000–10,000+ observed records**. Large scale is achieved by extracting real names from official provider pages and preserving provenance, not by multiplying provider × topic combinations and calling them certificates.
+The pipeline is designed for **5,000–10,000+ observed records** and can grow further. Scale comes from extracting real names from official provider pages and preserving provenance, not from multiplying provider × topic combinations and calling them certificates.
 
 ## Coverage
 
@@ -16,57 +20,59 @@ AI · Generative AI · LLM · AI Agents · RAG · Machine Learning · MLOps · P
 
 ## Architecture
 
-`providers/` — providers, countries, official source URLs, language/region metadata.
+`providers/` — providers, countries, official source URLs, language and regional metadata.
 
-`credentials/` — named credentials, extraction candidates and registry documentation.
+`credentials/` — named credentials, extraction candidates and credential documentation.
 
 `taxonomy/` — controlled technical domains and progression levels.
 
-`evidence/` — provenance and extraction evidence.
+`evidence/` — provenance, extraction evidence and verification records.
 
 `status/` — freshness, catalog statistics and progression rules.
 
-`data/` — generated CSV/JSON datasets.
+`data/` — generated datasets and exports.
 
-`scripts/` — deterministic extraction, normalization and freshness tooling.
+`scripts/` — deterministic extraction, normalization, validation and freshness tooling.
 
-`site/` — compact browser application and portable personal progress tracker.
+`site/` — compact browser catalogue and portable personal progress tracker.
 
 `.github/workflows/` — scheduled extraction, validation and freshness automation.
 
 ## Record model
 
-- `credential` — named credential/badge from the curated seed set.
+- `credential` — named credential or badge from the curated registry.
 - `credential-reference` — legitimate professional certification tracked for context; free status is not implied.
 - `credential-candidate` — exact name observed on an issuer-owned page, awaiting evidence classification.
-- `source-watch` — provider/domain monitoring record; never displayed as a certificate.
+- `source-watch` — provider/domain monitoring record; never presented as a certificate.
 - `regional-source` — regional discovery source.
 - `language-watch` — language availability monitor.
 
-## Free-status model
+## Status model
 
-✅ `0 ₽` · ⚠️ conditional · ⚪ unknown · ❌ paid/reference.
+✅ **Free** · ⚠️ **Conditional** · ⚪ **Unknown** · ❌ **Paid / reference**
 
-A badge stays a badge. A completion certificate stays a completion certificate. A professional exam certification is not marked free without issuer evidence.
+`Free` means the current official source supports a no-cost path. `Conditional` covers student/educator access, voucher or scholarship programs, campaigns, partner access and course-specific rules. Paid professional exams remain outside the free core unless the issuer explicitly provides a free route.
+
+A badge stays a badge. A completion certificate stays a completion certificate. A professional exam certification is never labelled free without issuer evidence.
 
 ## Personal learning system
 
-The browser UI provides search, category/price/status filters, start/complete controls, XP, ranks, progress percentage and JSON export/import. Progress remains local to the user's browser; the public dataset does not contain personal state.
+The browser application provides search, category/status filters, start and completion controls, XP, ranks, progress percentage and JSON export/import. Progress remains local to the user's browser; the public dataset contains no personal state.
 
 Progression: **Explore → Beginner → Foundation → Intermediate → Advanced → Professional → Expert → Master**.
 
 ## Languages
 
-Русский · English · Українська · Deutsch · Español · Français · Português · Polski · 中文 · 日本語 · 한국어 · العربية.
+The web application supports a broad multilingual interface. The repository documentation currently provides full README translations for the major languages linked above, while the UI keeps the larger language selector available.
 
 ## Automation
 
-The extractor reads issuer-owned HTML using JSON-LD, headings and qualifying same-origin links, and can inspect sitemap URLs. Every extracted record keeps the source URL, source page, extraction method and date. The builder validates uniqueness and the 5,000-record scale target.
+The extractor reads issuer-owned HTML using JSON-LD, headings, qualifying same-origin links and available sitemap URLs. Each extracted record keeps its source URL, source page, extraction method and extraction date. The builder validates uniqueness and the scale target.
 
-Scheduled freshness checks measure source reachability. Reachability alone never proves that a credential remains free or active; promotion requires evidence.
+Scheduled freshness checks measure source reachability. Reachability alone never proves that a credential remains active or free; free-status promotion requires evidence.
 
-## Verification sources
+## Repository use
 
-Current provider documentation supports the free-learning/credential models used by major sources such as IBM SkillsBuild, AWS Educate, Salesforce Trailhead, Cisco Networking Academy, HubSpot Academy, Google developer resources and Raspberry Pi training. citeturn208266search4turn208266search7turn208266search5turn208266search10
+Start with `site/index.html` for the catalogue and `site/progress.html` for the personal tracker. The tracker works locally and stores progress in the browser; export the JSON file to move your progress between devices.
 
 Last baseline review: 2026-08-31.
