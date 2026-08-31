@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "project": "OpenCertAtlas",
   "purpose": "Portable continuation context for future autonomous development sessions.",
   "canonical_branch": "main",
@@ -9,16 +9,38 @@
     "reachability-is-not-status-proof",
     "credential-type-is-preserved",
     "free-status-requires-evidence",
-    "user-progress-is-local-by-default"
+    "user-progress-is-local-by-default",
+    "generated-data-is-never-used-as-seed-input"
+  ],
+  "completed_recently": [
+    "provenance quality scoring workflow",
+    "portable site smoke tests",
+    "brand alignment with OpenCertAtlas",
+    "catalog seed/input isolation",
+    "extractor user-agent alignment",
+    "legacy catalog artifact cleanup"
+  ],
+  "current_scale_target": "5000+ observed records; grow through official extraction/evidence and controlled source discovery",
+  "active_automation": [
+    "official catalog extraction/build/validation",
+    "source freshness monitoring",
+    "provenance scoring",
+    "site smoke tests"
   ],
   "next_priority": [
-    "provenance confidence scoring",
+    "credential evidence promotion pipeline",
+    "provider-domain/source integrity checks",
     "learning-path prerequisite graph",
-    "source health and review queue",
-    "schema validation in CI",
-    "portable offline distribution",
-    "multilingual presentation layer"
+    "recommendation engine based on level, prerequisites and local progress",
+    "multilingual catalog presentation layer",
+    "portable offline release bundle",
+    "schema/version migration checks",
+    "catalog quality dashboard"
   ],
-  "current_scale_target": "5000+ observed records; grow only through official extraction/evidence",
+  "known_constraints": [
+    "Self-hosted runner is optional; GitHub-hosted runners are the primary CI execution environment.",
+    "No user computer intervention is required for normal catalog CI/CD.",
+    "Free status must never be inferred from provider metadata alone."
+  ],
   "last_context_update": "2026-08-31"
 }
