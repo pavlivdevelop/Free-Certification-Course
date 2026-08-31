@@ -25,9 +25,9 @@ def main() -> int:
     required_index = {
         "OpenCertAtlas": "canonical brand",
         "catalog-expanded.json": "catalog data source",
-        "localStorage": "local progress persistence",
-        "Export": "progress export hook",
-        "Import": "progress import hook",
+        "oca-progress": "local progress persistence",
+        "progress.html": "progress route",
+        "Learning tracks": "track navigation",
         "Official URL": "official source link field",
     }
     for needle, label in required_index.items():
@@ -35,20 +35,22 @@ def main() -> int:
             fail(f"index.html missing {label}: {needle!r}")
 
     required_progress = {
-        "Certification Progress": "tracker heading",
+        "OpenCertAtlas": "canonical brand",
         "localStorage": "local persistence",
-        "my-certification-progress.json": "portable export filename",
+        "opencertatlas-progress.json": "portable export filename",
         "completed": "completion state",
         "in_progress": "in-progress state",
+        "my-certification-progress.json": "legacy export filename removed from executable path",
     }
+    # The old filename must not be executable anymore; treat its occurrence as failure.
+    required_progress.pop("my-certification-progress.json")
     for needle, label in required_progress.items():
         if needle not in progress:
             fail(f"progress.html missing {label}: {needle!r}")
 
-    legacy = (index + "\n" + progress).lower()
-    for forbidden in ("free certification course", "fcc-progress"):
-        if forbidden in legacy:
-            fail(f"legacy branding/storage key detected: {forbidden!r}")
+    for forbidden in ("free certification course", "fcc-progress", "my-certification-progress.json"):
+        if forbidden in (index + "\n" + progress).lower():
+            fail(f"legacy branding/storage marker detected: {forbidden!r}")
 
     for path in (INDEX, PROGRESS):
         if "₽" in path.read_text(encoding="utf-8"):
