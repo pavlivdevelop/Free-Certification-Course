@@ -24,12 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
-          python-version: '3.x'
+          python-version: '3.13'
       - name: Install extraction dependencies
         run: python -m pip install --disable-pip-version-check requests beautifulsoup4
       - name: Extract concrete names from issuer pages
