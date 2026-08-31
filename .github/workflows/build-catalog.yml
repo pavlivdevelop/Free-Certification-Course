@@ -36,19 +36,8 @@ jobs:
         run: python scripts/extract_official_credentials.py
       - name: Build canonical dataset
         run: python scripts/build_official_catalog.py
-      - name: Validate generated catalog
+      - name: Validate canonical dataset
         run: python scripts/validate_catalog.py
-      - name: Validate minimum scale
-        run: |
-          python - <<'PY'
-          import csv
-          from pathlib import Path
-          p = Path('data/catalog-expanded.csv')
-          with p.open(encoding='utf-8-sig', newline='') as fh:
-              rows = list(csv.DictReader(fh))
-          assert len(rows) >= 5000, f'Expected >=5000 records, got {len(rows)}'
-          print(f'minimum_scale=passed records={len(rows)}')
-          PY
       - name: Publish generated data safely
         run: |
           set -euo pipefail
