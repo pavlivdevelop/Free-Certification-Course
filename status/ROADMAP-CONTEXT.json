@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "project": "OpenCertAtlas",
+  "purpose": "Portable continuation context for future autonomous development sessions.",
+  "canonical_branch": "main",
+  "principles": [
+    "official-source-first",
+    "discovery-is-not-verification",
+    "reachability-is-not-status-proof",
+    "credential-type-is-preserved",
+    "free-status-requires-evidence",
+    "user-progress-is-local-by-default"
+  ],
+  "next_priority": [
+    "provenance confidence scoring",
+    "learning-path prerequisite graph",
+    "source health and review queue",
+    "schema validation in CI",
+    "portable offline distribution",
+    "multilingual presentation layer"
+  ],
+  "current_scale_target": "5000+ observed records; grow only through official extraction/evidence",
+  "last_context_update": "2026-08-31"
+}
