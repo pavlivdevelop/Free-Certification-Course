@@ -1,3 +1,4 @@
+# OpenCertAtlas public site
 User-agent: *
 Allow: /
 Sitemap: https://pavlivdevelop.github.io/OpenCertAtlas/sitemap.xml
