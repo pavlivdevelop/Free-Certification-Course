@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'site/**'
+      - 'taxonomy/pathways.json'
       - 'data/catalog-expanded.json'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
@@ -59,6 +60,7 @@ jobs:
           mkdir -p _site/data
           cp -R site/. _site/
           cp data/catalog-expanded.json _site/data/catalog-expanded.json
+          cp taxonomy/pathways.json _site/data/pathways.json
 
       - name: Validate assembled site
         shell: bash
@@ -66,7 +68,10 @@ jobs:
           set -euo pipefail
           test -s _site/index.html
           test -s _site/progress.html
+          test -s _site/recommend.html
+          test -s _site/pathways.html
           test -s _site/data/catalog-expanded.json
+          test -s _site/data/pathways.json
           test -s _site/manifest.webmanifest
           test -s _site/sw.js
 
