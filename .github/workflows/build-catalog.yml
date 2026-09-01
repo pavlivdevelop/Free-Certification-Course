@@ -14,6 +14,7 @@ on:
       - 'scripts/build_review_queue.py'
       - 'scripts/build_review_payload.py'
       - 'scripts/build_release_manifest.py'
+      - 'scripts/archive_release_snapshot.py'
       - 'scripts/build_pathway_mapping_candidates.py'
       - 'scripts/validate_pathway_mapping_candidates.py'
       - '.github/workflows/build-catalog.yml'
@@ -60,12 +61,14 @@ jobs:
       # Mapping candidates are navigation signals only and never promote verification/free status.
       - name: Build reproducible release manifest
         run: python scripts/build_release_manifest.py
+      - name: Archive immutable release snapshot
+        run: python scripts/archive_release_snapshot.py
       - name: Publish generated data safely
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv data/catalog-lite.json data/pathway-candidates-lite.json status/CATALOG-STATS.md status/REVIEW-QUEUE.csv status/review-queue-lite.json status/REVIEW-QUEUE-SUMMARY.md status/CREDENTIAL-PATHWAY-CANDIDATES.csv status/release-manifest.json
+          git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv data/catalog-lite.json data/pathway-candidates-lite.json status/CATALOG-STATS.md status/REVIEW-QUEUE.csv status/review-queue-lite.json status/REVIEW-QUEUE-SUMMARY.md status/CREDENTIAL-PATHWAY-CANDIDATES.csv status/release-manifest.json status/release-index.json status/releases/*.json
           git diff --cached --quiet && exit 0
           git commit -m 'chore(data): refresh official credential catalog'
           git fetch origin main
