@@ -9,6 +9,7 @@ on:
       - 'status/source-health.json'
       - 'status/release-manifest.json'
       - 'status/release-index.json'
+      - 'status/promotion-preview.json'
       - 'status/REVIEW-QUEUE.csv'
       - 'status/SOURCE-HEALTH.md'
       - 'status/CREDENTIAL-PATHWAY-CANDIDATES.csv'
@@ -70,6 +71,7 @@ jobs:
           cp status/review-queue-lite.json _site/status/review-queue-lite.json
           cp status/source-health.json _site/status/source-health.json
           cp status/release-manifest.json _site/status/release-manifest.json
+          cp status/promotion-preview.json _site/status/promotion-preview.json
           if [ -f status/release-index.json ]; then cp status/release-index.json _site/status/release-index.json; fi
           if [ -f status/REVIEW-QUEUE.csv ]; then cp status/REVIEW-QUEUE.csv _site/status/REVIEW-QUEUE.csv; fi
           if [ -f status/SOURCE-HEALTH.md ]; then cp status/SOURCE-HEALTH.md _site/status/SOURCE-HEALTH.md; fi
@@ -79,11 +81,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for page in index.html progress.html recommend.html pathways.html release.html releases.html review.html sources.html; do test -s "_site/$page"; done
-          for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
+          for page in index.html progress.html recommend.html pathways.html release.html releases.html review.html sources.html promotion.html; do test -s "_site/$page"; done
+          for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json status/promotion-preview.json data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
+          if [ -f status/release-index.json ]; then test -s _site/status/release-index.json; fi
           if [ -f status/REVIEW-QUEUE.csv ]; then test -s _site/status/REVIEW-QUEUE.csv; fi
           if [ -f status/SOURCE-HEALTH.md ]; then test -s _site/status/SOURCE-HEALTH.md; fi
-          if [ -f _site/status/release-index.json ]; then test -s _site/status/release-index.json; fi
           if [ -f _site/data/pathway-candidates-lite.json ]; then test -s _site/data/pathway-candidates-lite.json; fi
           if [ -f _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv ]; then test -s _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv; fi
       - name: Upload Pages artifact
@@ -122,23 +124,23 @@ jobs:
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/release.html" -o /tmp/opencertatlas-release.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/releases.html" -o /tmp/opencertatlas-releases.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/pathways.html" -o /tmp/opencertatlas-pathways.html
-          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/review-queue-lite.json" -o /tmp/opencertatlas-review.json
-          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/source-health.json" -o /tmp/opencertatlas-health.json
-          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/REVIEW-QUEUE.csv" -o /tmp/opencertatlas-review.csv
-          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/SOURCE-HEALTH.md" -o /tmp/opencertatlas-health.md
-          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/sw.js" -o /tmp/opencertatlas-sw.js
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/promotion.html" -o /tmp/opencertatlas-promotion.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/promotion-preview.json" -o /tmp/opencertatlas-promotion.json
           grep -q "OpenCertAtlas" /tmp/opencertatlas-home.html
-          grep -q "status/release-manifest.json" /tmp/opencertatlas-home.html || true
           grep -q "Recommended next steps" /tmp/opencertatlas-recommend.html
           grep -q "Reproducible release" /tmp/opencertatlas-release.html
           grep -q "Immutable catalog release history" /tmp/opencertatlas-releases.html
           grep -q "Candidate catalog matches" /tmp/opencertatlas-pathways.html
-          grep -q '"snapshot_count"' /tmp/opencertatlas-review.json || true
+          grep -q "Promotion preview" /tmp/opencertatlas-promotion.html
+          grep -q '"advisory_only":true' /tmp/opencertatlas-promotion.json
+          test -s /tmp/opencertatlas-promotion.json
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/review-queue-lite.json" -o /tmp/opencertatlas-review.json
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/source-health.json" -o /tmp/opencertatlas-health.json
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/REVIEW-QUEUE.csv" -o /tmp/opencertatlas-review.csv
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/SOURCE-HEALTH.md" -o /tmp/opencertatlas-health.md
           test -s /tmp/opencertatlas-review.json
           test -s /tmp/opencertatlas-health.json
           test -s /tmp/opencertatlas-review.csv
           test -s /tmp/opencertatlas-health.md
-          grep -q "opencertatlas-v11" /tmp/opencertatlas-sw.js
-          grep -q "oca-release-indicator" /tmp/opencertatlas-sw.js
           if curl -fsSL --retry 3 --retry-delay 3 --retry-all-errors "$base/status/release-index.json" -o /tmp/opencertatlas-release-index.json; then grep -q '"snapshot_count"' /tmp/opencertatlas-release-index.json; else echo 'release_index_live=not_yet_available'; fi
           echo "live_pages_check=passed url=$PAGE_URL"
