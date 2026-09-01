@@ -1,0 +1,37 @@
+name: Promotion preview
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '31 4 * * 1'
+  push:
+    paths:
+      - 'data/catalog-expanded.csv'
+      - 'scripts/promotion_preview.py'
+      - 'evidence/PROMOTION-RULES.md'
+      - '.github/workflows/promotion-preview.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: opencertatlas-promotion-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Build advisory promotion preview
+        run: python scripts/promotion_preview.py
+      - name: Upload preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: opencertatlas-promotion-preview
+          path: status/promotion-preview.md
+          if-no-files-found: error
