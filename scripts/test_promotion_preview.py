@@ -22,7 +22,7 @@ def main() -> int:
         "Apache Kafka® 101 - Introduction",
         "https://developer.confluent.io/courses/apache-kafka/events/",
         "learning-content signal",
-        -6,
+        -5,
     )
     assert_signal(
         "AI For Everyone",
