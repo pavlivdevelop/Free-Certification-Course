@@ -33,6 +33,8 @@ GENERATED_ASSETS = {
     SITE / "status/source-health.json": ROOT / "status/source-health.json",
     SITE / "status/release-manifest.json": ROOT / "status/release-manifest.json",
     SITE / "status/release-index.json": ROOT / "status/release-index.json",
+    SITE / "status/REVIEW-QUEUE.csv": ROOT / "status/REVIEW-QUEUE.csv",
+    SITE / "status/CREDENTIAL-PATHWAY-CANDIDATES.csv": ROOT / "status/CREDENTIAL-PATHWAY-CANDIDATES.csv",
     ROOT / "data/pathways.json": ROOT / "taxonomy/pathways.json",
 }
 
