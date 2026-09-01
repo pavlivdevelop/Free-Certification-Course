@@ -20,6 +20,7 @@ HTML_FILES = [
         "releases.html",
         "review.html",
         "sources.html",
+        "promotion.html",
         "offline.html",
     )
 ]
@@ -33,6 +34,7 @@ GENERATED_ASSETS = {
     SITE / "status/source-health.json": ROOT / "status/source-health.json",
     SITE / "status/release-manifest.json": ROOT / "status/release-manifest.json",
     SITE / "status/release-index.json": ROOT / "status/release-index.json",
+    SITE / "status/promotion-preview.json": ROOT / "status/promotion-preview.json",
     SITE / "status/REVIEW-QUEUE.csv": ROOT / "status/REVIEW-QUEUE.csv",
     SITE / "status/CREDENTIAL-PATHWAY-CANDIDATES.csv": ROOT / "status/CREDENTIAL-PATHWAY-CANDIDATES.csv",
     SITE / "status/SOURCE-HEALTH.md": ROOT / "status/SOURCE-HEALTH.md",
