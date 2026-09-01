@@ -16,13 +16,13 @@ def main()->int:
         if needle not in progress: fail(f"progress.html missing {label}: {needle!r}")
     for needle,label in {'Recommended next steps':'recommender heading','oca-progress':'recommender local state','catalog-lite.json':'recommender catalog'}.items():
         if needle not in rec: fail(f"recommend.html missing {label}: {needle!r}")
-    for needle,label in {'pathways.json':'published pathway graph source','oca-progress':'pathway local state','prerequisite':'prerequisite semantics'}.items():
+    for needle,label in {'pathways.json':'published pathway graph source','pathway-candidates-lite.json':'candidate mapping source','mapping_status===\'candidate\'':'candidate-only mapping filter','Candidate catalog matches':'mapping UI heading','non-authoritative candidate evidence':'candidate-only semantics','does not prove that the credential teaches':'no-teaching-claim boundary','oca-progress':'pathway local state','prerequisite':'prerequisite semantics'}.items():
         if needle.lower() not in pathways.lower(): fail(f"pathways.html missing {label}: {needle!r}")
     for needle,label in {'review queue':'review workspace','review-queue-lite.json':'compact review payload','never promotes a record to verified':'manual promotion boundary','status/review-queue-lite.json':'deployed review payload route'}.items():
         if needle.lower() not in review.lower(): fail(f"review.html missing {label}: {needle!r}")
     for needle,label in {'source health':'source-health workspace','source-health.json':'provider health payload','reachability':'reachability semantics','status/source-health.json':'deployed source-health route'}.items():
         if needle.lower() not in sources.lower(): fail(f"sources.html missing {label}: {needle!r}")
-    for needle,label in {'./pathways.html':'pathway page cache','./offline.html':'offline page cache','./data/pathways.json':'published pathway payload cache','./data/catalog-lite.json':'lightweight catalog cache','./status/review-queue-lite.json':'review payload cache','./status/source-health.json':'source-health payload cache'}.items():
+    for needle,label in {'./pathways.html':'pathway page cache','./offline.html':'offline page cache','./data/pathways.json':'published pathway payload cache','./data/pathway-candidates-lite.json':'pathway candidate payload cache','./data/catalog-lite.json':'lightweight catalog cache','./status/review-queue-lite.json':'review payload cache','./status/source-health.json':'source-health payload cache','./status/release-manifest.json':'release manifest cache'}.items():
         if needle not in sw: fail(f"service worker missing {label}: {needle!r}")
     for needle,label in {'User-agent: *':'crawler policy','Sitemap: https://pavlivdevelop.github.io/OpenCertAtlas/sitemap.xml':'sitemap declaration'}.items():
         if needle not in robots: fail(f"robots.txt missing {label}: {needle!r}")
