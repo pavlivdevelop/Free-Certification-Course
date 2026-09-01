@@ -1,0 +1,26 @@
+name: Accessibility smoke tests
+on:
+  push:
+    paths:
+      - 'site/**'
+      - 'scripts/check_accessibility.py'
+      - '.github/workflows/accessibility.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '23 4 * * 1'
+permissions:
+  contents: read
+concurrency:
+  group: opencertatlas-a11y
+  cancel-in-progress: true
+jobs:
+  a11y:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Run accessibility smoke checks
+        run: python scripts/check_accessibility.py
