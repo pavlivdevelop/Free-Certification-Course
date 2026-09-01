@@ -13,6 +13,7 @@ HTML_FILES = [SITE / name for name in ("index.html", "progress.html", "recommend
 SW_FILE = SITE / "sw.js"
 IGNORED_SCHEMES = {"http", "https", "mailto", "javascript", "data", "blob", "tel"}
 GENERATED_ASSETS = {
+    SITE / "data/catalog-lite.json": ROOT / "data/catalog-lite.json",
     SITE / "data/pathways.json": ROOT / "taxonomy/pathways.json",
     ROOT / "data/pathways.json": ROOT / "taxonomy/pathways.json",
 }
@@ -72,11 +73,11 @@ def main() -> int:
             fail(f"missing expected file {path.relative_to(ROOT)}")
 
     checked = sum(inspect_file(path) for path in HTML_FILES + [SW_FILE])
-    for generated, source in GENERATED_ASSETS.items():
-        if generated.is_relative_to(SITE) and generated.exists():
+    for published, source in GENERATED_ASSETS.items():
+        if published.is_relative_to(SITE) and published.exists():
             continue
         if not source.exists():
-            fail(f"generator source is missing for {generated.relative_to(ROOT)}: {source.relative_to(ROOT)}")
+            fail(f"publication source is missing for {published.relative_to(ROOT)}: {source.relative_to(ROOT)}")
     catalog = ROOT / "data/catalog-lite.json"
     if not catalog.exists() or catalog.stat().st_size == 0:
         fail("required published asset is missing or empty: data/catalog-lite.json")
