@@ -1,11 +1,16 @@
 {
-  "name": "OpenCertAtlas",
-  "short_name": "OpenCertAtlas",
-  "description": "Source-first map of credentials, certifications, digital badges and learning paths.",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#f6f7f9",
-  "theme_color": "#111827",
-  "lang": "en",
-  "icons": []
+  "name":"OpenCertAtlas",
+  "short_name":"OpenCertAtlas",
+  "description":"Source-first map of credentials, certifications, digital badges and learning paths.",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f6f7f9",
+  "theme_color":"#111827",
+  "lang":"en",
+  "icons":[],
+  "shortcuts":[
+    {"name":"Progress","short_name":"Progress","url":"./progress.html"},
+    {"name":"Recommendations","short_name":"Next steps","url":"./recommend.html"},
+    {"name":"Pathways","short_name":"Pathways","url":"./pathways.html"}
+  ]
 }
