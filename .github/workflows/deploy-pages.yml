@@ -7,6 +7,7 @@ on:
       - 'site/**'
       - 'status/review-queue-lite.json'
       - 'status/source-health.json'
+      - 'status/release-manifest.json'
       - 'taxonomy/pathways.json'
       - 'data/catalog-expanded.json'
       - 'data/catalog-lite.json'
@@ -63,6 +64,7 @@ jobs:
           cp taxonomy/pathways.json _site/data/pathways.json
           cp status/review-queue-lite.json _site/status/review-queue-lite.json
           cp status/source-health.json _site/status/source-health.json
+          cp status/release-manifest.json _site/status/release-manifest.json
       - name: Validate assembled site
         shell: bash
         run: |
@@ -75,6 +77,7 @@ jobs:
           test -s _site/sources.html
           test -s _site/status/review-queue-lite.json
           test -s _site/status/source-health.json
+          test -s _site/status/release-manifest.json
           test -s _site/data/catalog-expanded.json
           test -s _site/data/catalog-lite.json
           test -s _site/data/pathways.json
