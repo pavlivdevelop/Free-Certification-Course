@@ -118,12 +118,27 @@ jobs:
           test -n "$PAGE_URL"
           base="${PAGE_URL%/}"
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/" -o /tmp/opencertatlas-home.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/recommend.html" -o /tmp/opencertatlas-recommend.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/release.html" -o /tmp/opencertatlas-release.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/releases.html" -o /tmp/opencertatlas-releases.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/pathways.html" -o /tmp/opencertatlas-pathways.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/review-queue-lite.json" -o /tmp/opencertatlas-review.json
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/source-health.json" -o /tmp/opencertatlas-health.json
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/REVIEW-QUEUE.csv" -o /tmp/opencertatlas-review.csv
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/SOURCE-HEALTH.md" -o /tmp/opencertatlas-health.md
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/sw.js" -o /tmp/opencertatlas-sw.js
           grep -q "OpenCertAtlas" /tmp/opencertatlas-home.html
+          grep -q "status/release-manifest.json" /tmp/opencertatlas-home.html || true
+          grep -q "Recommended next steps" /tmp/opencertatlas-recommend.html
           grep -q "Reproducible release" /tmp/opencertatlas-release.html
           grep -q "Immutable catalog release history" /tmp/opencertatlas-releases.html
           grep -q "Candidate catalog matches" /tmp/opencertatlas-pathways.html
+          grep -q '"snapshot_count"' /tmp/opencertatlas-review.json || true
+          test -s /tmp/opencertatlas-review.json
+          test -s /tmp/opencertatlas-health.json
+          test -s /tmp/opencertatlas-review.csv
+          test -s /tmp/opencertatlas-health.md
+          grep -q "opencertatlas-v11" /tmp/opencertatlas-sw.js
+          grep -q "oca-release-indicator" /tmp/opencertatlas-sw.js
           if curl -fsSL --retry 3 --retry-delay 3 --retry-all-errors "$base/status/release-index.json" -o /tmp/opencertatlas-release-index.json; then grep -q '"snapshot_count"' /tmp/opencertatlas-release-index.json; else echo 'release_index_live=not_yet_available'; fi
           echo "live_pages_check=passed url=$PAGE_URL"
