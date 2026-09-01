@@ -4,13 +4,21 @@ Source-first knowledge base for certificates, certifications, digital badges and
 
 > **Language** · [Русский](docs/README.ru.md) · [English](docs/README.en.md) · [Українська](docs/README.uk.md) · [Deutsch](docs/README.de.md) · [Español](docs/README.es.md) · [Français](docs/README.fr.md) · [Português](docs/README.pt.md) · [Polski](docs/README.pl.md) · [中文](docs/README.zh.md) · [日本語](docs/README.ja.md) · [한국어](docs/README.ko.md) · [العربية](docs/README.ar.md)
 
-OpenCertAtlas is a source-first catalogue and learning-path system for certificates, certifications, digital badges and technical education. It is designed to scale through observed issuer data, explicit evidence and reproducible automation rather than synthetic rows.
+OpenCertAtlas is a source-first catalogue and learning-path system for certificates, certifications, digital badges and technical education. It scales through observed issuer data, explicit evidence and reproducible automation rather than synthetic rows.
 
 ## What this project is
 
 **A searchable credential map + evidence layer + personal learning roadmap.**
 
 Official company names, product names, credential titles, standards and abbreviations stay unchanged across translations. Interface text can be localized without changing the canonical dataset.
+
+## Use the project
+
+- Catalogue: `site/index.html`
+- Personal progress: `site/progress.html`
+- **Recommended next steps:** `site/recommend.html`
+
+The recommender reads the local progress file in the browser, filters already-completed items, and ranks the next learning options by goal, level, free-status preference and credential evidence. No account is required.
 
 ## Data model
 
@@ -47,9 +55,9 @@ AI · Generative AI · LLM · AI Agents · RAG · Machine Learning · MLOps · P
 
 `scripts/` — extraction, normalization, validation, quality and operational checks.
 
-`site/` — compact public catalogue and local-first progress tracker.
+`site/` — compact public catalogue, recommender and local-first progress tracker.
 
-`.github/workflows/` — scheduled extraction, validation, freshness, provenance and site checks.
+`.github/workflows/` — scheduled extraction, validation, freshness, provenance, repository and site checks.
 
 ## Automation
 
@@ -59,7 +67,7 @@ Generated data must pass structural and provenance checks before publication. Fr
 
 ## Personal roadmap
 
-The browser tracker supports search, filtering, progress states, XP/ranks and JSON export/import. Personal progress stays local to the browser by default.
+The browser tools support search, filtering, progress states, XP/ranks, next-step recommendations and JSON export/import. Personal progress stays local to the browser by default.
 
 Progression: **Explore → Beginner → Foundation → Intermediate → Advanced → Professional → Expert → Master**.
 
@@ -67,14 +75,21 @@ Progression: **Explore → Beginner → Foundation → Intermediate → Advanced
 
 **Discovery is not verification. Reachability is not proof of current status. A candidate is not a free credential.**
 
+## Language and portability
+
+The project includes multilingual repository documentation plus a browser language selector. The static site can be copied locally; service-worker assets provide an offline-first foundation after the application is first loaded.
+
 ## Start here
 
 - Catalogue: `site/index.html`
 - Personal progress: `site/progress.html`
+- Recommended next steps: `site/recommend.html`
 - Data contract: `docs/DATA-CONTRACT.md`
 - Methodology: `docs/METHODOLOGY.md`
+- Architecture: `docs/ARCHITECTURE.md`
+- Progression: `docs/PROGRESSION.md`
 - Status rules: `docs/STATUS-LABELS.md`
 - Taxonomy: `docs/TAXONOMY.md`
 - Current continuation context: `status/ROADMAP-CONTEXT.json`
 
-Last baseline review: 2026-08-31.
+Last baseline review: 2026-09-01.
