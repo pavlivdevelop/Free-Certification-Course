@@ -54,6 +54,7 @@ jobs:
         run: python scripts/build_official_catalog.py
       - name: Validate canonical dataset
         run: python scripts/validate_catalog.py
+      # Promotion preview is deliberately advisory; this contract is checked before generated publication.
       - name: Build deterministic promotion preview
         run: python scripts/promotion_preview.py
       - name: Validate promotion preview contract
