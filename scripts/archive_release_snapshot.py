@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Archive the current release manifest and maintain a deterministic release index."""
+"""Archive the current release manifest and maintain deterministic release pointers."""
 from __future__ import annotations
 
 import json
@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "status" / "release-manifest.json"
 ARCHIVE_DIR = ROOT / "status" / "releases"
 INDEX = ROOT / "status" / "release-index.json"
+CURRENT = ROOT / "status" / "release.json"
 
 
 def safe_part(value: str) -> str:
@@ -47,15 +48,31 @@ def main() -> int:
             continue
 
     index = {
-        "index_version": "1.0",
+        "index_version": "1.1",
         "project": "OpenCertAtlas",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "snapshot_count": len(entries),
         "snapshots": entries,
     }
     INDEX.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    current = {
+        "current_version": "1.0",
+        "project": "OpenCertAtlas",
+        "generated_at_utc": manifest.get("generated_at_utc"),
+        "build_trigger_sha": manifest.get("build_trigger_sha"),
+        "manifest": "status/release-manifest.json",
+        "snapshot": archive_path.relative_to(ROOT).as_posix(),
+        "catalog": manifest.get("catalog", {}),
+        "pathway_mapping": manifest.get("pathway_mapping", {}),
+        "artifact_count": len(manifest.get("artifacts", {})),
+        "reproducibility": manifest.get("reproducibility", {}),
+    }
+    CURRENT.write_text(json.dumps(current, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     print(f"release_snapshot={archive_path.relative_to(ROOT)}")
     print(f"release_snapshot_count={len(entries)}")
+    print(f"release_pointer={CURRENT.relative_to(ROOT)}")
     print(f"release_trigger_sha={os.environ.get('GITHUB_SHA', 'local')}")
     return 0
 
