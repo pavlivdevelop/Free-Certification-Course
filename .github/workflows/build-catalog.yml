@@ -14,6 +14,7 @@ on:
       - 'scripts/build_review_queue.py'
       - 'scripts/build_review_payload.py'
       - 'scripts/promotion_preview.py'
+      - 'scripts/validate_promotion_preview.py'
       - 'scripts/build_release_manifest.py'
       - 'scripts/archive_release_snapshot.py'
       - 'scripts/build_pathway_mapping_candidates.py'
@@ -51,6 +52,8 @@ jobs:
         run: python scripts/validate_catalog.py
       - name: Build deterministic promotion preview
         run: python scripts/promotion_preview.py
+      - name: Validate promotion preview contract
+        run: python scripts/validate_promotion_preview.py
       - name: Build lightweight browser payload
         run: python scripts/build_light_payload.py
       - name: Build deterministic review queue
