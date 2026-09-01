@@ -15,6 +15,7 @@ on:
       - 'scripts/build_review_payload.py'
       - 'scripts/build_release_manifest.py'
       - 'scripts/build_pathway_mapping_candidates.py'
+      - 'scripts/validate_pathway_mapping_candidates.py'
       - '.github/workflows/build-catalog.yml'
   workflow_dispatch:
   schedule:
@@ -54,6 +55,8 @@ jobs:
         run: python scripts/build_review_payload.py
       - name: Build credential-to-pathway candidate mappings
         run: python scripts/build_pathway_mapping_candidates.py
+      - name: Validate pathway mapping candidate contract
+        run: python scripts/validate_pathway_mapping_candidates.py
       # Mapping candidates are navigation signals only and never promote verification/free status.
       - name: Build reproducible release manifest
         run: python scripts/build_release_manifest.py
