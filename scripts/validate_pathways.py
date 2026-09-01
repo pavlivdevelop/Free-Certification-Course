@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic structural validation for the OpenCertAtlas prerequisite graph."""
+"""Deterministic structural and semantic validation for the OpenCertAtlas prerequisite graph."""
 from __future__ import annotations
 
 import json
@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT / "taxonomy/pathways.json"
 ALLOWED_LEVELS = {"Explore", "Beginner", "Foundation", "Intermediate", "Advanced", "Professional", "Expert", "Master"}
+LEVEL_ORDER = {name: index for index, name in enumerate(("Explore", "Beginner", "Foundation", "Intermediate", "Advanced", "Professional", "Expert", "Master"))}
 
 
 def fail(message: str) -> None:
@@ -104,9 +105,22 @@ def main() -> int:
     if extra_level_nodes:
         fail(f"node_levels contains nodes unused by tracks: {extra_level_nodes[:12]!r}")
 
+    level_mismatches: list[tuple[str, str, str, str]] = []
+    for track in tracks:
+        track_id = str(track["id"])
+        for src, dst in track["edges"]:
+            src_level = str(node_levels[src])
+            dst_level = str(node_levels[dst])
+            if LEVEL_ORDER[src_level] > LEVEL_ORDER[dst_level]:
+                level_mismatches.append((track_id, src, src_level, dst_level))
+    if level_mismatches:
+        preview = ", ".join(f"{t}:{s} {sl}->{dl}" for t, s, sl, dl in level_mismatches[:8])
+        fail(f"prerequisite edge moves backwards in level order: {preview}")
+
     print(f"pathway_tracks={len(tracks)}")
     print(f"pathway_nodes={len(all_nodes)}")
     print(f"pathway_edges={edge_count}")
+    print("pathway_level_order=passed")
     print("pathway_validation=passed")
     return 0
 
