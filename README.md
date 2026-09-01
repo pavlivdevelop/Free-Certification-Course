@@ -17,8 +17,9 @@ Official company names, product names, credential titles, standards and abbrevia
 - Catalogue: `site/index.html`
 - Personal progress: `site/progress.html`
 - **Recommended next steps:** `site/recommend.html`
+- **Prerequisite pathways:** `site/pathways.html`
 
-The recommender reads the local progress file in the browser, filters already-completed items, and ranks the next learning options by goal, level, free-status preference and credential evidence. No account is required.
+The recommender reads the local progress file in the browser, filters already-completed items, and ranks the next learning options by goal, level, free-status preference and credential evidence. The pathway explorer adds an explicit prerequisite graph for major technical tracks. No account is required.
 
 ## Data model
 
@@ -45,7 +46,7 @@ AI · Generative AI · LLM · AI Agents · RAG · Machine Learning · MLOps · P
 
 `credentials/` — canonical credential records and extraction candidates.
 
-`taxonomy/` — controlled domains, skills and progression vocabulary.
+`taxonomy/` — controlled domains, skills, levels and prerequisite pathways.
 
 `evidence/` — source URLs, extraction provenance and verification material.
 
@@ -55,7 +56,7 @@ AI · Generative AI · LLM · AI Agents · RAG · Machine Learning · MLOps · P
 
 `scripts/` — extraction, normalization, validation, quality and operational checks.
 
-`site/` — compact public catalogue, recommender and local-first progress tracker.
+`site/` — compact public catalogue, recommender, pathway explorer and local-first progress tracker.
 
 `.github/workflows/` — scheduled extraction, validation, freshness, provenance, repository and site checks.
 
@@ -67,7 +68,7 @@ Generated data must pass structural and provenance checks before publication. Fr
 
 ## Personal roadmap
 
-The browser tools support search, filtering, progress states, XP/ranks, next-step recommendations and JSON export/import. Personal progress stays local to the browser by default.
+The browser tools support search, filtering, progress states, XP/ranks, prerequisite pathways, next-step recommendations and JSON export/import. Personal progress stays local to the browser by default.
 
 Progression: **Explore → Beginner → Foundation → Intermediate → Advanced → Professional → Expert → Master**.
 
@@ -84,6 +85,7 @@ The project includes multilingual repository documentation plus a browser langua
 - Catalogue: `site/index.html`
 - Personal progress: `site/progress.html`
 - Recommended next steps: `site/recommend.html`
+- Pathways: `site/pathways.html`
 - Data contract: `docs/DATA-CONTRACT.md`
 - Methodology: `docs/METHODOLOGY.md`
 - Architecture: `docs/ARCHITECTURE.md`
