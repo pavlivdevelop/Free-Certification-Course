@@ -1,9 +1,10 @@
 # Promotion preview
 
-- candidate records reviewed: 10760
-- deterministic review candidates (score ≥ 6): 10531
-- high-confidence review candidates (score ≥ 8): 2404
+- candidate records reviewed: 10765
+- deterministic review candidates (score ≥ 6): 10536
+- high-confidence review candidates (score ≥ 8): 2403
 - rows shown: 500
+- catalog SHA-256: `8de0d0df0eec15b0fc00665c1b02f19d68bf7f3b0cfaaebd8ed01e841d161997`
 
 This report is advisory only. It never changes catalog records, Evidence Status, or free status.
 A row is not eligible for automatic promotion merely because it scores highly.
