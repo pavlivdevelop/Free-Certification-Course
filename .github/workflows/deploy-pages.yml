@@ -10,6 +10,7 @@ on:
       - 'status/release-manifest.json'
       - 'status/release-index.json'
       - 'status/promotion-preview.json'
+      - 'status/promotion-preview.md'
       - 'status/REVIEW-QUEUE.csv'
       - 'status/SOURCE-HEALTH.md'
       - 'status/CREDENTIAL-PATHWAY-CANDIDATES.csv'
@@ -72,6 +73,7 @@ jobs:
           cp status/source-health.json _site/status/source-health.json
           cp status/release-manifest.json _site/status/release-manifest.json
           cp status/promotion-preview.json _site/status/promotion-preview.json
+          cp status/promotion-preview.md _site/status/promotion-preview.md
           if [ -f status/release-index.json ]; then cp status/release-index.json _site/status/release-index.json; fi
           if [ -f status/REVIEW-QUEUE.csv ]; then cp status/REVIEW-QUEUE.csv _site/status/REVIEW-QUEUE.csv; fi
           if [ -f status/SOURCE-HEALTH.md ]; then cp status/SOURCE-HEALTH.md _site/status/SOURCE-HEALTH.md; fi
@@ -82,7 +84,7 @@ jobs:
         run: |
           set -euo pipefail
           for page in index.html progress.html recommend.html pathways.html release.html releases.html review.html sources.html promotion.html; do test -s "_site/$page"; done
-          for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json status/promotion-preview.json data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
+          for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json status/promotion-preview.json status/promotion-preview.md data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
           if [ -f status/release-index.json ]; then test -s _site/status/release-index.json; fi
           if [ -f status/REVIEW-QUEUE.csv ]; then test -s _site/status/REVIEW-QUEUE.csv; fi
           if [ -f status/SOURCE-HEALTH.md ]; then test -s _site/status/SOURCE-HEALTH.md; fi
@@ -126,6 +128,7 @@ jobs:
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/pathways.html" -o /tmp/opencertatlas-pathways.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/promotion.html" -o /tmp/opencertatlas-promotion.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/promotion-preview.json" -o /tmp/opencertatlas-promotion.json
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/promotion-preview.md" -o /tmp/opencertatlas-promotion.md
           grep -q "OpenCertAtlas" /tmp/opencertatlas-home.html
           grep -q "Recommended next steps" /tmp/opencertatlas-recommend.html
           grep -q "Reproducible release" /tmp/opencertatlas-release.html
@@ -133,7 +136,10 @@ jobs:
           grep -q "Candidate catalog matches" /tmp/opencertatlas-pathways.html
           grep -q "Promotion preview" /tmp/opencertatlas-promotion.html
           grep -Eq '"advisory_only"[[:space:]]*:[[:space:]]*true' /tmp/opencertatlas-promotion.json
+          grep -qi "This report is advisory only" /tmp/opencertatlas-promotion.md
+          grep -qi "Manual review must confirm" /tmp/opencertatlas-promotion.md
           test -s /tmp/opencertatlas-promotion.json
+          test -s /tmp/opencertatlas-promotion.md
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/review-queue-lite.json" -o /tmp/opencertatlas-review.json
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/source-health.json" -o /tmp/opencertatlas-health.json
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/REVIEW-QUEUE.csv" -o /tmp/opencertatlas-review.csv
