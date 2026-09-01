@@ -13,14 +13,23 @@ on:
       - 'scripts/validate_free_core.py'
       - 'evidence/**'
       - '.github/workflows/free-core-validation.yml'
+  workflow_run:
+    workflows: ['Build official catalog']
+    types: [completed]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: free-core-validation
+  cancel-in-progress: true
+
 jobs:
   validate:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v7
