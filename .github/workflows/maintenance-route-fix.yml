@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Normalize root-relative catalog payload references
+      - name: Normalize deployed data paths and localization
         run: |
           set -euo pipefail
           python - <<'PY'
@@ -21,18 +21,19 @@ jobs:
           for name in ('index.html','progress.html','recommend.html'):
               path = Path('site') / name
               text = path.read_text(encoding='utf-8')
-              text2 = text.replace("fetch('../data/catalog-lite.json'", "fetch('data/catalog-lite.json'")
-              if text2 != text:
-                  path.write_text(text2, encoding='utf-8')
+              text = text.replace("fetch('../data/catalog-lite.json'", "fetch('data/catalog-lite.json'")
+              text = text.replace("'Не начато','В процессе','Готово'", "'Не начато','В процессе','Готово'")
+              text = text.replace("'Усі','Пошук'", "'Рівень','Пошук'")
+              path.write_text(text, encoding='utf-8')
           PY
-      - name: Commit normalized paths
+      - name: Commit normalized files
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add site/index.html site/progress.html site/recommend.html
           git diff --cached --quiet && exit 0
-          git commit -m 'fix(site): normalize deployed data paths'
+          git commit -m 'fix(site): normalize deployed paths and localization'
           git fetch origin main
           git rebase origin/main
           git push --force-with-lease origin HEAD:main
