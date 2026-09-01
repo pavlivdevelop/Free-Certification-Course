@@ -1,14 +1,1018 @@
 {
-  "schema_version": "1.2",
-  "catalog_sha256": "7d57d1a9a769d8ac8aafcacce9482efdf5b71717bbb03bb4c59c9d2169b4db70",
-  "candidate_records": 10801,
-  "reviewable": 3202,
-  "high_confidence": 584,
-  "likely_credential_identity": 1461,
-  "learning_content_signals": 7660,
+  "schema_version": "1.3",
+  "catalog_sha256": "9b853b969d17af5999d9fb501622d024a7ee3461ee0e949ae7aee45ae10f31b6",
+  "candidate_records": 10818,
+  "reviewable": 3212,
+  "high_confidence": 587,
+  "likely_credential_identity": 1463,
+  "learning_content_signals": 7668,
+  "provider_count": 108,
+  "providers_shown": 100,
   "rows_shown": 500,
   "advisory_only": true,
   "auto_promotion": false,
+  "providers": [
+    {
+      "organization": "EU Academy",
+      "host": "academy.europa.eu",
+      "candidate_records": 1022,
+      "reviewable": 268,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 761,
+      "uncertain_credential_identity": 261
+    },
+    {
+      "organization": "Vercel",
+      "host": "vercel.com",
+      "candidate_records": 342,
+      "reviewable": 259,
+      "high_confidence": 23,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 107,
+      "uncertain_credential_identity": 235
+    },
+    {
+      "organization": "Cloud Security Alliance",
+      "host": "cloudsecurityalliance.org",
+      "candidate_records": 238,
+      "reviewable": 174,
+      "high_confidence": 55,
+      "likely_credential_identity": 47,
+      "learning_content_signals": 97,
+      "uncertain_credential_identity": 94
+    },
+    {
+      "organization": "Hack The Box",
+      "host": "academy.hackthebox.com",
+      "candidate_records": 358,
+      "reviewable": 119,
+      "high_confidence": 21,
+      "likely_credential_identity": 31,
+      "learning_content_signals": 237,
+      "uncertain_credential_identity": 90
+    },
+    {
+      "organization": "PortSwigger",
+      "host": "portswigger.net",
+      "candidate_records": 124,
+      "reviewable": 118,
+      "high_confidence": 67,
+      "likely_credential_identity": 103,
+      "learning_content_signals": 8,
+      "uncertain_credential_identity": 13
+    },
+    {
+      "organization": "AWS",
+      "host": "aws.amazon.com",
+      "candidate_records": 339,
+      "reviewable": 111,
+      "high_confidence": 46,
+      "likely_credential_identity": 68,
+      "learning_content_signals": 237,
+      "uncertain_credential_identity": 34
+    },
+    {
+      "organization": "Oracle",
+      "host": "www.oracle.com",
+      "candidate_records": 122,
+      "reviewable": 90,
+      "high_confidence": 19,
+      "likely_credential_identity": 33,
+      "learning_content_signals": 33,
+      "uncertain_credential_identity": 56
+    },
+    {
+      "organization": "Atlassian",
+      "host": "community.atlassian.com",
+      "candidate_records": 175,
+      "reviewable": 89,
+      "high_confidence": 61,
+      "likely_credential_identity": 73,
+      "learning_content_signals": 99,
+      "uncertain_credential_identity": 3
+    },
+    {
+      "organization": "Jira Service Management",
+      "host": "community.atlassian.com",
+      "candidate_records": 175,
+      "reviewable": 89,
+      "high_confidence": 61,
+      "likely_credential_identity": 73,
+      "learning_content_signals": 99,
+      "uncertain_credential_identity": 3
+    },
+    {
+      "organization": "edX",
+      "host": "www.edx.org",
+      "candidate_records": 116,
+      "reviewable": 79,
+      "high_confidence": 4,
+      "likely_credential_identity": 14,
+      "learning_content_signals": 92,
+      "uncertain_credential_identity": 10
+    },
+    {
+      "organization": "Cloud Native Computing Foundation",
+      "host": "www.cncf.io",
+      "candidate_records": 292,
+      "reviewable": 78,
+      "high_confidence": 1,
+      "likely_credential_identity": 111,
+      "learning_content_signals": 180,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "CNCF",
+      "host": "www.cncf.io",
+      "candidate_records": 292,
+      "reviewable": 78,
+      "high_confidence": 1,
+      "likely_credential_identity": 111,
+      "learning_content_signals": 180,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "PECB",
+      "host": "pecb.com",
+      "candidate_records": 82,
+      "reviewable": 70,
+      "high_confidence": 3,
+      "likely_credential_identity": 12,
+      "learning_content_signals": 12,
+      "uncertain_credential_identity": 58
+    },
+    {
+      "organization": "EIT Health",
+      "host": "eithealth.eu",
+      "candidate_records": 76,
+      "reviewable": 67,
+      "high_confidence": 22,
+      "likely_credential_identity": 26,
+      "learning_content_signals": 18,
+      "uncertain_credential_identity": 32
+    },
+    {
+      "organization": "Scrum Alliance",
+      "host": "www.scrumalliance.org",
+      "candidate_records": 90,
+      "reviewable": 67,
+      "high_confidence": 0,
+      "likely_credential_identity": 21,
+      "learning_content_signals": 36,
+      "uncertain_credential_identity": 33
+    },
+    {
+      "organization": "Coursera",
+      "host": "www.coursera.org",
+      "candidate_records": 90,
+      "reviewable": 56,
+      "high_confidence": 19,
+      "likely_credential_identity": 43,
+      "learning_content_signals": 43,
+      "uncertain_credential_identity": 4
+    },
+    {
+      "organization": "RЭД СОФТ",
+      "host": "education.red-soft.ru",
+      "candidate_records": 116,
+      "reviewable": 55,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 61,
+      "uncertain_credential_identity": 55
+    },
+    {
+      "organization": "Т-Банк Education",
+      "host": "education.tbank.ru",
+      "candidate_records": 55,
+      "reviewable": 55,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 55
+    },
+    {
+      "organization": "Splunk",
+      "host": "www.splunk.com",
+      "candidate_records": 281,
+      "reviewable": 54,
+      "high_confidence": 0,
+      "likely_credential_identity": 68,
+      "learning_content_signals": 198,
+      "uncertain_credential_identity": 15
+    },
+    {
+      "organization": "PTC",
+      "host": "www.ptc.com",
+      "candidate_records": 51,
+      "reviewable": 51,
+      "high_confidence": 9,
+      "likely_credential_identity": 3,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 48
+    },
+    {
+      "organization": "Fortinet",
+      "host": "www.fortinet.com",
+      "candidate_records": 330,
+      "reviewable": 51,
+      "high_confidence": 2,
+      "likely_credential_identity": 23,
+      "learning_content_signals": 280,
+      "uncertain_credential_identity": 27
+    },
+    {
+      "organization": "Tektronix",
+      "host": "www.tek.com",
+      "candidate_records": 53,
+      "reviewable": 50,
+      "high_confidence": 8,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 52
+    },
+    {
+      "organization": "Palo Alto Networks",
+      "host": "www.paloaltonetworks.com",
+      "candidate_records": 59,
+      "reviewable": 50,
+      "high_confidence": 5,
+      "likely_credential_identity": 7,
+      "learning_content_signals": 17,
+      "uncertain_credential_identity": 35
+    },
+    {
+      "organization": "ITU Academy",
+      "host": "academy.itu.int",
+      "candidate_records": 142,
+      "reviewable": 50,
+      "high_confidence": 0,
+      "likely_credential_identity": 1,
+      "learning_content_signals": 91,
+      "uncertain_credential_identity": 50
+    },
+    {
+      "organization": "NVIDIA",
+      "host": "www.nvidia.com",
+      "candidate_records": 269,
+      "reviewable": 46,
+      "high_confidence": 0,
+      "likely_credential_identity": 62,
+      "learning_content_signals": 202,
+      "uncertain_credential_identity": 5
+    },
+    {
+      "organization": "ISACA",
+      "host": "www.isaca.org",
+      "candidate_records": 84,
+      "reviewable": 44,
+      "high_confidence": 3,
+      "likely_credential_identity": 31,
+      "learning_content_signals": 49,
+      "uncertain_credential_identity": 4
+    },
+    {
+      "organization": "EC-Council",
+      "host": "www.eccouncil.org",
+      "candidate_records": 47,
+      "reviewable": 43,
+      "high_confidence": 7,
+      "likely_credential_identity": 32,
+      "learning_content_signals": 5,
+      "uncertain_credential_identity": 10
+    },
+    {
+      "organization": "Altium",
+      "host": "www.altium.com",
+      "candidate_records": 86,
+      "reviewable": 43,
+      "high_confidence": 4,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 45,
+      "uncertain_credential_identity": 39
+    },
+    {
+      "organization": "Dassault Systèmes",
+      "host": "www.3ds.com",
+      "candidate_records": 41,
+      "reviewable": 38,
+      "high_confidence": 14,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 3,
+      "uncertain_credential_identity": 36
+    },
+    {
+      "organization": "ETSI",
+      "host": "www.etsi.org",
+      "candidate_records": 54,
+      "reviewable": 38,
+      "high_confidence": 0,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 16,
+      "uncertain_credential_identity": 36
+    },
+    {
+      "organization": "Class Central",
+      "host": "www.classcentral.com",
+      "candidate_records": 118,
+      "reviewable": 36,
+      "high_confidence": 13,
+      "likely_credential_identity": 9,
+      "learning_content_signals": 81,
+      "uncertain_credential_identity": 28
+    },
+    {
+      "organization": "PagerDuty",
+      "host": "www.pagerduty.com",
+      "candidate_records": 49,
+      "reviewable": 33,
+      "high_confidence": 14,
+      "likely_credential_identity": 8,
+      "learning_content_signals": 20,
+      "uncertain_credential_identity": 21
+    },
+    {
+      "organization": "OpenAI Academy",
+      "host": "academy.openai.com",
+      "candidate_records": 45,
+      "reviewable": 32,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 12,
+      "uncertain_credential_identity": 33
+    },
+    {
+      "organization": "Snowflake",
+      "host": "learn.snowflake.com",
+      "candidate_records": 206,
+      "reviewable": 31,
+      "high_confidence": 15,
+      "likely_credential_identity": 20,
+      "learning_content_signals": 185,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "Python Institute",
+      "host": "pythoninstitute.org",
+      "candidate_records": 32,
+      "reviewable": 31,
+      "high_confidence": 13,
+      "likely_credential_identity": 31,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Red Hat",
+      "host": "www.redhat.com",
+      "candidate_records": 256,
+      "reviewable": 31,
+      "high_confidence": 0,
+      "likely_credential_identity": 43,
+      "learning_content_signals": 204,
+      "uncertain_credential_identity": 9
+    },
+    {
+      "organization": "NI",
+      "host": "www.ni.com",
+      "candidate_records": 43,
+      "reviewable": 28,
+      "high_confidence": 2,
+      "likely_credential_identity": 4,
+      "learning_content_signals": 21,
+      "uncertain_credential_identity": 18
+    },
+    {
+      "organization": "ISC2",
+      "host": "www.isc2.org",
+      "candidate_records": 27,
+      "reviewable": 27,
+      "high_confidence": 16,
+      "likely_credential_identity": 26,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "JFrog",
+      "host": "academy.jfrog.com",
+      "candidate_records": 62,
+      "reviewable": 25,
+      "high_confidence": 0,
+      "likely_credential_identity": 3,
+      "learning_content_signals": 36,
+      "uncertain_credential_identity": 23
+    },
+    {
+      "organization": "JFrog Academy",
+      "host": "academy.jfrog.com",
+      "candidate_records": 62,
+      "reviewable": 25,
+      "high_confidence": 0,
+      "likely_credential_identity": 3,
+      "learning_content_signals": 36,
+      "uncertain_credential_identity": 23
+    },
+    {
+      "organization": "Kubernetes",
+      "host": "kubernetes.io",
+      "candidate_records": 58,
+      "reviewable": 25,
+      "high_confidence": 0,
+      "likely_credential_identity": 25,
+      "learning_content_signals": 33,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "FutureLearn",
+      "host": "www.futurelearn.com",
+      "candidate_records": 155,
+      "reviewable": 24,
+      "high_confidence": 2,
+      "likely_credential_identity": 5,
+      "learning_content_signals": 142,
+      "uncertain_credential_identity": 8
+    },
+    {
+      "organization": "Cloudflare",
+      "host": "www.cloudflare.com",
+      "candidate_records": 22,
+      "reviewable": 22,
+      "high_confidence": 7,
+      "likely_credential_identity": 22,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Raspberry Pi Foundation",
+      "host": "training-hub.raspberrypi.org",
+      "candidate_records": 104,
+      "reviewable": 22,
+      "high_confidence": 0,
+      "likely_credential_identity": 23,
+      "learning_content_signals": 81,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "JetBrains Academy",
+      "host": "www.jetbrains.com",
+      "candidate_records": 25,
+      "reviewable": 20,
+      "high_confidence": 2,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 12,
+      "uncertain_credential_identity": 13
+    },
+    {
+      "organization": "FAO eLearning Academy",
+      "host": "elearning.fao.org",
+      "candidate_records": 101,
+      "reviewable": 19,
+      "high_confidence": 4,
+      "likely_credential_identity": 10,
+      "learning_content_signals": 89,
+      "uncertain_credential_identity": 2
+    },
+    {
+      "organization": "MIT OpenCourseWare",
+      "host": "ocw.mit.edu",
+      "candidate_records": 115,
+      "reviewable": 19,
+      "high_confidence": 1,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 96,
+      "uncertain_credential_identity": 19
+    },
+    {
+      "organization": "Hugging Face",
+      "host": "huggingface.co",
+      "candidate_records": 278,
+      "reviewable": 17,
+      "high_confidence": 0,
+      "likely_credential_identity": 13,
+      "learning_content_signals": 263,
+      "uncertain_credential_identity": 2
+    },
+    {
+      "organization": "Linux Professional Institute",
+      "host": "www.lpi.org",
+      "candidate_records": 18,
+      "reviewable": 16,
+      "high_confidence": 4,
+      "likely_credential_identity": 13,
+      "learning_content_signals": 2,
+      "uncertain_credential_identity": 3
+    },
+    {
+      "organization": "Tableau",
+      "host": "www.tableau.com",
+      "candidate_records": 55,
+      "reviewable": 16,
+      "high_confidence": 1,
+      "likely_credential_identity": 13,
+      "learning_content_signals": 40,
+      "uncertain_credential_identity": 2
+    },
+    {
+      "organization": "SANS Institute",
+      "host": "www.sans.org",
+      "candidate_records": 41,
+      "reviewable": 14,
+      "high_confidence": 1,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 37,
+      "uncertain_credential_identity": 4
+    },
+    {
+      "organization": "UN CC:Learn",
+      "host": "unccelearn.org",
+      "candidate_records": 283,
+      "reviewable": 13,
+      "high_confidence": 0,
+      "likely_credential_identity": 12,
+      "learning_content_signals": 270,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "WHO Academy",
+      "host": "www.who.int",
+      "candidate_records": 19,
+      "reviewable": 13,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 11,
+      "uncertain_credential_identity": 8
+    },
+    {
+      "organization": "BSI",
+      "host": "www.bsigroup.com",
+      "candidate_records": 25,
+      "reviewable": 12,
+      "high_confidence": 1,
+      "likely_credential_identity": 8,
+      "learning_content_signals": 13,
+      "uncertain_credential_identity": 4
+    },
+    {
+      "organization": "ISC2 Learning",
+      "host": "www.isc2.org",
+      "candidate_records": 89,
+      "reviewable": 11,
+      "high_confidence": 0,
+      "likely_credential_identity": 14,
+      "learning_content_signals": 74,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "Esri",
+      "host": "www.esri.com",
+      "candidate_records": 88,
+      "reviewable": 11,
+      "high_confidence": 0,
+      "likely_credential_identity": 15,
+      "learning_content_signals": 72,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "Juniper Networks",
+      "host": "learningportal.juniper.net",
+      "candidate_records": 13,
+      "reviewable": 10,
+      "high_confidence": 6,
+      "likely_credential_identity": 7,
+      "learning_content_signals": 3,
+      "uncertain_credential_identity": 3
+    },
+    {
+      "organization": "EIT Manufacturing",
+      "host": "www.eit.europa.eu",
+      "candidate_records": 11,
+      "reviewable": 10,
+      "high_confidence": 3,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 2,
+      "uncertain_credential_identity": 7
+    },
+    {
+      "organization": "Databricks",
+      "host": "www.databricks.com",
+      "candidate_records": 70,
+      "reviewable": 10,
+      "high_confidence": 2,
+      "likely_credential_identity": 13,
+      "learning_content_signals": 57,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Anthropic",
+      "host": "academy.claude.com",
+      "candidate_records": 11,
+      "reviewable": 10,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 2,
+      "uncertain_credential_identity": 9
+    },
+    {
+      "organization": "EIT Climate-KIC",
+      "host": "www.climate-kic.org",
+      "candidate_records": 11,
+      "reviewable": 8,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 4,
+      "uncertain_credential_identity": 7
+    },
+    {
+      "organization": "Neo4j",
+      "host": "graphacademy.neo4j.com",
+      "candidate_records": 71,
+      "reviewable": 7,
+      "high_confidence": 4,
+      "likely_credential_identity": 7,
+      "learning_content_signals": 64,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Rohde & Schwarz",
+      "host": "www.rohde-schwarz.com",
+      "candidate_records": 8,
+      "reviewable": 7,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 7
+    },
+    {
+      "organization": "QGIS",
+      "host": "www.qgis.org",
+      "candidate_records": 6,
+      "reviewable": 6,
+      "high_confidence": 4,
+      "likely_credential_identity": 5,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "OpenEDX",
+      "host": "openedx.org",
+      "candidate_records": 6,
+      "reviewable": 6,
+      "high_confidence": 2,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 6
+    },
+    {
+      "organization": "Siemens",
+      "host": "www.siemens.com",
+      "candidate_records": 6,
+      "reviewable": 6,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 5
+    },
+    {
+      "organization": "Ansible",
+      "host": "www.redhat.com",
+      "candidate_records": 19,
+      "reviewable": 5,
+      "high_confidence": 4,
+      "likely_credential_identity": 3,
+      "learning_content_signals": 14,
+      "uncertain_credential_identity": 2
+    },
+    {
+      "organization": "Power BI / Microsoft",
+      "host": "learn.microsoft.com",
+      "candidate_records": 65,
+      "reviewable": 5,
+      "high_confidence": 3,
+      "likely_credential_identity": 5,
+      "learning_content_signals": 60,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Confluent",
+      "host": "developer.confluent.io",
+      "candidate_records": 63,
+      "reviewable": 5,
+      "high_confidence": 1,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 61,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "NIST",
+      "host": "www.nist.gov",
+      "candidate_records": 5,
+      "reviewable": 5,
+      "high_confidence": 1,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 5
+    },
+    {
+      "organization": "TryHackMe",
+      "host": "tryhackme.com",
+      "candidate_records": 5,
+      "reviewable": 5,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 3,
+      "uncertain_credential_identity": 2
+    },
+    {
+      "organization": "KNIME",
+      "host": "www.knime.com",
+      "candidate_records": 5,
+      "reviewable": 4,
+      "high_confidence": 1,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 3,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "TensorFlow",
+      "host": "www.tensorflow.org",
+      "candidate_records": 4,
+      "reviewable": 4,
+      "high_confidence": 1,
+      "likely_credential_identity": 1,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 3
+    },
+    {
+      "organization": "Elastic",
+      "host": "www.elastic.co",
+      "candidate_records": 93,
+      "reviewable": 4,
+      "high_confidence": 0,
+      "likely_credential_identity": 9,
+      "learning_content_signals": 84,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "CompTIA",
+      "host": "www.comptia.org",
+      "candidate_records": 4,
+      "reviewable": 4,
+      "high_confidence": 0,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 2
+    },
+    {
+      "organization": "Microsoft",
+      "host": "learn.microsoft.com",
+      "candidate_records": 13,
+      "reviewable": 3,
+      "high_confidence": 1,
+      "likely_credential_identity": 3,
+      "learning_content_signals": 10,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Нетология",
+      "host": "netology.ru",
+      "candidate_records": 3,
+      "reviewable": 3,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 3
+    },
+    {
+      "organization": "HashiCorp",
+      "host": "developer.hashicorp.com",
+      "candidate_records": 2,
+      "reviewable": 2,
+      "high_confidence": 2,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Unity",
+      "host": "learn.unity.com",
+      "candidate_records": 31,
+      "reviewable": 2,
+      "high_confidence": 1,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 30,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "Cadence",
+      "host": "www.cadence.com",
+      "candidate_records": 646,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 16,
+      "learning_content_signals": 630,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Linux Foundation",
+      "host": "training.linuxfoundation.org",
+      "candidate_records": 301,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 13,
+      "learning_content_signals": 288,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Linux Foundation Training",
+      "host": "training.linuxfoundation.org",
+      "candidate_records": 301,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 13,
+      "learning_content_signals": 288,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Looker / Google",
+      "host": "docs.cloud.google.com",
+      "candidate_records": 140,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 138,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Silicon Labs",
+      "host": "www.silabs.com",
+      "candidate_records": 59,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 57,
+      "uncertain_credential_identity": 2
+    },
+    {
+      "organization": "OpenTelemetry",
+      "host": "opentelemetry.io",
+      "candidate_records": 9,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 6,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "FAO eLearning Academy",
+      "host": "openknowledge.fao.org",
+      "candidate_records": 4,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 4,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "NASA",
+      "host": "www.nasa.gov",
+      "candidate_records": 3,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 2,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "Qlik",
+      "host": "learning.qlik.com",
+      "candidate_records": 3,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 2,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "PyTorch",
+      "host": "pytorch.org",
+      "candidate_records": 2,
+      "reviewable": 2,
+      "high_confidence": 0,
+      "likely_credential_identity": 1,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "COMSOL",
+      "host": "www.comsol.com",
+      "candidate_records": 300,
+      "reviewable": 1,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 299,
+      "uncertain_credential_identity": 1
+    },
+    {
+      "organization": "Salesforce Trailhead",
+      "host": "trailhead.salesforce.com",
+      "candidate_records": 31,
+      "reviewable": 1,
+      "high_confidence": 0,
+      "likely_credential_identity": 31,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "OpenSSF",
+      "host": "openssf.org",
+      "candidate_records": 13,
+      "reviewable": 1,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 13,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Anthropic",
+      "host": "www.anthropic.com",
+      "candidate_records": 1,
+      "reviewable": 1,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "EIT Digital",
+      "host": "28digital.eu",
+      "candidate_records": 1,
+      "reviewable": 1,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Google Cloud",
+      "host": "www.skills.google",
+      "candidate_records": 1,
+      "reviewable": 1,
+      "high_confidence": 0,
+      "likely_credential_identity": 1,
+      "learning_content_signals": 0,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Lattice Semiconductor",
+      "host": "www.latticesemi.com",
+      "candidate_records": 1,
+      "reviewable": 1,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Texas Instruments",
+      "host": "www.ti.com",
+      "candidate_records": 1,
+      "reviewable": 1,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 1,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Открытое образование",
+      "host": "openedu.ru",
+      "candidate_records": 241,
+      "reviewable": 0,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 241,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "Группа Астра",
+      "host": "astra.ru",
+      "candidate_records": 67,
+      "reviewable": 0,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 67,
+      "uncertain_credential_identity": 0
+    },
+    {
+      "organization": "1C",
+      "host": "1c.ru",
+      "candidate_records": 66,
+      "reviewable": 0,
+      "high_confidence": 0,
+      "likely_credential_identity": 0,
+      "learning_content_signals": 66,
+      "uncertain_credential_identity": 0
+    }
+  ],
   "records": [
     {
       "score": 11,
@@ -2831,6 +3835,25 @@
       "method": "heading",
       "url": "https://eithealth.eu/what-we-do/our-programmes/education/",
       "source": "https://eithealth.eu/what-we-do/our-programmes/education/",
+      "reasons": [
+        "evidence=official-page-extraction",
+        "method=heading",
+        "official URL present",
+        "source page present",
+        "specific credential name",
+        "credential language in title"
+      ]
+    },
+    {
+      "score": 9,
+      "tier": "high-confidence review candidate",
+      "triage": "likely credential identity",
+      "organization": "EIT Manufacturing",
+      "name": "Certified Innovation Path: EIT Labelled Programme",
+      "evidence": "official-page-extraction",
+      "method": "heading",
+      "url": "https://www.eit.europa.eu/",
+      "source": "https://www.eit.europa.eu/",
       "reasons": [
         "evidence=official-page-extraction",
         "method=heading",
@@ -9431,24 +10454,6 @@
       "method": "heading",
       "url": "https://www.classcentral.com/subject/education",
       "source": "https://www.classcentral.com/subject/education",
-      "reasons": [
-        "evidence=official-page-extraction",
-        "method=heading",
-        "official URL present",
-        "source page present",
-        "specific credential name"
-      ]
-    },
-    {
-      "score": 8,
-      "tier": "high-confidence review candidate",
-      "triage": "uncertain credential identity",
-      "organization": "Class Central",
-      "name": "Get the latest news and analysis in online education.",
-      "evidence": "official-page-extraction",
-      "method": "heading",
-      "url": "https://www.classcentral.com/",
-      "source": "https://www.classcentral.com/",
       "reasons": [
         "evidence=official-page-extraction",
         "method=heading",
