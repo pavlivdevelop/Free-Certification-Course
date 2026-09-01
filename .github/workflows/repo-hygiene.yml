@@ -45,3 +45,17 @@ jobs:
         run: python scripts/validate_operational_payloads.py
       - name: Validate release artifacts when present
         run: python scripts/validate_release_artifacts.py
+      - name: Validate deterministic promotion preview when present
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f data/catalog-expanded.csv ] && [ -f status/promotion-preview.md ]; then
+            cp status/promotion-preview.md /tmp/promotion-preview.md
+            python scripts/promotion_preview.py
+            cmp -s /tmp/promotion-preview.md status/promotion-preview.md
+            test "$(grep -c '^|' status/promotion-preview.md)" -le 502
+            grep -q 'This report is advisory only' status/promotion-preview.md
+            grep -q 'never changes catalog records' status/promotion-preview.md
+          else
+            echo 'promotion_preview=not_present'
+          fi
