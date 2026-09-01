@@ -5,6 +5,9 @@ on:
       - 'site/**'
       - 'scripts/check_accessibility.py'
       - '.github/workflows/accessibility.yml'
+  workflow_run:
+    workflows: ['Build official catalog']
+    types: [completed]
   workflow_dispatch:
   schedule:
     - cron: '23 4 * * 1'
@@ -15,6 +18,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   a11y:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
