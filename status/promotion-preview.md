@@ -1,7 +1,7 @@
 # Promotion preview
 
-- candidate records reviewed: 10767
-- deterministic review candidates (score ≥ 6): 10538
+- candidate records reviewed: 10757
+- deterministic review candidates (score ≥ 6): 10528
 - high-confidence review candidates (score ≥ 8): 2404
 - rows shown: 500
 
