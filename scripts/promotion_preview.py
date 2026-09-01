@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import csv
+import json
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 CAT = ROOT / "data/catalog-expanded.csv"
 OUT = ROOT / "status/promotion-preview.md"
+JSON_OUT = ROOT / "status/promotion-preview.json"
 
 METHOD_WEIGHTS = {
     "jsonld": 3,
@@ -86,6 +89,19 @@ def main() -> int:
     proposals.sort(key=lambda x: (-x["score"], x["tier"], x["organization"].casefold(), x["name"].casefold()))
     high = sum(p["score"] >= 8 for p in proposals)
     reviewable = sum(p["score"] >= 6 for p in proposals)
+    generated_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+    JSON_OUT.write_text(json.dumps({
+        "schema_version": "1.0",
+        "generated_at_utc": generated_at,
+        "candidate_records": len(candidates),
+        "reviewable": reviewable,
+        "high_confidence": high,
+        "rows_shown": min(500, len(proposals)),
+        "advisory_only": True,
+        "auto_promotion": False,
+        "records": proposals[:500],
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     lines = [
         "# Promotion preview",
