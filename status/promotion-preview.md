@@ -1,13 +1,13 @@
 # Promotion preview
 
-- candidate records reviewed: 10818
-- deterministic review candidates (score ≥ 6): 3212
-- high-confidence review candidates (score ≥ 8): 587
+- candidate records reviewed: 10850
+- deterministic review candidates (score ≥ 6): 3201
+- high-confidence review candidates (score ≥ 8): 583
 - likely credential identities: 1463
-- learning-content signals: 7668
-- issuer/provider groups: 108 (top 100 shown)
+- learning-content signals: 7711
+- issuer/provider groups: 107 (top 100 shown)
 - rows shown: 500
-- catalog SHA-256: `9b853b969d17af5999d9fb501622d024a7ee3461ee0e949ae7aee45ae10f31b6`
+- catalog SHA-256: `5b5f338a6e178e8a0596b32003e7398b2bd35d91482459477cbf80583013ad81`
 
 This report is advisory only. It never changes catalog records, Evidence Status, or free status.
 Credential-language and learning-content heuristics affect triage only; they are not proof of credential identity.
@@ -49,7 +49,7 @@ Manual review must confirm the issuer page, credential-bearing activity, current
 | Altium | www.altium.com | 86 | 43 | 4 | 2 | 45 | 39 |
 | Dassault Systèmes | www.3ds.com | 41 | 38 | 14 | 2 | 3 | 36 |
 | ETSI | www.etsi.org | 54 | 38 | 0 | 2 | 16 | 36 |
-| Class Central | www.classcentral.com | 118 | 36 | 13 | 9 | 81 | 28 |
+| Class Central | www.classcentral.com | 119 | 36 | 13 | 9 | 82 | 28 |
 | PagerDuty | www.pagerduty.com | 49 | 33 | 14 | 8 | 20 | 21 |
 | OpenAI Academy | academy.openai.com | 45 | 32 | 0 | 0 | 12 | 33 |
 | Snowflake | learn.snowflake.com | 206 | 31 | 15 | 20 | 185 | 1 |
@@ -76,18 +76,17 @@ Manual review must confirm the issuer page, credential-bearing activity, current
 | ISC2 Learning | www.isc2.org | 89 | 11 | 0 | 14 | 74 | 1 |
 | Esri | www.esri.com | 88 | 11 | 0 | 15 | 72 | 1 |
 | Juniper Networks | learningportal.juniper.net | 13 | 10 | 6 | 7 | 3 | 3 |
-| EIT Manufacturing | www.eit.europa.eu | 11 | 10 | 3 | 2 | 2 | 7 |
 | Databricks | www.databricks.com | 70 | 10 | 2 | 13 | 57 | 0 |
 | Anthropic | academy.claude.com | 11 | 10 | 0 | 0 | 2 | 9 |
 | EIT Climate-KIC | www.climate-kic.org | 11 | 8 | 0 | 0 | 4 | 7 |
 | Neo4j | graphacademy.neo4j.com | 71 | 7 | 4 | 7 | 64 | 0 |
 | Rohde & Schwarz | www.rohde-schwarz.com | 8 | 7 | 0 | 0 | 1 | 7 |
 | QGIS | www.qgis.org | 6 | 6 | 4 | 5 | 1 | 0 |
-| OpenEDX | openedx.org | 6 | 6 | 2 | 0 | 0 | 6 |
 | Siemens | www.siemens.com | 6 | 6 | 0 | 0 | 1 | 5 |
 | Ansible | www.redhat.com | 19 | 5 | 4 | 3 | 14 | 2 |
 | Power BI / Microsoft | learn.microsoft.com | 65 | 5 | 3 | 5 | 60 | 0 |
 | Confluent | developer.confluent.io | 63 | 5 | 1 | 2 | 61 | 0 |
+| EIT Manufacturing | www.eit.europa.eu | 6 | 5 | 1 | 2 | 2 | 2 |
 | NIST | www.nist.gov | 5 | 5 | 1 | 0 | 0 | 5 |
 | TryHackMe | tryhackme.com | 5 | 5 | 0 | 0 | 3 | 2 |
 | KNIME | www.knime.com | 5 | 4 | 1 | 2 | 3 | 0 |
@@ -116,9 +115,10 @@ Manual review must confirm the issuer page, credential-bearing activity, current
 | Google Cloud | www.skills.google | 1 | 1 | 0 | 1 | 0 | 0 |
 | Lattice Semiconductor | www.latticesemi.com | 1 | 1 | 0 | 0 | 1 | 0 |
 | Texas Instruments | www.ti.com | 1 | 1 | 0 | 0 | 1 | 0 |
-| Открытое образование | openedu.ru | 241 | 0 | 0 | 0 | 241 | 0 |
+| Открытое образование | openedu.ru | 283 | 0 | 0 | 0 | 283 | 0 |
 | Группа Астра | astra.ru | 67 | 0 | 0 | 0 | 67 | 0 |
 | 1C | 1c.ru | 66 | 0 | 0 | 0 | 66 | 0 |
+| fast.ai | course.fast.ai | 56 | 0 | 0 | 0 | 56 | 0 |
 
 ## Candidate records
 
