@@ -1,0 +1,61 @@
+{
+  "manifest_version": "1.0",
+  "project": "OpenCertAtlas",
+  "generated_at_utc": "2026-09-01T14:47:11.150336+00:00",
+  "git_sha": "6970b144314d381b76a3b4a8176b41165d3f813b",
+  "schema": {
+    "catalog": "status/CATALOG-SCHEMA.json",
+    "data_contract": "docs/DATA-CONTRACT.md",
+    "pathways": "taxonomy/pathways.json"
+  },
+  "extractor": {
+    "path": "scripts/extract_official_credentials.py",
+    "sha256": "c572c1546889a8146211027667945b521b3e3e4f02c9a487194995d52d13544a"
+  },
+  "builder": {
+    "path": "scripts/build_official_catalog.py",
+    "sha256": "f898944674cb40817363d0be128445e87e5c83349ea7230be4adc71f020dd7ff"
+  },
+  "catalog": {
+    "records": 10800,
+    "free_signals": 81,
+    "verified_free_core": 0,
+    "conditional": 0,
+    "candidates": 10719
+  },
+  "queue": {
+    "review_queue_rows_including_header": 10801
+  },
+  "artifacts": {
+    "data/catalog-expanded.json": {
+      "bytes": 11969497,
+      "sha256": "5871681ffdb2d57d30d34bf07cdbaf76b8b305ed9b795de953143eb460ed087d"
+    },
+    "data/catalog-lite.json": {
+      "bytes": 5002373,
+      "sha256": "4835251ee5fb2684caa92ff76fa9b13159dc8f0c3dc3070ceb3c09fb1eeb34af"
+    },
+    "data/free-core.csv": {
+      "bytes": 314,
+      "sha256": "6de92bde8395a65de8eaf5f86d808b1ef9e395abb54ca63b7d2f499815714bbc"
+    },
+    "data/conditional.csv": {
+      "bytes": 314,
+      "sha256": "6de92bde8395a65de8eaf5f86d808b1ef9e395abb54ca63b7d2f499815714bbc"
+    },
+    "taxonomy/pathways.json": {
+      "bytes": 7046,
+      "sha256": "ddd9f54183b2179856968036ed4c679d33452334c414d9e7d5436ad9ee53c0b9"
+    },
+    "status/REVIEW-QUEUE.csv": {
+      "bytes": 3612485,
+      "sha256": "74cdf881f857a087b23d90939419b63a6d648a3fc86ef85fb4804b12e83a481c"
+    }
+  },
+  "reproducibility": {
+    "source_first": true,
+    "generated_outputs_are_not_seed_inputs": true,
+    "discovery_is_not_verification": true,
+    "free_status_requires_verified_free_evidence": true
+  }
+}
