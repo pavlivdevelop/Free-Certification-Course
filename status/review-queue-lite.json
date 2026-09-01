@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-01T14:47:11.092574Z",
-  "total": 10800,
+  "generated_at": "2026-09-01T14:51:06.241266Z",
+  "total": 10868,
   "browser_limit": 600,
   "priorities": {
     "15": 81,
-    "20": 10719
+    "20": 10787
   },
   "review_reasons": {
-    "candidate credential identity needs verification": 10719,
+    "candidate credential identity needs verification": 10787,
     "free-price signal needs credential-level promotion review": 81
   },
   "records": [
