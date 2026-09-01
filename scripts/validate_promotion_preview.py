@@ -28,7 +28,7 @@ def main() -> int:
         fail("data/catalog-expanded.csv is missing or empty")
 
     data = json.loads(PAYLOAD.read_text(encoding="utf-8"))
-    if data.get("schema_version") != "1.2":
+    if data.get("schema_version") != "1.3":
         fail("unsupported schema_version")
     if data.get("advisory_only") is not True:
         fail("advisory_only must be true")
@@ -46,6 +46,45 @@ def main() -> int:
         fail("rows_shown does not match records length")
     if len(records) > 500:
         fail("preview payload may contain at most 500 rows")
+
+    providers = data.get("providers")
+    if not isinstance(providers, list):
+        fail("providers must be a list")
+    if len(providers) != int(data.get("providers_shown", -1)):
+        fail("providers_shown does not match providers length")
+    if len(providers) > 100:
+        fail("preview payload may contain at most 100 provider groups")
+
+    previous_provider = None
+    provider_totals = {"candidate_records": 0, "reviewable": 0, "high_confidence": 0}
+    for provider in providers:
+        required = (
+            "organization", "host", "candidate_records", "reviewable", "high_confidence",
+            "likely_credential_identity", "learning_content_signals", "uncertain_credential_identity",
+        )
+        for key in required:
+            if key not in provider:
+                fail(f"provider missing {key}")
+        if not provider["organization"]:
+            fail("provider organization must not be empty")
+        if not provider["host"]:
+            fail("provider host must not be empty")
+        for key in required[2:]:
+            if not isinstance(provider[key], int) or provider[key] < 0:
+                fail(f"invalid provider summary field: {key}")
+        if provider["reviewable"] > provider["candidate_records"] or provider["high_confidence"] > provider["reviewable"]:
+            fail("provider counts must be monotonic")
+        if provider["likely_credential_identity"] + provider["learning_content_signals"] + provider["uncertain_credential_identity"] != provider["candidate_records"]:
+            fail("provider triage counts do not sum to candidate_records")
+        sort_key = (
+            -provider["reviewable"], -provider["high_confidence"], -provider["candidate_records"],
+            provider["organization"].casefold(), provider["host"].casefold(),
+        )
+        if previous_provider is not None and sort_key < previous_provider:
+            fail("providers are not deterministically sorted")
+        previous_provider = sort_key
+        for key in provider_totals:
+            provider_totals[key] += provider[key]
 
     previous = None
     for row in records:
@@ -74,15 +113,25 @@ def main() -> int:
             fail("rows are not deterministically sorted")
         previous = sort_key
 
-    for field in ("candidate_records", "reviewable", "high_confidence", "likely_credential_identity", "learning_content_signals"):
+    for field in ("candidate_records", "reviewable", "high_confidence", "likely_credential_identity", "learning_content_signals", "provider_count"):
         if not isinstance(data.get(field), int) or data[field] < 0:
             fail(f"invalid summary field: {field}")
+    if data["providers_shown"] > data["provider_count"]:
+        fail("providers_shown cannot exceed provider_count")
+    if data["provider_count"] < len(providers):
+        fail("provider_count cannot be smaller than providers shown")
+
+    # The provider payload is intentionally bounded, so its totals need not equal the global catalog totals.
+    for key in ("candidate_records", "reviewable", "high_confidence"):
+        if provider_totals[key] > data["candidate_records"]:
+            fail("provider summary exceeds global candidate count")
 
     report = REPORT.read_text(encoding="utf-8")
     for marker in (
         "This report is advisory only",
         "never changes catalog records",
         "Credential-language and learning-content heuristics affect triage only",
+        "Provider aggregation is for batch review",
         "not eligible for automatic promotion",
         "Manual review must confirm",
     ):
@@ -95,6 +144,7 @@ def main() -> int:
     print(f"validated_promotion_high_confidence={data.get('high_confidence', 0)}")
     print(f"validated_promotion_likely_credential_identity={data.get('likely_credential_identity', 0)}")
     print(f"validated_promotion_learning_content_signals={data.get('learning_content_signals', 0)}")
+    print(f"validated_promotion_provider_count={data.get('provider_count', 0)}")
     print(f"validated_promotion_catalog_sha256={catalog_sha256}")
     print("promotion_preview=passed")
     return 0
