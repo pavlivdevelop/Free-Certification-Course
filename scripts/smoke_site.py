@@ -4,12 +4,12 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-FILES={name:ROOT/'site'/name for name in ('index.html','progress.html','recommend.html','pathways.html','review.html','sources.html','sw.js','offline.html')}
+FILES={name:ROOT/'site'/name for name in ('index.html','progress.html','recommend.html','pathways.html','review.html','sources.html','sw.js','offline.html','robots.txt','sitemap.xml')}
 def fail(message:str)->None: raise SystemExit(f"SITE SMOKE ERROR: {message}")
 def main()->int:
     for name,path in FILES.items():
         if not path.exists(): fail(f"missing site/{name}")
-    index=FILES['index.html'].read_text(encoding='utf-8'); progress=FILES['progress.html'].read_text(encoding='utf-8'); rec=FILES['recommend.html'].read_text(encoding='utf-8'); pathways=FILES['pathways.html'].read_text(encoding='utf-8'); review=FILES['review.html'].read_text(encoding='utf-8'); sources=FILES['sources.html'].read_text(encoding='utf-8'); sw=FILES['sw.js'].read_text(encoding='utf-8')
+    index=FILES['index.html'].read_text(encoding='utf-8'); progress=FILES['progress.html'].read_text(encoding='utf-8'); rec=FILES['recommend.html'].read_text(encoding='utf-8'); pathways=FILES['pathways.html'].read_text(encoding='utf-8'); review=FILES['review.html'].read_text(encoding='utf-8'); sources=FILES['sources.html'].read_text(encoding='utf-8'); sw=FILES['sw.js'].read_text(encoding='utf-8'); robots=FILES['robots.txt'].read_text(encoding='utf-8'); sitemap=FILES['sitemap.xml'].read_text(encoding='utf-8')
     for needle,label in {'OpenCertAtlas':'canonical brand','catalog-lite.json':'lightweight catalog data source','oca-progress':'local progress persistence','progress.html':'progress route','recommend.html':'recommendation route','pathways.html':'pathway route'}.items():
         if needle not in index: fail(f"index.html missing {label}: {needle!r}")
     for needle,label in {'OpenCertAtlas — Progress':'tracker brand','localStorage':'local persistence','opencertatlas-progress.json':'portable export filename','completed':'completion state','in_progress':'in-progress state'}.items():
@@ -24,6 +24,10 @@ def main()->int:
         if needle.lower() not in sources.lower(): fail(f"sources.html missing {label}: {needle!r}")
     for needle,label in {'./pathways.html':'pathway page cache','./offline.html':'offline page cache','./data/pathways.json':'published pathway payload cache','./data/catalog-lite.json':'lightweight catalog cache'}.items():
         if needle not in sw: fail(f"service worker missing {label}: {needle!r}")
+    for needle,label in {'User-agent: *':'crawler policy','Sitemap: https://pavlivdevelop.github.io/OpenCertAtlas/sitemap.xml':'sitemap declaration'}.items():
+        if needle not in robots: fail(f"robots.txt missing {label}: {needle!r}")
+    for needle,label in {'<urlset':'sitemap root','https://pavlivdevelop.github.io/OpenCertAtlas/':'canonical site URL','review.html':'review URL','sources.html':'source-health URL'}.items():
+        if needle not in sitemap: fail(f"sitemap.xml missing {label}: {needle!r}")
     for forbidden in ('free certification course','fcc-progress','my-certification-progress.json'):
         if forbidden in '\n'.join([index,progress,rec,pathways,review,sources]).lower(): fail(f"legacy marker detected: {forbidden!r}")
     for name,path in FILES.items():
