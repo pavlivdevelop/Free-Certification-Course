@@ -1,0 +1,41 @@
+name: Source health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '41 3 * * *'
+  push:
+    paths:
+      - 'providers/**'
+      - 'scripts/check_source_health.py'
+      - '.github/workflows/source-health.yml'
+
+concurrency:
+  group: source-health
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Run provider reachability checks
+        run: python scripts/check_source_health.py
+      - name: Publish source-health report
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add status/source-health.json status/SOURCE-HEALTH.md
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore(data): refresh source health'
+          git fetch origin main
+          git rebase origin/main
+          git push --force-with-lease origin HEAD:main
