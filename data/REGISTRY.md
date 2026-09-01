@@ -17,8 +17,12 @@ The expanded local build contains **640 catalogue/source records** and **161 pro
 - Science: mathematics, statistics, physics, quantum, chemistry, biology, computational biology, earth science
 - Other: GIS, remote sensing, aerospace, automotive, energy, medical devices, healthcare, environment, business technology
 
-## Important
+## Record semantics
 
-Rows are intentionally separated into **free**, **conditional**, **paid-reference**, and **source-registry** records. The repository does not treat a learning course as a professional certification unless the issuer does so.
+The canonical dataset separates **free signals**, **verified free credentials**, **conditional offers**, **paid/reference records**, and **source-registry records**.
 
-The issuer's live page is always authoritative for current price, eligibility, exam availability, country restrictions, retirement and renewal rules.
+A `✅` price status is a current provider/free-price **signal** carried in the canonical catalog. It is not by itself a promotion decision. Only records explicitly promoted to `Evidence Status=verified-free` are admitted to `data/free-core.csv`.
+
+The free core therefore may be smaller — including empty — while human review evidence is still being accumulated. This is intentional and prevents discovery records from being presented as verified credentials.
+
+The repository does not treat a learning course as a professional certification unless the issuer does so. The issuer's live page is always authoritative for current price, eligibility, exam availability, country restrictions, retirement and renewal rules.
