@@ -3,6 +3,8 @@
 
 Reachability is operational metadata only. A reachable URL is not evidence that a
 credential is free, current, or even a credential page.
+
+Report schema: source-health/v1.
 """
 from __future__ import annotations
 
