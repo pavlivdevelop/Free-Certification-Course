@@ -6,7 +6,10 @@ on:
       - 'providers/**'
       - 'taxonomy/**'
       - 'data/catalog-*.csv'
-      - 'scripts/**'
+      - 'scripts/extract_official_credentials.py'
+      - 'scripts/build_official_catalog.py'
+      - 'scripts/validate_catalog.py'
+      - 'scripts/build_light_payload.py'
       - '.github/workflows/build-catalog.yml'
   workflow_dispatch:
   schedule:
