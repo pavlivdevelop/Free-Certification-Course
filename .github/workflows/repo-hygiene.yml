@@ -49,13 +49,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [ -f data/catalog-expanded.csv ] && [ -f status/promotion-preview.md ]; then
+          if [ -f data/catalog-expanded.csv ] && [ -f status/promotion-preview.md ] && [ -f status/promotion-preview.json ]; then
             cp status/promotion-preview.md /tmp/promotion-preview.md
+            cp status/promotion-preview.json /tmp/promotion-preview.json
             python scripts/promotion_preview.py
             cmp -s /tmp/promotion-preview.md status/promotion-preview.md
-            test "$(grep -c '^|' status/promotion-preview.md)" -le 502
-            grep -q 'This report is advisory only' status/promotion-preview.md
-            grep -q 'never changes catalog records' status/promotion-preview.md
+            cmp -s /tmp/promotion-preview.json status/promotion-preview.json
+            python scripts/validate_promotion_preview.py
           else
             echo 'promotion_preview=not_present'
           fi
