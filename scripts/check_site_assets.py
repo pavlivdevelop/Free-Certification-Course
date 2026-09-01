@@ -28,6 +28,11 @@ IGNORED_SCHEMES = {"http", "https", "mailto", "javascript", "data", "blob", "tel
 GENERATED_ASSETS = {
     SITE / "data/catalog-lite.json": ROOT / "data/catalog-lite.json",
     SITE / "data/pathways.json": ROOT / "taxonomy/pathways.json",
+    SITE / "data/pathway-candidates-lite.json": ROOT / "data/pathway-candidates-lite.json",
+    SITE / "status/review-queue-lite.json": ROOT / "status/review-queue-lite.json",
+    SITE / "status/source-health.json": ROOT / "status/source-health.json",
+    SITE / "status/release-manifest.json": ROOT / "status/release-manifest.json",
+    SITE / "status/release-index.json": ROOT / "status/release-index.json",
     ROOT / "data/pathways.json": ROOT / "taxonomy/pathways.json",
 }
 
@@ -91,15 +96,6 @@ def main() -> int:
             continue
         if not source.exists():
             fail(f"publication source is missing for {published.relative_to(ROOT)}: {source.relative_to(ROOT)}")
-    for required in (
-        SITE / "status/release-manifest.json",
-        SITE / "status/release-index.json",
-    ):
-        if not required.exists():
-            # These are generated into the Pages build; local checkout may omit them.
-            source = ROOT / required.relative_to(SITE)
-            if not source.exists():
-                fail(f"required release asset is missing: {required.relative_to(ROOT)}")
     catalog = ROOT / "data/catalog-lite.json"
     if not catalog.exists() or catalog.stat().st_size == 0:
         fail("required published asset is missing or empty: data/catalog-lite.json")
