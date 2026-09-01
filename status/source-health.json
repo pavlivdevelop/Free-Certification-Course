@@ -1,0 +1,2113 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-01T14:08:35.390378Z",
+  "total": 210,
+  "states": {
+    "http-error": 20,
+    "reachable": 157,
+    "reachable-restricted": 26,
+    "unreachable": 7
+  },
+  "items": [
+    {
+      "organization": "1C",
+      "country": "Russia",
+      "url": "https://1c.ru/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://1c.ru/",
+      "latency_ms": 964,
+      "error": ""
+    },
+    {
+      "organization": "3GPP",
+      "country": "Global",
+      "url": "https://www.3gpp.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.3gpp.org/",
+      "latency_ms": 661,
+      "error": ""
+    },
+    {
+      "organization": "ABB",
+      "country": "Switzerland",
+      "url": "https://new.abb.com/service/training",
+      "state": "unreachable",
+      "http_status": null,
+      "final_url": "https://new.abb.com/service/training",
+      "latency_ms": 18091,
+      "error": "The read operation timed out"
+    },
+    {
+      "organization": "Akamai",
+      "country": "United States",
+      "url": "https://www.akamai.com/learn",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.akamai.com/learn",
+      "latency_ms": 65,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Alteryx",
+      "country": "United States",
+      "url": "https://community.alteryx.com/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://community.alteryx.com/",
+      "latency_ms": 98,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Altium",
+      "country": "Australia",
+      "url": "https://www.altium.com/education",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.altium.com/education",
+      "latency_ms": 481,
+      "error": ""
+    },
+    {
+      "organization": "Analog Devices",
+      "country": "United States",
+      "url": "https://www.analog.com/en/education.html",
+      "state": "unreachable",
+      "http_status": null,
+      "final_url": "https://www.analog.com/en/education.html",
+      "latency_ms": 18033,
+      "error": "The read operation timed out"
+    },
+    {
+      "organization": "Ansible",
+      "country": "United States",
+      "url": "https://www.ansible.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.redhat.com/en/ansible-collaborative?intcmp=7015Y000003t7aWQAQ",
+      "latency_ms": 142,
+      "error": ""
+    },
+    {
+      "organization": "Ansys",
+      "country": "United States",
+      "url": "https://www.ansys.com/academic/educator-resources",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://ansys.synopsys.com/academic/educator-resources",
+      "latency_ms": 889,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Anthropic",
+      "country": "United States",
+      "url": "https://www.anthropic.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.anthropic.com/",
+      "latency_ms": 122,
+      "error": ""
+    },
+    {
+      "organization": "Apache Airflow",
+      "country": "Global",
+      "url": "https://airflow.apache.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://airflow.apache.org/",
+      "latency_ms": 188,
+      "error": ""
+    },
+    {
+      "organization": "Apache Kafka",
+      "country": "Global",
+      "url": "https://kafka.apache.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://kafka.apache.org/",
+      "latency_ms": 191,
+      "error": ""
+    },
+    {
+      "organization": "Apache Software Foundation",
+      "country": "Global",
+      "url": "https://www.apache.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.apache.org/",
+      "latency_ms": 21,
+      "error": ""
+    },
+    {
+      "organization": "Apache Software Foundation — Subprojects",
+      "country": "Global",
+      "url": "https://www.apache.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.apache.org/",
+      "latency_ms": 9,
+      "error": ""
+    },
+    {
+      "organization": "Apache Spark",
+      "country": "Global",
+      "url": "https://spark.apache.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://spark.apache.org/",
+      "latency_ms": 9,
+      "error": ""
+    },
+    {
+      "organization": "Arduino",
+      "country": "Italy",
+      "url": "https://docs.arduino.cc/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://docs.arduino.cc/",
+      "latency_ms": 316,
+      "error": ""
+    },
+    {
+      "organization": "Arm",
+      "country": "United Kingdom",
+      "url": "https://learn.arm.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learn.arm.com/",
+      "latency_ms": 224,
+      "error": ""
+    },
+    {
+      "organization": "ASQ",
+      "country": "United States",
+      "url": "https://asq.org/training",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://asq.org/training",
+      "latency_ms": 268,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Atlassian",
+      "country": "Australia",
+      "url": "https://university.atlassian.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://community.atlassian.com/learning",
+      "latency_ms": 185,
+      "error": ""
+    },
+    {
+      "organization": "Autodesk",
+      "country": "United States",
+      "url": "https://www.autodesk.com/certification/overview",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.autodesk.com/certification/overview",
+      "latency_ms": 34,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Autoware Foundation",
+      "country": "Global",
+      "url": "https://www.autoware.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://autoware.org/",
+      "latency_ms": 1914,
+      "error": ""
+    },
+    {
+      "organization": "AWS",
+      "country": "United States",
+      "url": "https://aws.amazon.com/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://aws.amazon.com/training/",
+      "latency_ms": 90,
+      "error": ""
+    },
+    {
+      "organization": "Beckhoff",
+      "country": "Germany",
+      "url": "https://www.beckhoff.com/en-us/company/education/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.beckhoff.com/en-us/company/education/",
+      "latency_ms": 384,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Bosch Rexroth",
+      "country": "Germany",
+      "url": "https://www.boschrexroth.com/en/xc/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.boschrexroth.com/web/194cadee-0e16-498d-8e97-b165dc63d207",
+      "latency_ms": 1872,
+      "error": ""
+    },
+    {
+      "organization": "Broadcom",
+      "country": "United States",
+      "url": "https://www.broadcom.com/support/training",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.broadcom.com/support/training",
+      "latency_ms": 335,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Broadcom VMware",
+      "country": "United States",
+      "url": "https://www.vmware.com/learning.html",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.broadcom.com/support/education/vmware",
+      "latency_ms": 155,
+      "error": ""
+    },
+    {
+      "organization": "BSI",
+      "country": "United Kingdom",
+      "url": "https://www.bsigroup.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.bsigroup.com/",
+      "latency_ms": 285,
+      "error": ""
+    },
+    {
+      "organization": "Cadence",
+      "country": "United States",
+      "url": "https://www.cadence.com/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.cadence.com/",
+      "latency_ms": 85,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Chainlink",
+      "country": "Global",
+      "url": "https://docs.chain.link/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://docs.chain.link/",
+      "latency_ms": 77,
+      "error": ""
+    },
+    {
+      "organization": "Check Point",
+      "country": "Israel",
+      "url": "https://www.checkpoint.com/services/training-and-certification/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.checkpoint.com/services/training-and-certification/",
+      "latency_ms": 778,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Cisco",
+      "country": "United States",
+      "url": "https://www.netacad.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.netacad.com/",
+      "latency_ms": 100,
+      "error": ""
+    },
+    {
+      "organization": "Class Central",
+      "country": "United States",
+      "url": "https://www.classcentral.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.classcentral.com/",
+      "latency_ms": 403,
+      "error": ""
+    },
+    {
+      "organization": "Cloud Native Computing Foundation",
+      "country": "Global",
+      "url": "https://www.cncf.io/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.cncf.io/training/",
+      "latency_ms": 180,
+      "error": ""
+    },
+    {
+      "organization": "Cloud Security Alliance",
+      "country": "Global",
+      "url": "https://cloudsecurityalliance.org/education",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://cloudsecurityalliance.org/education",
+      "latency_ms": 594,
+      "error": ""
+    },
+    {
+      "organization": "Cloudflare",
+      "country": "United States",
+      "url": "https://www.cloudflare.com/learning/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.cloudflare.com/learning/",
+      "latency_ms": 17,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "CNCF",
+      "country": "Global",
+      "url": "https://www.cncf.io/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.cncf.io/training/",
+      "latency_ms": 1018,
+      "error": ""
+    },
+    {
+      "organization": "CompTIA",
+      "country": "United States",
+      "url": "https://www.comptia.org/certifications",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.comptia.org/en-us/certifications/",
+      "latency_ms": 110,
+      "error": ""
+    },
+    {
+      "organization": "COMSOL",
+      "country": "Sweden",
+      "url": "https://www.comsol.com/learning-center",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.comsol.com/support/learning-center",
+      "latency_ms": 937,
+      "error": ""
+    },
+    {
+      "organization": "Confluent",
+      "country": "United States",
+      "url": "https://developer.confluent.io/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://developer.confluent.io/",
+      "latency_ms": 28,
+      "error": ""
+    },
+    {
+      "organization": "Coursera",
+      "country": "Global",
+      "url": "https://www.coursera.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.coursera.org/",
+      "latency_ms": 599,
+      "error": ""
+    },
+    {
+      "organization": "CrowdStrike",
+      "country": "United States",
+      "url": "https://www.crowdstrike.com/services/education/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.crowdstrike.com/services/education/",
+      "latency_ms": 104,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Dassault Aviation",
+      "country": "France",
+      "url": "https://www.dassault-aviation.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.dassault-aviation.com/en/",
+      "latency_ms": 1149,
+      "error": ""
+    },
+    {
+      "organization": "Dassault Systèmes",
+      "country": "France",
+      "url": "https://www.3ds.com/education/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.3ds.com/industries/cities-public-services/education",
+      "latency_ms": 2257,
+      "error": ""
+    },
+    {
+      "organization": "Data Carpentries",
+      "country": "Global",
+      "url": "https://datacarpentries.org/",
+      "state": "unreachable",
+      "http_status": null,
+      "final_url": "https://datacarpentries.org/",
+      "latency_ms": 158,
+      "error": "<urlopen error [Errno -2] Name or service not known>"
+    },
+    {
+      "organization": "Databricks",
+      "country": "United States",
+      "url": "https://www.databricks.com/learn",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.databricks.com/learn",
+      "latency_ms": 372,
+      "error": ""
+    },
+    {
+      "organization": "Datadog",
+      "country": "United States",
+      "url": "https://learn.datadoghq.com/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://learn.datadoghq.com/",
+      "latency_ms": 42,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "DeepLearning.AI",
+      "country": "United States",
+      "url": "https://www.deeplearning.ai/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.deeplearning.ai/",
+      "latency_ms": 38,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "DigitalOcean",
+      "country": "United States",
+      "url": "https://www.digitalocean.com/community",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.digitalocean.com/community",
+      "latency_ms": 333,
+      "error": ""
+    },
+    {
+      "organization": "Docker",
+      "country": "United States",
+      "url": "https://www.docker.com/education/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.docker.com/education/",
+      "latency_ms": 875,
+      "error": "Not Found"
+    },
+    {
+      "organization": "EC-Council",
+      "country": "United States",
+      "url": "https://www.eccouncil.org/train-certify/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.eccouncil.org/train-certify/",
+      "latency_ms": 127,
+      "error": ""
+    },
+    {
+      "organization": "Eclipse Foundation",
+      "country": "Global",
+      "url": "https://www.eclipse.org/org/workinggroups/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.eclipse.org/collaborations/",
+      "latency_ms": 990,
+      "error": ""
+    },
+    {
+      "organization": "edX",
+      "country": "Global",
+      "url": "https://www.edx.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.edx.org/",
+      "latency_ms": 66,
+      "error": ""
+    },
+    {
+      "organization": "EIT Climate-KIC",
+      "country": "European Union",
+      "url": "https://www.climate-kic.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.climate-kic.org/",
+      "latency_ms": 724,
+      "error": ""
+    },
+    {
+      "organization": "EIT Digital",
+      "country": "European Union",
+      "url": "https://www.eitdigital.eu/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://28digital.eu/",
+      "latency_ms": 1775,
+      "error": ""
+    },
+    {
+      "organization": "EIT Health",
+      "country": "European Union",
+      "url": "https://eithealth.eu/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://eithealth.eu/",
+      "latency_ms": 378,
+      "error": ""
+    },
+    {
+      "organization": "EIT Manufacturing",
+      "country": "European Union",
+      "url": "https://www.eitmanufacturing.eu/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.eit.europa.eu/",
+      "latency_ms": 607,
+      "error": ""
+    },
+    {
+      "organization": "Elastic",
+      "country": "United States",
+      "url": "https://www.elastic.co/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.elastic.co/training/",
+      "latency_ms": 606,
+      "error": ""
+    },
+    {
+      "organization": "Epic Games",
+      "country": "United States",
+      "url": "https://dev.epicgames.com/community/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://dev.epicgames.com/community/",
+      "latency_ms": 107,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "ESA",
+      "country": "Europe",
+      "url": "https://learningzone.esa.int/",
+      "state": "unreachable",
+      "http_status": null,
+      "final_url": "https://learningzone.esa.int/",
+      "latency_ms": 327,
+      "error": "<urlopen error [Errno -2] Name or service not known>"
+    },
+    {
+      "organization": "Espressif",
+      "country": "China",
+      "url": "https://www.espressif.com/en/training",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.espressif.com/en/training",
+      "latency_ms": 403,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Esri",
+      "country": "United States",
+      "url": "https://www.esri.com/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.esri.com/en-us/training",
+      "latency_ms": 57,
+      "error": ""
+    },
+    {
+      "organization": "ETSI",
+      "country": "Europe",
+      "url": "https://www.etsi.org/education",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.etsi.org/learn/",
+      "latency_ms": 2832,
+      "error": ""
+    },
+    {
+      "organization": "EU Academy",
+      "country": "European Union",
+      "url": "https://academy.europa.eu/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://academy.europa.eu/",
+      "latency_ms": 3153,
+      "error": ""
+    },
+    {
+      "organization": "FAO eLearning Academy",
+      "country": "Global",
+      "url": "https://elearning.fao.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://elearning.fao.org/",
+      "latency_ms": 734,
+      "error": ""
+    },
+    {
+      "organization": "fast.ai",
+      "country": "United States",
+      "url": "https://course.fast.ai/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://course.fast.ai/",
+      "latency_ms": 65,
+      "error": ""
+    },
+    {
+      "organization": "Festo",
+      "country": "Germany",
+      "url": "https://www.festo.com/us/en/e/academy/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.festo.com/us/en/e/academy/",
+      "latency_ms": 36,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "FIRST Robotics",
+      "country": "United States/Global",
+      "url": "https://www.firstinspires.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.firstinspires.org/",
+      "latency_ms": 67,
+      "error": ""
+    },
+    {
+      "organization": "Fortinet",
+      "country": "United States",
+      "url": "https://www.fortinet.com/training-certification",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.fortinet.com/training-certification",
+      "latency_ms": 64,
+      "error": ""
+    },
+    {
+      "organization": "FutureLearn",
+      "country": "United Kingdom",
+      "url": "https://www.futurelearn.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.futurelearn.com/",
+      "latency_ms": 1405,
+      "error": ""
+    },
+    {
+      "organization": "GitHub",
+      "country": "United States",
+      "url": "https://learn.github.com/certifications",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learn.github.com/certifications",
+      "latency_ms": 213,
+      "error": ""
+    },
+    {
+      "organization": "GitHub Skills",
+      "country": "United States",
+      "url": "https://skills.github.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://skills.github.com/",
+      "latency_ms": 81,
+      "error": ""
+    },
+    {
+      "organization": "GitLab",
+      "country": "United States",
+      "url": "https://about.gitlab.com/learn/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://about.gitlab.com/learn/",
+      "latency_ms": 45,
+      "error": "Not Found"
+    },
+    {
+      "organization": "GitLab Learn",
+      "country": "United States",
+      "url": "https://about.gitlab.com/learn/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://about.gitlab.com/learn/",
+      "latency_ms": 36,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Google Cloud",
+      "country": "United States",
+      "url": "https://www.cloudskillsboost.google/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.skills.google/",
+      "latency_ms": 1940,
+      "error": ""
+    },
+    {
+      "organization": "Google for Developers",
+      "country": "United States",
+      "url": "https://developers.google.com/profile/badges",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://developers.google.com/profile/badges",
+      "latency_ms": 321,
+      "error": ""
+    },
+    {
+      "organization": "Grafana Labs",
+      "country": "Sweden",
+      "url": "https://grafana.com/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://grafana.com/workshops/",
+      "latency_ms": 533,
+      "error": ""
+    },
+    {
+      "organization": "GSMA",
+      "country": "United Kingdom/Global",
+      "url": "https://www.gsma.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.gsma.com/",
+      "latency_ms": 56,
+      "error": ""
+    },
+    {
+      "organization": "Hack The Box",
+      "country": "Malta",
+      "url": "https://academy.hackthebox.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://academy.hackthebox.com/",
+      "latency_ms": 101,
+      "error": ""
+    },
+    {
+      "organization": "HashiCorp",
+      "country": "United States",
+      "url": "https://developer.hashicorp.com/certifications",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://developer.hashicorp.com/certifications",
+      "latency_ms": 64,
+      "error": ""
+    },
+    {
+      "organization": "Heroku",
+      "country": "United States",
+      "url": "https://devcenter.heroku.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://devcenter.heroku.com/",
+      "latency_ms": 246,
+      "error": ""
+    },
+    {
+      "organization": "HubSpot Academy",
+      "country": "United States",
+      "url": "https://academy.hubspot.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://academy.hubspot.com/",
+      "latency_ms": 137,
+      "error": ""
+    },
+    {
+      "organization": "Hugging Face",
+      "country": "United States/France",
+      "url": "https://huggingface.co/learn",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://huggingface.co/learn",
+      "latency_ms": 82,
+      "error": ""
+    },
+    {
+      "organization": "Hyperledger",
+      "country": "Global",
+      "url": "https://www.hyperledger.org/learn",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.lfdecentralizedtrust.org/learn",
+      "latency_ms": 1348,
+      "error": "Not Found"
+    },
+    {
+      "organization": "IBM",
+      "country": "United States",
+      "url": "https://skillsbuild.org/learning-catalog",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://skillsbuild.org/learning-catalog",
+      "latency_ms": 329,
+      "error": ""
+    },
+    {
+      "organization": "IEC",
+      "country": "Switzerland",
+      "url": "https://www.iec.ch/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.iec.ch/",
+      "latency_ms": 173,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "IEEE",
+      "country": "Global",
+      "url": "https://www.ieee.org/education/",
+      "state": "reachable",
+      "http_status": 202,
+      "final_url": "https://www.ieee.org/education/",
+      "latency_ms": 14,
+      "error": ""
+    },
+    {
+      "organization": "IETF",
+      "country": "Global",
+      "url": "https://www.ietf.org/education/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.ietf.org/education/",
+      "latency_ms": 270,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Infineon",
+      "country": "Germany",
+      "url": "https://www.infineon.com/cms/en/training/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.infineon.com/cms/en/training/",
+      "latency_ms": 216,
+      "error": "Not Found"
+    },
+    {
+      "organization": "IPC",
+      "country": "United States",
+      "url": "https://www.ipc.org/training",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://training.ipc.org/",
+      "latency_ms": 1198,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "ISACA",
+      "country": "United States",
+      "url": "https://www.isaca.org/credentialing",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.isaca.org/credentialing",
+      "latency_ms": 464,
+      "error": ""
+    },
+    {
+      "organization": "ISC2",
+      "country": "Global",
+      "url": "https://www.isc2.org/certifications",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.isc2.org/certifications",
+      "latency_ms": 402,
+      "error": ""
+    },
+    {
+      "organization": "ISC2 Learning",
+      "country": "Global",
+      "url": "https://www.isc2.org/training",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.isc2.org/training",
+      "latency_ms": 549,
+      "error": ""
+    },
+    {
+      "organization": "ISO",
+      "country": "Switzerland",
+      "url": "https://www.iso.org/training.html",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.iso.org/training.html",
+      "latency_ms": 50,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "ITU Academy",
+      "country": "Global",
+      "url": "https://academy.itu.int/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://academy.itu.int/",
+      "latency_ms": 826,
+      "error": ""
+    },
+    {
+      "organization": "JetBrains Academy",
+      "country": "Czech Republic",
+      "url": "https://www.jetbrains.com/academy/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.jetbrains.com/academy/",
+      "latency_ms": 50,
+      "error": ""
+    },
+    {
+      "organization": "JFrog",
+      "country": "United States",
+      "url": "https://academy.jfrog.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://academy.jfrog.com/",
+      "latency_ms": 1727,
+      "error": ""
+    },
+    {
+      "organization": "JFrog Academy",
+      "country": "United States",
+      "url": "https://academy.jfrog.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://academy.jfrog.com/",
+      "latency_ms": 309,
+      "error": ""
+    },
+    {
+      "organization": "Jira Service Management",
+      "country": "Australia",
+      "url": "https://university.atlassian.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://community.atlassian.com/learning",
+      "latency_ms": 197,
+      "error": ""
+    },
+    {
+      "organization": "Juniper Networks",
+      "country": "United States",
+      "url": "https://www.juniper.net/us/en/training/certification.html",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learningportal.juniper.net/juniper/user_activity_info.aspx?id=14346",
+      "latency_ms": 4226,
+      "error": ""
+    },
+    {
+      "organization": "Jupyter",
+      "country": "Global",
+      "url": "https://jupyter.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://jupyter.org/",
+      "latency_ms": 242,
+      "error": ""
+    },
+    {
+      "organization": "Kaggle",
+      "country": "United States",
+      "url": "https://www.kaggle.com/learn",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.kaggle.com/learn",
+      "latency_ms": 150,
+      "error": ""
+    },
+    {
+      "organization": "Kaspersky",
+      "country": "Russia",
+      "url": "https://certification.kaspersky.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://certification.kaspersky.com/",
+      "latency_ms": 1668,
+      "error": ""
+    },
+    {
+      "organization": "Keysight Technologies",
+      "country": "United States",
+      "url": "https://www.keysight.com/us/en/learn.html",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.keysight.com/us/en/learn.html",
+      "latency_ms": 24,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Khan Academy",
+      "country": "United States",
+      "url": "https://www.khanacademy.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.khanacademy.org/",
+      "latency_ms": 128,
+      "error": ""
+    },
+    {
+      "organization": "KNIME",
+      "country": "Switzerland",
+      "url": "https://www.knime.com/learning",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.knime.com/learning",
+      "latency_ms": 243,
+      "error": ""
+    },
+    {
+      "organization": "Kubernetes",
+      "country": "Global",
+      "url": "https://kubernetes.io/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://kubernetes.io/training/",
+      "latency_ms": 140,
+      "error": ""
+    },
+    {
+      "organization": "Lattice Semiconductor",
+      "country": "United States",
+      "url": "https://www.latticesemi.com/Support",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.latticesemi.com/Support",
+      "latency_ms": 395,
+      "error": ""
+    },
+    {
+      "organization": "Linux Foundation",
+      "country": "United States",
+      "url": "https://training.linuxfoundation.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://training.linuxfoundation.org/",
+      "latency_ms": 239,
+      "error": ""
+    },
+    {
+      "organization": "Linux Foundation Training",
+      "country": "United States",
+      "url": "https://training.linuxfoundation.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://training.linuxfoundation.org/",
+      "latency_ms": 44,
+      "error": ""
+    },
+    {
+      "organization": "Linux Professional Institute",
+      "country": "Canada",
+      "url": "https://www.lpi.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.lpi.org/",
+      "latency_ms": 508,
+      "error": ""
+    },
+    {
+      "organization": "Looker / Google",
+      "country": "United States",
+      "url": "https://cloud.google.com/looker/docs",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://docs.cloud.google.com/looker/docs",
+      "latency_ms": 961,
+      "error": ""
+    },
+    {
+      "organization": "Marvell",
+      "country": "United States",
+      "url": "https://www.marvell.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.marvell.com/",
+      "latency_ms": 87,
+      "error": ""
+    },
+    {
+      "organization": "MathWorks",
+      "country": "United States",
+      "url": "https://www.mathworks.com/learn/training.html",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.mathworks.com/learn/training.html",
+      "latency_ms": 29,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "MediaTek",
+      "country": "Taiwan",
+      "url": "https://corp.mediatek.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.mediatek.com/",
+      "latency_ms": 1182,
+      "error": ""
+    },
+    {
+      "organization": "Microchip Technology",
+      "country": "United States",
+      "url": "https://www.microchip.com/en-us/training",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.microchip.com/en-us/training",
+      "latency_ms": 31,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Microsoft",
+      "country": "United States",
+      "url": "https://learn.microsoft.com/credentials/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/credentials/",
+      "latency_ms": 73,
+      "error": ""
+    },
+    {
+      "organization": "MIT OpenCourseWare",
+      "country": "United States",
+      "url": "https://ocw.mit.edu/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://ocw.mit.edu/",
+      "latency_ms": 56,
+      "error": ""
+    },
+    {
+      "organization": "Mitsubishi Electric",
+      "country": "Japan",
+      "url": "https://us.mitsubishielectric.com/fa/en/learn/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://us.mitsubishielectric.com/fa/en/404/?item=%2flearn%2f&user=extranet%5cAnonymous&site=meau",
+      "latency_ms": 364,
+      "error": "Not Found"
+    },
+    {
+      "organization": "MongoDB",
+      "country": "United States",
+      "url": "https://learn.mongodb.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learn.mongodb.com/",
+      "latency_ms": 468,
+      "error": ""
+    },
+    {
+      "organization": "NASA",
+      "country": "United States",
+      "url": "https://www.nasa.gov/learning-resources/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.nasa.gov/learning-resources/",
+      "latency_ms": 615,
+      "error": ""
+    },
+    {
+      "organization": "National Physical Laboratory",
+      "country": "United Kingdom",
+      "url": "https://www.npl.co.uk/education-training",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.npl.co.uk/education-training",
+      "latency_ms": 820,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Neo4j",
+      "country": "United States",
+      "url": "https://graphacademy.neo4j.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://graphacademy.neo4j.com/",
+      "latency_ms": 177,
+      "error": ""
+    },
+    {
+      "organization": "Netlify",
+      "country": "United States",
+      "url": "https://www.netlify.com/learn/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.netlify.com/learn/",
+      "latency_ms": 136,
+      "error": "Not Found"
+    },
+    {
+      "organization": "New Relic",
+      "country": "United States",
+      "url": "https://learn.newrelic.com/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://learn.newrelic.com/",
+      "latency_ms": 33,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "NI",
+      "country": "United States",
+      "url": "https://www.ni.com/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.ni.com/en/shop/services/education-services.html",
+      "latency_ms": 1560,
+      "error": ""
+    },
+    {
+      "organization": "NIST",
+      "country": "United States",
+      "url": "https://www.nist.gov/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.nist.gov/",
+      "latency_ms": 40,
+      "error": ""
+    },
+    {
+      "organization": "NOAA",
+      "country": "United States",
+      "url": "https://www.noaa.gov/education",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.noaa.gov/education",
+      "latency_ms": 84,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Nordic Semiconductor",
+      "country": "Norway",
+      "url": "https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-SDK",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-SDK",
+      "latency_ms": 95,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "NumPy",
+      "country": "Global",
+      "url": "https://numpy.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://numpy.org/",
+      "latency_ms": 281,
+      "error": ""
+    },
+    {
+      "organization": "NVIDIA",
+      "country": "United States",
+      "url": "https://www.nvidia.com/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.nvidia.com/en-us/training/",
+      "latency_ms": 89,
+      "error": ""
+    },
+    {
+      "organization": "NXP Semiconductors",
+      "country": "Netherlands",
+      "url": "https://www.nxp.com/design/training:TRAINING",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.nxp.com/design/training:TRAINING",
+      "latency_ms": 386,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Omron",
+      "country": "Japan",
+      "url": "https://www.omron.com/global/en/technology/training/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.omron.com/global/en/technology/training/",
+      "latency_ms": 43,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "OpenAI Academy",
+      "country": "United States",
+      "url": "https://academy.openai.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://academy.openai.com/",
+      "latency_ms": 344,
+      "error": ""
+    },
+    {
+      "organization": "OpenEDX",
+      "country": "Global",
+      "url": "https://openedx.org/",
+      "state": "reachable",
+      "http_status": 202,
+      "final_url": "https://openedx.org/",
+      "latency_ms": 417,
+      "error": ""
+    },
+    {
+      "organization": "OpenLearn",
+      "country": "United Kingdom",
+      "url": "https://www.open.edu/openlearn/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.open.edu/openlearn/",
+      "latency_ms": 55,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "OpenSSF",
+      "country": "Global",
+      "url": "https://openssf.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://openssf.org/",
+      "latency_ms": 1123,
+      "error": ""
+    },
+    {
+      "organization": "OpenSSF Scorecard",
+      "country": "Global",
+      "url": "https://scorecard.dev/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://scorecard.dev/",
+      "latency_ms": 166,
+      "error": ""
+    },
+    {
+      "organization": "OpenTelemetry",
+      "country": "Global",
+      "url": "https://opentelemetry.io/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://opentelemetry.io/",
+      "latency_ms": 33,
+      "error": ""
+    },
+    {
+      "organization": "OpenTofu",
+      "country": "Global",
+      "url": "https://opentofu.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://opentofu.org/",
+      "latency_ms": 327,
+      "error": ""
+    },
+    {
+      "organization": "OpenWHO",
+      "country": "Global",
+      "url": "https://openwho.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://openwho.org/",
+      "latency_ms": 395,
+      "error": ""
+    },
+    {
+      "organization": "Oracle",
+      "country": "United States",
+      "url": "https://www.oracle.com/education/certification/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.oracle.com/education/certification/",
+      "latency_ms": 74,
+      "error": ""
+    },
+    {
+      "organization": "OWASP",
+      "country": "Global",
+      "url": "https://owasp.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://owasp.org/",
+      "latency_ms": 57,
+      "error": ""
+    },
+    {
+      "organization": "OWASP Foundation",
+      "country": "Global",
+      "url": "https://owasp.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://owasp.org/",
+      "latency_ms": 109,
+      "error": ""
+    },
+    {
+      "organization": "PagerDuty",
+      "country": "United States",
+      "url": "https://www.pagerduty.com/resources/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.pagerduty.com/resources/",
+      "latency_ms": 117,
+      "error": ""
+    },
+    {
+      "organization": "Palo Alto Networks",
+      "country": "United States",
+      "url": "https://www.paloaltonetworks.com/services/education",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.paloaltonetworks.com/services/education",
+      "latency_ms": 147,
+      "error": ""
+    },
+    {
+      "organization": "pandas",
+      "country": "Global",
+      "url": "https://pandas.pydata.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://pandas.pydata.org/",
+      "latency_ms": 386,
+      "error": ""
+    },
+    {
+      "organization": "PECB",
+      "country": "Canada",
+      "url": "https://pecb.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://pecb.com/en/",
+      "latency_ms": 352,
+      "error": ""
+    },
+    {
+      "organization": "Phoenix Contact",
+      "country": "Germany",
+      "url": "https://www.phoenixcontact.com/en-pc/training",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.phoenixcontact.com/en-pc/training",
+      "latency_ms": 1776,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "PMI",
+      "country": "United States",
+      "url": "https://www.pmi.org/learning",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.pmi.org/learning",
+      "latency_ms": 22,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "PortSwigger",
+      "country": "United Kingdom",
+      "url": "https://portswigger.net/web-security",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://portswigger.net/web-security",
+      "latency_ms": 445,
+      "error": ""
+    },
+    {
+      "organization": "Positive Technologies",
+      "country": "Russia",
+      "url": "https://edu.ptsecurity.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://edu.ptsecurity.com/",
+      "latency_ms": 795,
+      "error": ""
+    },
+    {
+      "organization": "PostgreSQL",
+      "country": "Global",
+      "url": "https://www.postgresql.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.postgresql.org/",
+      "latency_ms": 516,
+      "error": ""
+    },
+    {
+      "organization": "Postman",
+      "country": "United States",
+      "url": "https://academy.postman.com/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://academy.postman.com/",
+      "latency_ms": 40,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Power BI / Microsoft",
+      "country": "United States",
+      "url": "https://learn.microsoft.com/training/powerplatform/power-bi/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/training/powerplatform/power-bi",
+      "latency_ms": 230,
+      "error": ""
+    },
+    {
+      "organization": "Prometheus",
+      "country": "Global",
+      "url": "https://prometheus.io/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://prometheus.io/",
+      "latency_ms": 52,
+      "error": ""
+    },
+    {
+      "organization": "PTC",
+      "country": "United States",
+      "url": "https://www.ptc.com/en/academic-program",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.ptc.com/en/education/free-software",
+      "latency_ms": 571,
+      "error": ""
+    },
+    {
+      "organization": "Python Institute",
+      "country": "Poland",
+      "url": "https://pythoninstitute.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://pythoninstitute.org/",
+      "latency_ms": 661,
+      "error": ""
+    },
+    {
+      "organization": "PyTorch",
+      "country": "United States",
+      "url": "https://pytorch.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://pytorch.org/",
+      "latency_ms": 1317,
+      "error": ""
+    },
+    {
+      "organization": "QGIS",
+      "country": "Global",
+      "url": "https://www.qgis.org/en/site/forusers/trainingmaterial/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.qgis.org/",
+      "latency_ms": 1088,
+      "error": ""
+    },
+    {
+      "organization": "Qlik",
+      "country": "United States",
+      "url": "https://learning.qlik.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learning.qlik.com/student/catalog",
+      "latency_ms": 1007,
+      "error": ""
+    },
+    {
+      "organization": "Qualcomm",
+      "country": "United States",
+      "url": "https://www.qualcomm.com/developer",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.qualcomm.com/developer",
+      "latency_ms": 398,
+      "error": ""
+    },
+    {
+      "organization": "Raspberry Pi Foundation",
+      "country": "United Kingdom",
+      "url": "https://training-hub.raspberrypi.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://training-hub.raspberrypi.org/en/courses",
+      "latency_ms": 1335,
+      "error": ""
+    },
+    {
+      "organization": "Red Hat",
+      "country": "United States",
+      "url": "https://www.redhat.com/en/services/certification",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.redhat.com/en/services/training-and-certification",
+      "latency_ms": 51,
+      "error": ""
+    },
+    {
+      "organization": "Redis",
+      "country": "United States",
+      "url": "https://university.redis.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://university.redis.io/",
+      "latency_ms": 186,
+      "error": ""
+    },
+    {
+      "organization": "Renesas",
+      "country": "Japan",
+      "url": "https://www.renesas.com/us/en/design-resources/training",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.renesas.com/en/design-resources/training",
+      "latency_ms": 753,
+      "error": "Not Found"
+    },
+    {
+      "organization": "RISC-V International",
+      "country": "Global",
+      "url": "https://riscv.org/learn/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://riscv.org/community/training/",
+      "latency_ms": 2771,
+      "error": ""
+    },
+    {
+      "organization": "Rockwell Automation",
+      "country": "United States",
+      "url": "https://www.rockwellautomation.com/en-us/services/training.html",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.rockwellautomation.com/en-us/services/training.html",
+      "latency_ms": 142,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Rohde & Schwarz",
+      "country": "Germany",
+      "url": "https://www.rohde-schwarz.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.rohde-schwarz.com/us/home_48230.html",
+      "latency_ms": 1853,
+      "error": ""
+    },
+    {
+      "organization": "ROS",
+      "country": "Global",
+      "url": "https://www.ros.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.ros.org/",
+      "latency_ms": 184,
+      "error": ""
+    },
+    {
+      "organization": "Roscosmos Education",
+      "country": "Russia",
+      "url": "https://www.roscosmos.ru/",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.roscosmos.ru/",
+      "latency_ms": 1093,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "RStudio / Posit",
+      "country": "United States",
+      "url": "https://posit.co/learn/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://posit.co/learn/",
+      "latency_ms": 106,
+      "error": "Not Found"
+    },
+    {
+      "organization": "RЭД СОФТ",
+      "country": "Russia",
+      "url": "https://education.red-soft.ru/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://education.red-soft.ru/",
+      "latency_ms": 1336,
+      "error": ""
+    },
+    {
+      "organization": "SAE International",
+      "country": "United States",
+      "url": "https://www.sae.org/learn",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.sae.org/learn",
+      "latency_ms": 528,
+      "error": ""
+    },
+    {
+      "organization": "Salesforce Trailhead",
+      "country": "United States",
+      "url": "https://trailhead.salesforce.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://trailhead.salesforce.com/",
+      "latency_ms": 351,
+      "error": ""
+    },
+    {
+      "organization": "SANS Institute",
+      "country": "United States",
+      "url": "https://www.sans.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.sans.org/",
+      "latency_ms": 524,
+      "error": ""
+    },
+    {
+      "organization": "SAP",
+      "country": "Germany",
+      "url": "https://learning.sap.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learning.sap.com/",
+      "latency_ms": 135,
+      "error": ""
+    },
+    {
+      "organization": "Schneider Electric",
+      "country": "France",
+      "url": "https://www.se.com/ww/en/work/solutions/for-business/training/",
+      "state": "http-error",
+      "http_status": 404,
+      "final_url": "https://www.se.com/ww/en/work/solutions/training/",
+      "latency_ms": 1428,
+      "error": "Not Found"
+    },
+    {
+      "organization": "Scikit-learn",
+      "country": "Global",
+      "url": "https://scikit-learn.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://scikit-learn.org/",
+      "latency_ms": 94,
+      "error": ""
+    },
+    {
+      "organization": "Scrum Alliance",
+      "country": "United States",
+      "url": "https://www.scrumalliance.org/get-certified",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.scrumalliance.org/get-certified",
+      "latency_ms": 334,
+      "error": ""
+    },
+    {
+      "organization": "Scrum.org",
+      "country": "United States",
+      "url": "https://www.scrum.org/professional-training",
+      "state": "reachable-restricted",
+      "http_status": 403,
+      "final_url": "https://www.scrum.org/professional-training",
+      "latency_ms": 177,
+      "error": "Forbidden"
+    },
+    {
+      "organization": "Sentry",
+      "country": "United States",
+      "url": "https://sentry.io/resources/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://sentry.io/resources/",
+      "latency_ms": 300,
+      "error": ""
+    },
+    {
+      "organization": "Siemens",
+      "country": "Germany",
+      "url": "https://www.siemens.com/training",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.siemens.com/en-us/products/industrial-lifecycle-training-services/",
+      "latency_ms": 1804,
+      "error": ""
+    },
+    {
+      "organization": "Siemens Digital Industries Software",
+      "country": "Germany",
+      "url": "https://training.plm.automation.siemens.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://training.plm.automation.siemens.com/",
+      "latency_ms": 713,
+      "error": ""
+    },
+    {
+      "organization": "SiFive",
+      "country": "United States",
+      "url": "https://www.sifive.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.sifive.com/",
+      "latency_ms": 266,
+      "error": ""
+    },
+    {
+      "organization": "Silicon Labs",
+      "country": "United States",
+      "url": "https://www.silabs.com/training",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.silabs.com/support/training",
+      "latency_ms": 285,
+      "error": ""
+    },
+    {
+      "organization": "SLSA",
+      "country": "Global",
+      "url": "https://slsa.dev/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://slsa.dev/",
+      "latency_ms": 228,
+      "error": ""
+    },
+    {
+      "organization": "Snowflake",
+      "country": "United States",
+      "url": "https://learn.snowflake.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learn.snowflake.com/en/",
+      "latency_ms": 123,
+      "error": ""
+    },
+    {
+      "organization": "Software Carpentries",
+      "country": "Global",
+      "url": "https://software-carpentry.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://software-carpentry.org/",
+      "latency_ms": 437,
+      "error": ""
+    },
+    {
+      "organization": "Splunk",
+      "country": "United States",
+      "url": "https://www.splunk.com/en_us/training.html",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.splunk.com/en_us/training.html",
+      "latency_ms": 132,
+      "error": ""
+    },
+    {
+      "organization": "Stepik",
+      "country": "Russia",
+      "url": "https://stepik.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://stepik.org/",
+      "latency_ms": 1158,
+      "error": ""
+    },
+    {
+      "organization": "STMicroelectronics",
+      "country": "Switzerland",
+      "url": "https://www.st.com/content/st_com/en/about/training.html",
+      "state": "unreachable",
+      "http_status": null,
+      "final_url": "https://www.st.com/content/st_com/en/about/training.html",
+      "latency_ms": 18127,
+      "error": "The read operation timed out"
+    },
+    {
+      "organization": "Synopsys",
+      "country": "United States",
+      "url": "https://www.synopsys.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.synopsys.com/",
+      "latency_ms": 263,
+      "error": ""
+    },
+    {
+      "organization": "Tableau",
+      "country": "United States",
+      "url": "https://www.tableau.com/learn",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.tableau.com/learn",
+      "latency_ms": 97,
+      "error": ""
+    },
+    {
+      "organization": "Tektronix",
+      "country": "United States",
+      "url": "https://www.tek.com/en/learning",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.tek.com/en/support/learning-center",
+      "latency_ms": 432,
+      "error": ""
+    },
+    {
+      "organization": "TensorFlow",
+      "country": "United States",
+      "url": "https://www.tensorflow.org/certificate",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.tensorflow.org/certificate",
+      "latency_ms": 549,
+      "error": ""
+    },
+    {
+      "organization": "Texas Instruments",
+      "country": "United States",
+      "url": "https://training.ti.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.ti.com/video/library.html",
+      "latency_ms": 162,
+      "error": ""
+    },
+    {
+      "organization": "The Carpentries",
+      "country": "Global",
+      "url": "https://carpentries.org/workshops/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://carpentries.org/workshops/",
+      "latency_ms": 453,
+      "error": ""
+    },
+    {
+      "organization": "TryHackMe",
+      "country": "United Kingdom",
+      "url": "https://tryhackme.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://tryhackme.com/",
+      "latency_ms": 321,
+      "error": ""
+    },
+    {
+      "organization": "UN CC:Learn",
+      "country": "Global",
+      "url": "https://unccelearn.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://unccelearn.org/",
+      "latency_ms": 780,
+      "error": ""
+    },
+    {
+      "organization": "UNEP InforMEA",
+      "country": "Global",
+      "url": "https://www.informea.org/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.informea.org/en",
+      "latency_ms": 923,
+      "error": ""
+    },
+    {
+      "organization": "Unity",
+      "country": "United States",
+      "url": "https://learn.unity.com/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://learn.unity.com/",
+      "latency_ms": 623,
+      "error": ""
+    },
+    {
+      "organization": "USGS",
+      "country": "United States",
+      "url": "https://www.usgs.gov/educational-resources",
+      "state": "unreachable",
+      "http_status": null,
+      "final_url": "https://www.usgs.gov/educational-resources",
+      "latency_ms": 29,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>"
+    },
+    {
+      "organization": "Vercel",
+      "country": "United States",
+      "url": "https://vercel.com/academy",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://vercel.com/academy",
+      "latency_ms": 77,
+      "error": ""
+    },
+    {
+      "organization": "Web3 Foundation",
+      "country": "Switzerland",
+      "url": "https://web3.foundation/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://web3.foundation/",
+      "latency_ms": 449,
+      "error": ""
+    },
+    {
+      "organization": "WHO Academy",
+      "country": "Global",
+      "url": "https://www.who.int/about/who-academy",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://www.who.int/about/who-academy",
+      "latency_ms": 444,
+      "error": ""
+    },
+    {
+      "organization": "Xilinx / AMD Adaptive Computing",
+      "country": "United States",
+      "url": "https://www.amd.com/en/corporate/university-programs.html",
+      "state": "unreachable",
+      "http_status": null,
+      "final_url": "https://www.amd.com/en/corporate/university-programs.html",
+      "latency_ms": 18074,
+      "error": "The read operation timed out"
+    },
+    {
+      "organization": "Группа Астра",
+      "country": "Russia",
+      "url": "https://astra.ru/training/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://astra.ru/training/",
+      "latency_ms": 1125,
+      "error": ""
+    },
+    {
+      "organization": "Нетология",
+      "country": "Russia",
+      "url": "https://netology.ru/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://netology.ru/",
+      "latency_ms": 932,
+      "error": ""
+    },
+    {
+      "organization": "Открытое образование",
+      "country": "Russia",
+      "url": "https://openedu.ru/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://openedu.ru/",
+      "latency_ms": 1893,
+      "error": ""
+    },
+    {
+      "organization": "Т-Банк Education",
+      "country": "Russia",
+      "url": "https://education.tbank.ru/",
+      "state": "reachable",
+      "http_status": 200,
+      "final_url": "https://education.tbank.ru/",
+      "latency_ms": 1033,
+      "error": ""
+    }
+  ]
+}
