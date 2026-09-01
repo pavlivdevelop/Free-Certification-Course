@@ -14,7 +14,9 @@ TRACKED = [
     ROOT / 'data' / 'free-core.csv',
     ROOT / 'data' / 'conditional.csv',
     ROOT / 'taxonomy' / 'pathways.json',
+    ROOT / 'data' / 'pathway-candidates-lite.json',
     ROOT / 'status' / 'REVIEW-QUEUE.csv',
+    ROOT / 'status' / 'CREDENTIAL-PATHWAY-CANDIDATES.csv',
 ]
 
 
@@ -46,7 +48,7 @@ def main() -> int:
     stats_text = STATS.read_text(encoding='utf-8') if STATS.exists() else ''
     build_trigger_sha = os.environ.get('GITHUB_SHA') or 'local'
     manifest = {
-        'manifest_version': '1.1',
+        'manifest_version': '1.2',
         'project': 'OpenCertAtlas',
         'generated_at_utc': datetime.now(timezone.utc).isoformat(),
         'build_trigger_sha': build_trigger_sha,
@@ -54,6 +56,7 @@ def main() -> int:
             'catalog': 'status/CATALOG-SCHEMA.json',
             'data_contract': 'docs/DATA-CONTRACT.md',
             'pathways': 'taxonomy/pathways.json',
+            'pathway_mapping': 'scripts/build_pathway_mapping_candidates.py',
         },
         'extractor': {
             'path': 'scripts/extract_official_credentials.py',
@@ -62,6 +65,14 @@ def main() -> int:
         'builder': {
             'path': 'scripts/build_official_catalog.py',
             'sha256': sha256(ROOT / 'scripts' / 'build_official_catalog.py'),
+        },
+        'pathway_mapping': {
+            'path': 'scripts/build_pathway_mapping_candidates.py',
+            'sha256': sha256(ROOT / 'scripts' / 'build_pathway_mapping_candidates.py'),
+            'status': 'candidate-only',
+            'does_not_claim_credential_teaches_node': True,
+            'does_not_change_verification_or_free_status': True,
+            'csv_rows_including_header': line_count(ROOT / 'status' / 'CREDENTIAL-PATHWAY-CANDIDATES.csv') if (ROOT / 'status' / 'CREDENTIAL-PATHWAY-CANDIDATES.csv').exists() else 0,
         },
         'catalog': {
             'records': stat_value(stats_text, 'records'),
@@ -83,6 +94,7 @@ def main() -> int:
             'discovery_is_not_verification': True,
             'free_status_requires_verified_free_evidence': True,
             'build_trigger_sha_is_not_the_publication_commit_sha': True,
+            'pathway_mappings_are_non_authoritative_candidates': True,
         },
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -90,6 +102,7 @@ def main() -> int:
     print(f'release_manifest={OUT.relative_to(ROOT)}')
     print(f'catalog_records={manifest["catalog"]["records"]}')
     print(f'build_trigger_sha={build_trigger_sha}')
+    print(f'pathway_mapping_rows={manifest["pathway_mapping"]["csv_rows_including_header"]}')
     return 0
 
 
