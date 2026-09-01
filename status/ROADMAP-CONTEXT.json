@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.3",
+  "schema_version": "1.4",
   "project": "OpenCertAtlas",
   "canonical_branch": "main",
   "purpose": "Portable continuation context for autonomous development sessions.",
@@ -33,7 +33,9 @@
     "Root branding is OpenCertAtlas.",
     "Portable local-first progress tracker and offline site assets are present.",
     "GitHub Pages workflow now builds and validates the site even when Pages is not enabled; deployment is skipped until configured.",
-    "Architecture and contribution documentation are present."
+    "Recommendation page provides deterministic local-first next-step ranking.",
+    "Progress and recommendation pages migrate legacy flat progress into the current versioned items map.",
+    "Repository now documents the recommendation model and its evidence boundaries."
   ],
   "current_verification": {
     "catalog_run": 33474434642,
@@ -43,8 +45,8 @@
     "free_core_records": 81,
     "repo_hygiene_latest_known": "success",
     "site_smoke_latest_known": "success",
-    "pages_latest_known": "failed because GitHub Pages was not configured; workflow has since been made optional",
-    "latest_engineering_commit": "9db678f997c00e556ad103ba50da06c2905e124a"
+    "pages_latest_known": "success build with deployment skipped because Pages is not configured",
+    "latest_engineering_commit": "2f029a6ca6ba0f3c8e84028ceb4e7b08cc9a5112"
   },
   "known_non_blocking_items": [
     "GitHub Pages still needs one account-level Settings → Pages → Source = GitHub Actions action before live deployment can occur.",
@@ -52,7 +54,7 @@
     "Self-hosted runner is optional and not required for the production catalog pipeline."
   ],
   "next_priority": [
-    "verify latest Pages workflow after optional-deployment fix",
+    "verify site smoke after recommender/progress compatibility changes",
     "lightweight catalog payload for faster frontend startup",
     "evidence promotion rules for credential/free classification",
     "learning-path prerequisite graph",
