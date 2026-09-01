@@ -5,12 +5,14 @@ on:
     branches: [main]
     paths:
       - 'site/**'
+      - 'status/review-queue-lite.json'
+      - 'status/source-health.json'
       - 'taxonomy/pathways.json'
       - 'data/catalog-expanded.json'
       - 'data/catalog-lite.json'
       - '.github/workflows/deploy-pages.yml'
   workflow_run:
-    workflows: ['Build official catalog']
+    workflows: ['Build official catalog','Source health']
     types: [completed]
   workflow_dispatch:
 
@@ -54,11 +56,13 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf _site
-          mkdir -p _site/data
+          mkdir -p _site/data _site/status
           cp -R site/. _site/
           cp data/catalog-expanded.json _site/data/catalog-expanded.json
           cp data/catalog-lite.json _site/data/catalog-lite.json
           cp taxonomy/pathways.json _site/data/pathways.json
+          cp status/review-queue-lite.json _site/status/review-queue-lite.json
+          cp status/source-health.json _site/status/source-health.json
       - name: Validate assembled site
         shell: bash
         run: |
@@ -67,6 +71,10 @@ jobs:
           test -s _site/progress.html
           test -s _site/recommend.html
           test -s _site/pathways.html
+          test -s _site/review.html
+          test -s _site/sources.html
+          test -s _site/status/review-queue-lite.json
+          test -s _site/status/source-health.json
           test -s _site/data/catalog-expanded.json
           test -s _site/data/catalog-lite.json
           test -s _site/data/pathways.json
