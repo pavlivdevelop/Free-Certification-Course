@@ -12,6 +12,7 @@ REPORT = ROOT / "status/promotion-preview.md"
 PAYLOAD = ROOT / "status/promotion-preview.json"
 CATALOG = ROOT / "data/catalog-expanded.csv"
 ALLOWED_TIERS = {"high-confidence review candidate", "review candidate", "needs additional evidence"}
+ALLOWED_TRIAGE = {"likely credential identity", "learning-content signal", "uncertain credential identity"}
 
 
 def fail(message: str) -> None:
@@ -27,7 +28,7 @@ def main() -> int:
         fail("data/catalog-expanded.csv is missing or empty")
 
     data = json.loads(PAYLOAD.read_text(encoding="utf-8"))
-    if data.get("schema_version") != "1.1":
+    if data.get("schema_version") != "1.2":
         fail("unsupported schema_version")
     if data.get("advisory_only") is not True:
         fail("advisory_only must be true")
@@ -48,7 +49,7 @@ def main() -> int:
 
     previous = None
     for row in records:
-        required = ("score", "tier", "organization", "name", "evidence", "method", "url", "source", "reasons")
+        required = ("score", "tier", "triage", "organization", "name", "evidence", "method", "url", "source", "reasons")
         for key in required:
             if key not in row:
                 fail(f"row missing {key}")
@@ -57,6 +58,8 @@ def main() -> int:
             fail(f"invalid score: {score!r}")
         if row["tier"] not in ALLOWED_TIERS:
             fail(f"invalid tier: {row['tier']!r}")
+        if row["triage"] not in ALLOWED_TRIAGE:
+            fail(f"invalid triage: {row['triage']!r}")
         if not isinstance(row["reasons"], list) or not all(isinstance(x, str) for x in row["reasons"]):
             fail("reasons must be a list of strings")
         for key in ("url", "source"):
@@ -66,15 +69,20 @@ def main() -> int:
                 if parsed.scheme not in {"http", "https"} or not parsed.netloc:
                     fail(f"invalid {key} URL: {value!r}")
 
-        sort_key = (-score, row["tier"], row["organization"].casefold(), row["name"].casefold())
+        sort_key = (-score, row["tier"], row["triage"], row["organization"].casefold(), row["name"].casefold())
         if previous is not None and sort_key < previous:
             fail("rows are not deterministically sorted")
         previous = sort_key
+
+    for field in ("candidate_records", "reviewable", "high_confidence", "likely_credential_identity", "learning_content_signals"):
+        if not isinstance(data.get(field), int) or data[field] < 0:
+            fail(f"invalid summary field: {field}")
 
     report = REPORT.read_text(encoding="utf-8")
     for marker in (
         "This report is advisory only",
         "never changes catalog records",
+        "Credential-language and learning-content heuristics affect triage only",
         "not eligible for automatic promotion",
         "Manual review must confirm",
     ):
@@ -85,6 +93,8 @@ def main() -> int:
     print(f"validated_promotion_candidates={data.get('candidate_records', 0)}")
     print(f"validated_promotion_reviewable={data.get('reviewable', 0)}")
     print(f"validated_promotion_high_confidence={data.get('high_confidence', 0)}")
+    print(f"validated_promotion_likely_credential_identity={data.get('likely_credential_identity', 0)}")
+    print(f"validated_promotion_learning_content_signals={data.get('learning_content_signals', 0)}")
     print(f"validated_promotion_catalog_sha256={catalog_sha256}")
     print("promotion_preview=passed")
     return 0
