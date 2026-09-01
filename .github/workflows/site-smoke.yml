@@ -1,5 +1,6 @@
 name: Site smoke tests
 
+# Route validation is intentionally rerun on every site change, including bot-generated maintenance commits.
 on:
   push:
     paths:
