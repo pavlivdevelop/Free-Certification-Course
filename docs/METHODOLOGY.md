@@ -20,6 +20,20 @@ Each row should keep:
 - verification method when published by the issuer;
 - date of last review.
 
+## Evidence promotion boundary
+
+Extracted or discovered records remain `credential-candidate` until evidence is reviewed. The promotion preview is a deterministic prioritization aid for human review; its score is not evidence and it cannot change canonical records, verification state, or free status.
+
+A manual promotion decision should confirm, from the issuer source, all of the following before changing `Evidence Status` or entering the free core:
+
+1. the exact credential identity is real and issuer-owned;
+2. the activity is credential-bearing rather than a generic course or marketing page;
+3. the current access or assessment route supports the claimed price status;
+4. eligibility, geography, and important conditions are captured;
+5. the source page and review date are recorded.
+
+A high preview score only means that the row is well formed for inspection. It does not establish that any of these claims are true.
+
 ## Safety against stale information
 
 Prices, exam versions, retirements and country availability change. A repository row is a directory record, not a promise that an issuer will keep the same offer forever. Before spending money, submitting identity data, or planning a credential into a formal application, verify the current issuer page.
