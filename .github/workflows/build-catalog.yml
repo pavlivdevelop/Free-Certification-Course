@@ -1,6 +1,7 @@
 name: Build official catalog
 
 on:
+  # Generated commits are followed by workflow_run consumers; seed/source edits start the build here.
   push:
     paths:
       - 'providers/**'
