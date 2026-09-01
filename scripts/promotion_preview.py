@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
-from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -34,6 +34,8 @@ def is_http_url(value: str) -> bool:
 
 
 def main() -> int:
+    catalog_bytes = CAT.read_bytes()
+    catalog_sha256 = hashlib.sha256(catalog_bytes).hexdigest()
     with CAT.open(encoding="utf-8-sig", newline="") as f:
         rows = list(csv.DictReader(f))
 
@@ -89,11 +91,10 @@ def main() -> int:
     proposals.sort(key=lambda x: (-x["score"], x["tier"], x["organization"].casefold(), x["name"].casefold()))
     high = sum(p["score"] >= 8 for p in proposals)
     reviewable = sum(p["score"] >= 6 for p in proposals)
-    generated_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
     JSON_OUT.write_text(json.dumps({
-        "schema_version": "1.0",
-        "generated_at_utc": generated_at,
+        "schema_version": "1.1",
+        "catalog_sha256": catalog_sha256,
         "candidate_records": len(candidates),
         "reviewable": reviewable,
         "high_confidence": high,
@@ -110,6 +111,7 @@ def main() -> int:
         f"- deterministic review candidates (score ≥ 6): {reviewable}",
         f"- high-confidence review candidates (score ≥ 8): {high}",
         f"- rows shown: {min(500, len(proposals))}",
+        f"- catalog SHA-256: `{catalog_sha256}`",
         "",
         "This report is advisory only. It never changes catalog records, Evidence Status, or free status.",
         "A row is not eligible for automatic promotion merely because it scores highly.",
@@ -130,6 +132,7 @@ def main() -> int:
     print(f"promotion_candidates={len(candidates)}")
     print(f"promotion_reviewable={reviewable}")
     print(f"promotion_high_confidence={high}")
+    print(f"promotion_catalog_sha256={catalog_sha256}")
     return 0
 
 
