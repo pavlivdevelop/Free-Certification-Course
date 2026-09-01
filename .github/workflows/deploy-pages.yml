@@ -132,7 +132,7 @@ jobs:
           grep -q "Immutable catalog release history" /tmp/opencertatlas-releases.html
           grep -q "Candidate catalog matches" /tmp/opencertatlas-pathways.html
           grep -q "Promotion preview" /tmp/opencertatlas-promotion.html
-          grep -q '"advisory_only":true' /tmp/opencertatlas-promotion.json
+          grep -Eq '"advisory_only"[[:space:]]*:[[:space:]]*true' /tmp/opencertatlas-promotion.json
           test -s /tmp/opencertatlas-promotion.json
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/review-queue-lite.json" -o /tmp/opencertatlas-review.json
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/source-health.json" -o /tmp/opencertatlas-health.json
