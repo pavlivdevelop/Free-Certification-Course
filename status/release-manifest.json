@@ -1,12 +1,13 @@
 {
-  "manifest_version": "1.1",
+  "manifest_version": "1.2",
   "project": "OpenCertAtlas",
-  "generated_at_utc": "2026-09-01T14:51:06.292049+00:00",
-  "build_trigger_sha": "8bd34bca511446c1961622f3186fecd8c3d84587",
+  "generated_at_utc": "2026-09-01T15:13:36.598044+00:00",
+  "build_trigger_sha": "f942010e7677396eda5802f21cda8b0cdef40a70",
   "schema": {
     "catalog": "status/CATALOG-SCHEMA.json",
     "data_contract": "docs/DATA-CONTRACT.md",
-    "pathways": "taxonomy/pathways.json"
+    "pathways": "taxonomy/pathways.json",
+    "pathway_mapping": "scripts/build_pathway_mapping_candidates.py"
   },
   "extractor": {
     "path": "scripts/extract_official_credentials.py",
@@ -16,24 +17,32 @@
     "path": "scripts/build_official_catalog.py",
     "sha256": "f898944674cb40817363d0be128445e87e5c83349ea7230be4adc71f020dd7ff"
   },
+  "pathway_mapping": {
+    "path": "scripts/build_pathway_mapping_candidates.py",
+    "sha256": "a759c4996f9db553d453d239b3941c987714c7a2e097baf8f762d2ce8bdca782",
+    "status": "candidate-only",
+    "does_not_claim_credential_teaches_node": true,
+    "does_not_change_verification_or_free_status": true,
+    "csv_rows_including_header": 2980
+  },
   "catalog": {
-    "records": 10868,
+    "records": 10587,
     "free_signals": 81,
     "verified_free_core": 0,
     "conditional": 0,
-    "candidates": 10787
+    "candidates": 10506
   },
   "queue": {
-    "review_queue_rows_including_header": 10869
+    "review_queue_rows_including_header": 10588
   },
   "artifacts": {
     "data/catalog-expanded.json": {
-      "bytes": 12051192,
-      "sha256": "3c5fa09e77e9cfa08fe786805274ce4f8077a0f08e48c8b82c5ea43226aec332"
+      "bytes": 11729040,
+      "sha256": "d45c5efc75d8b4dce0ce64e95c048fed99a8c2f2a5686ef6107e30fd1da28663"
     },
     "data/catalog-lite.json": {
-      "bytes": 5036391,
-      "sha256": "e23e882833f3e466756b3d5318590f3787da872365a0f5aba8b75cda265a9eda"
+      "bytes": 4900169,
+      "sha256": "22f59246de2585e8e64b767382277db2c4ec69989bf71e6e496995ea7f88a0f9"
     },
     "data/free-core.csv": {
       "bytes": 314,
@@ -47,9 +56,17 @@
       "bytes": 7046,
       "sha256": "ddd9f54183b2179856968036ed4c679d33452334c414d9e7d5436ad9ee53c0b9"
     },
+    "data/pathway-candidates-lite.json": {
+      "bytes": 681210,
+      "sha256": "38a0a76b01dfc3827d1c0a1281c8d1bc5b173b38d54b4d43799c5272a60e59b7"
+    },
     "status/REVIEW-QUEUE.csv": {
-      "bytes": 3640550,
-      "sha256": "dd1e52370c0113e23a87fbbd54e983eea7cc03063c9c247048764fe50865809b"
+      "bytes": 3537130,
+      "sha256": "e7060638ad2030d3aca28462e6013efe67f4d2f515148cf94a59a8dd26373f13"
+    },
+    "status/CREDENTIAL-PATHWAY-CANDIDATES.csv": {
+      "bytes": 702305,
+      "sha256": "dfca245b963768fa3b0ca457b630b3aa40d8eb360a16062c61bf0c1f32101f72"
     }
   },
   "reproducibility": {
@@ -57,6 +74,7 @@
     "generated_outputs_are_not_seed_inputs": true,
     "discovery_is_not_verification": true,
     "free_status_requires_verified_free_evidence": true,
-    "build_trigger_sha_is_not_the_publication_commit_sha": true
+    "build_trigger_sha_is_not_the_publication_commit_sha": true,
+    "pathway_mappings_are_non_authoritative_candidates": true
   }
 }
