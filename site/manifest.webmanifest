@@ -1,0 +1,11 @@
+{
+  "name": "OpenCertAtlas",
+  "short_name": "OpenCertAtlas",
+  "description": "Source-first map of credentials, certifications, digital badges and learning paths.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f7f9",
+  "theme_color": "#111827",
+  "lang": "en",
+  "icons": []
+}
