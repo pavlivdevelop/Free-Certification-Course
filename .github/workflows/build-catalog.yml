@@ -12,6 +12,7 @@ on:
       - 'scripts/validate_catalog.py'
       - 'scripts/build_light_payload.py'
       - 'scripts/build_review_queue.py'
+      - 'scripts/build_review_payload.py'
       - '.github/workflows/build-catalog.yml'
   workflow_dispatch:
   schedule:
@@ -47,12 +48,14 @@ jobs:
         run: python scripts/build_light_payload.py
       - name: Build deterministic review queue
         run: python scripts/build_review_queue.py
+      - name: Build compact review payload
+        run: python scripts/build_review_payload.py
       - name: Publish generated data safely
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv data/catalog-lite.json status/CATALOG-STATS.md status/REVIEW-QUEUE.csv
+          git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv data/catalog-lite.json status/CATALOG-STATS.md status/REVIEW-QUEUE.csv status/review-queue-lite.json status/REVIEW-QUEUE-SUMMARY.md
           git diff --cached --quiet && exit 0
           git commit -m 'chore(data): refresh official credential catalog'
           git fetch origin main
