@@ -10,7 +10,6 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 PAYLOAD = ROOT / "status/evidence-packet-index.json"
 CATALOG = ROOT / "data/catalog-expanded.csv"
-ALLOWED_DECISIONS = {"pending", "promote", "reject", "needs-more-evidence"}
 REQUIRED_CHECKS = {
     "credential_identity",
     "credential_bearing_activity",
@@ -102,8 +101,12 @@ def main() -> int:
             fail("generated review checks must be null")
 
         guards = packet["guardrails"]
-        for key in ("advisory_only", "auto_promotion", "price_is_not_proof", "reachability_is_not_status_proof", "candidate_is_not_verified"):
-            if key not in guards or guards[key] is not True:
+        if guards.get("advisory_only") is not True:
+            fail("guardrail advisory_only must be true")
+        if guards.get("auto_promotion") is not False:
+            fail("guardrail auto_promotion must be false")
+        for key in ("price_is_not_proof", "reachability_is_not_status_proof", "candidate_is_not_verified"):
+            if guards.get(key) is not True:
                 fail(f"guardrail {key} must be true")
 
     for field in ("candidate_records", "packets_shown", "packet_limit", "provider_count", "providers_shown", "provider_limit"):
