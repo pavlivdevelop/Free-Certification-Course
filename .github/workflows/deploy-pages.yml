@@ -73,22 +73,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -s _site/index.html
-          test -s _site/progress.html
-          test -s _site/recommend.html
-          test -s _site/pathways.html
-          test -s _site/review.html
-          test -s _site/sources.html
-          test -s _site/status/review-queue-lite.json
-          test -s _site/status/source-health.json
-          test -s _site/status/release-manifest.json
-          test -s _site/data/catalog-expanded.json
-          test -s _site/data/catalog-lite.json
-          test -s _site/data/pathways.json
+          for page in index.html progress.html recommend.html pathways.html release.html review.html sources.html; do test -s "_site/$page"; done
+          for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
           if [ -f _site/data/pathway-candidates-lite.json ]; then test -s _site/data/pathway-candidates-lite.json; fi
           if [ -f _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv ]; then test -s _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv; fi
-          test -s _site/manifest.webmanifest
-          test -s _site/sw.js
       - name: Upload Pages artifact
         if: steps.pages_state.outputs.enabled == 'true'
         uses: actions/upload-pages-artifact@v4
@@ -120,5 +108,9 @@ jobs:
           set -euo pipefail
           test -n "$PAGE_URL"
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$PAGE_URL" -o /tmp/opencertatlas-home.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "${PAGE_URL%/}/release.html" -o /tmp/opencertatlas-release.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "${PAGE_URL%/}/pathways.html" -o /tmp/opencertatlas-pathways.html
           grep -q "OpenCertAtlas" /tmp/opencertatlas-home.html
+          grep -q "Reproducible release" /tmp/opencertatlas-release.html
+          grep -q "Candidate catalog matches" /tmp/opencertatlas-pathways.html
           echo "live_pages_check=passed url=$PAGE_URL"
