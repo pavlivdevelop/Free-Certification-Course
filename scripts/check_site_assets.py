@@ -9,10 +9,10 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
-
 HTML_FILES = [SITE / name for name in ("index.html", "progress.html", "recommend.html", "pathways.html", "offline.html")]
 SW_FILE = SITE / "sw.js"
 IGNORED_SCHEMES = {"http", "https", "mailto", "javascript", "data", "blob", "tel"}
+GENERATED_ASSETS = {ROOT / "data/pathways.json": ROOT / "taxonomy/pathways.json"}
 
 
 def fail(message: str) -> None:
@@ -27,12 +27,22 @@ def local_target(source: Path, raw_url: str) -> Path | None:
     if parsed.scheme in IGNORED_SCHEMES or parsed.netloc:
         return None
     path = parsed.path
-    if not path:
-        return None
-    # Ignore templated/dynamic URLs because their value is not statically knowable.
-    if any(token in path for token in ("${", "{{", "<", ">")):
+    if not path or any(token in path for token in ("${", "{{", "<", ">")):
         return None
     return (source.parent / path).resolve()
+
+
+def check_target(source: Path, target: Path, raw_url: str) -> None:
+    try:
+        target.relative_to(ROOT)
+    except ValueError:
+        fail(f"{source.relative_to(ROOT)} references path outside repository: {raw_url!r}")
+    if target.exists():
+        return
+    generator = GENERATED_ASSETS.get(target)
+    if generator is not None and generator.exists():
+        return
+    fail(f"{source.relative_to(ROOT)} references missing local asset: {raw_url!r}")
 
 
 def inspect_file(path: Path) -> int:
@@ -49,12 +59,7 @@ def inspect_file(path: Path) -> int:
             if target is None:
                 continue
             checked += 1
-            try:
-                target.relative_to(ROOT)
-            except ValueError:
-                fail(f"{path.relative_to(ROOT)} references path outside repository: {match.group(1)!r}")
-            if not target.exists():
-                fail(f"{path.relative_to(ROOT)} references missing local asset: {match.group(1)!r}")
+            check_target(path, target, match.group(1))
     return checked
 
 
@@ -64,13 +69,12 @@ def main() -> int:
             fail(f"missing expected file {path.relative_to(ROOT)}")
 
     checked = sum(inspect_file(path) for path in HTML_FILES + [SW_FILE])
-    required = {
-        ROOT / "data/catalog-lite.json",
-        ROOT / "data/pathways.json",
-    }
-    for path in required:
-        if not path.exists():
-            fail(f"required published asset is missing: {path.relative_to(ROOT)}")
+    for generated, source in GENERATED_ASSETS.items():
+        if not source.exists():
+            fail(f"generator source is missing for {generated.relative_to(ROOT)}: {source.relative_to(ROOT)}")
+    catalog = ROOT / "data/catalog-lite.json"
+    if not catalog.exists() or catalog.stat().st_size == 0:
+        fail("required published asset is missing or empty: data/catalog-lite.json")
 
     print(f"local_asset_references_checked={checked}")
     print("site_assets=passed")
