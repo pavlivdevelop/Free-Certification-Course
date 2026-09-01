@@ -1,14 +1,66 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "project": "OpenCertAtlas",
   "canonical_branch": "main",
   "purpose": "Portable continuation context for autonomous development sessions.",
-  "principles": ["official-source-first","discovery-is-not-verification","reachability-is-not-status-proof","credential-type-is-preserved","free-status-requires-evidence","source-provenance-is-preserved-as-URL","user-progress-is-local-by-default","generated-data-must-pass-validation-before-publication"],
+  "principles": [
+    "official-source-first",
+    "discovery-is-not-verification",
+    "reachability-is-not-status-proof",
+    "credential-type-is-preserved",
+    "free-status-requires-evidence",
+    "source-provenance-is-preserved-as-URL",
+    "user-progress-is-local-by-default",
+    "generated-data-must-pass-validation-before-publication"
+  ],
   "current_scale_target": "10000+ observed records; grow only through official extraction/evidence",
-  "verified_recent_build": {"run": 33426301925,"status": "success","extracted_candidates": 10394,"catalog_records": 10465,"credential_records": 81},
-  "recent_engineering_changes": ["GitHub-hosted runners are primary execution environment.","Catalog/freshness/site/provenance workflows use current Node 24-compatible action majors.","Freshness publication is serialized and uses rebase plus force-with-lease.","Extractor preserves actual source-page URLs in provenance.","Root branding is OpenCertAtlas.","GitHub Pages deployment workflow is present.","Repository hygiene workflow is present.","Site smoke checks are hygiene-safe and use the OpenCertAtlas storage namespace.","Continuation context is kept in status/ROADMAP-CONTEXT.json."],
-  "current_verification": {"catalog_run": 33426301925,"catalog_conclusion": "success","catalog_records": 10465,"catalog_candidates": 10394,"site_smoke_run": 33426708694,"site_smoke_conclusion": "success","repo_hygiene_run": 33426956476,"repo_hygiene_conclusion": "failed on legacy references before latest hygiene-safe fix","latest_main_commit": "396cd496d74d65c7a5872bead291195412c7478a"},
-  "next_priority": ["verify latest catalog build after current changes","verify repository hygiene after latest checker fix","evidence promotion rules for credential/free classification","learning-path prerequisite graph","source health and review queue","portable offline distribution","site accessibility and keyboard navigation","reproducible release snapshots"],
+  "verified_recent_build": {
+    "run": 33474434642,
+    "status": "success",
+    "extracted_candidates": 10811,
+    "catalog_records": 10892,
+    "credential_records": 81,
+    "free_core_records": 81
+  },
+  "recent_engineering_changes": [
+    "GitHub-hosted runners are the primary execution environment.",
+    "Catalog and maintenance workflows use current Node-24-compatible action majors available to the repository.",
+    "Catalog and freshness publication use serialized concurrency plus rebase and force-with-lease.",
+    "Extractor preserves issuer source-page URLs and method metadata.",
+    "Generated outputs are excluded from seed ingestion to prevent recursive catalog growth.",
+    "Seed normalization preserves historical column spelling/case, including explicit free-status metadata.",
+    "Validator forbids Free status on candidate/reference/watch records.",
+    "Root branding is OpenCertAtlas.",
+    "Portable local-first progress tracker and offline site assets are present.",
+    "GitHub Pages workflow now builds and validates the site even when Pages is not enabled; deployment is skipped until configured.",
+    "Architecture and contribution documentation are present."
+  ],
+  "current_verification": {
+    "catalog_run": 33474434642,
+    "catalog_conclusion": "success",
+    "catalog_records": 10892,
+    "catalog_candidates": 10811,
+    "free_core_records": 81,
+    "repo_hygiene_latest_known": "success",
+    "site_smoke_latest_known": "success",
+    "pages_latest_known": "failed because GitHub Pages was not configured; workflow has since been made optional",
+    "latest_engineering_commit": "9db678f997c00e556ad103ba50da06c2905e124a"
+  },
+  "known_non_blocking_items": [
+    "GitHub Pages still needs one account-level Settings → Pages → Source = GitHub Actions action before live deployment can occur.",
+    "The free-core remains intentionally conservative; extracted candidates require evidence promotion before becoming verified/free.",
+    "Self-hosted runner is optional and not required for the production catalog pipeline."
+  ],
+  "next_priority": [
+    "verify latest Pages workflow after optional-deployment fix",
+    "lightweight catalog payload for faster frontend startup",
+    "evidence promotion rules for credential/free classification",
+    "learning-path prerequisite graph",
+    "source health and review queue",
+    "site accessibility and keyboard navigation",
+    "reproducible release snapshots",
+    "expand multilingual UI coverage without translating official names"
+  ],
   "human_intervention": "Only account-level GitHub settings, Pages/environment approval, secrets, or other privileged UI actions not exposed through repository tooling.",
-  "last_context_update": "2026-08-31"
+  "last_context_update": "2026-09-01"
 }
