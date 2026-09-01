@@ -7,6 +7,7 @@ on:
       - 'docs/**'
       - 'site/**'
       - 'scripts/**'
+      - 'status/**'
       - '.github/workflows/**'
   pull_request:
     paths:
@@ -14,9 +15,10 @@ on:
       - 'docs/**'
       - 'site/**'
       - 'scripts/**'
+      - 'status/**'
       - '.github/workflows/**'
   workflow_run:
-    workflows: ['Build official catalog']
+    workflows: ['Build official catalog','Source health']
     types: [completed]
   workflow_dispatch:
 
@@ -39,3 +41,5 @@ jobs:
           python-version: '3.13'
       - name: Run repository hygiene checks
         run: python scripts/check_repo_hygiene.py
+      - name: Validate operational payload contracts
+        run: python scripts/validate_operational_payloads.py
