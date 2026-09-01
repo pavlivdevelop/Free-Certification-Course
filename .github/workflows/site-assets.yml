@@ -1,0 +1,37 @@
+name: Site asset integrity
+
+on:
+  push:
+    paths:
+      - 'site/**'
+      - 'data/catalog-lite.json'
+      - 'data/pathways.json'
+      - 'scripts/check_site_assets.py'
+      - '.github/workflows/site-assets.yml'
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'data/catalog-lite.json'
+      - 'data/pathways.json'
+      - 'scripts/check_site_assets.py'
+      - '.github/workflows/site-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: opencertatlas-site-assets
+  cancel-in-progress: true
+
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Verify local site assets
+        run: python scripts/check_site_assets.py
