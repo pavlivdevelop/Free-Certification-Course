@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -27,10 +28,79 @@ EVIDENCE_WEIGHTS = {
     "manual-review": 1,
 }
 
+# Discovery often finds learning-content pages whose titles look like credentials.
+# These signals only affect review ordering; they never reject or promote a record.
+CREDENTIAL_TERMS = (
+    "certificate",
+    "certification",
+    "certified",
+    "credential",
+    "digital badge",
+    "badge",
+    "microcredential",
+    "professional certificate",
+    "exam",
+    "assessment",
+)
+LEARNING_TITLE_TERMS = (
+    "course",
+    "training",
+    "tutorial",
+    "introduction",
+    "fundamentals",
+    "getting started",
+    "101",
+    "lesson",
+    "workshop",
+    "bootcamp",
+    "beginner",
+    "guide",
+    "learning path",
+    "academy",
+)
+LEARNING_PATH_TERMS = (
+    "/course",
+    "/courses/",
+    "/learn/",
+    "/training",
+    "/tutorial",
+    "/lessons/",
+    "/workshop",
+)
+TOKEN_RE = re.compile(r"[^a-z0-9]+", re.I)
+
 
 def is_http_url(value: str) -> bool:
     parsed = urlparse(value)
     return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
+
+
+def credential_identity_signals(name: str, url: str) -> tuple[int, str, list[str]]:
+    normalized_name = " " + TOKEN_RE.sub(" ", name.casefold()).strip() + " "
+    normalized_url = url.casefold()
+    positive = [term for term in CREDENTIAL_TERMS if term in normalized_name]
+    learning_title = [term for term in LEARNING_TITLE_TERMS if term in normalized_name]
+    learning_path = [term for term in LEARNING_PATH_TERMS if term in normalized_url]
+
+    score = 0
+    reasons: list[str] = []
+    if positive:
+        score += min(3, len(positive))
+        reasons.append("credential language in title")
+    if learning_title:
+        score -= min(3, len(learning_title))
+        reasons.append("learning-content language in title")
+    if learning_path:
+        score -= 3
+        reasons.append("learning-content URL pattern")
+
+    if positive and not learning_title:
+        triage = "likely credential identity"
+    elif learning_title or learning_path:
+        triage = "learning-content signal"
+    else:
+        triage = "uncertain credential identity"
+    return score, triage, reasons
 
 
 def main() -> int:
@@ -69,6 +139,10 @@ def main() -> int:
             score += 1
             reasons.append("specific credential name")
 
+        identity_delta, triage, identity_reasons = credential_identity_signals(name, url)
+        score = max(0, score + identity_delta)
+        reasons.extend(identity_reasons)
+
         if score >= 8:
             tier = "high-confidence review candidate"
         elif score >= 6:
@@ -79,6 +153,7 @@ def main() -> int:
         proposals.append({
             "score": score,
             "tier": tier,
+            "triage": triage,
             "organization": org,
             "name": name,
             "evidence": evidence or "unclassified",
@@ -88,16 +163,20 @@ def main() -> int:
             "reasons": reasons,
         })
 
-    proposals.sort(key=lambda x: (-x["score"], x["tier"], x["organization"].casefold(), x["name"].casefold()))
+    proposals.sort(key=lambda x: (-x["score"], x["tier"], x["triage"], x["organization"].casefold(), x["name"].casefold()))
     high = sum(p["score"] >= 8 for p in proposals)
     reviewable = sum(p["score"] >= 6 for p in proposals)
+    likely_credentials = sum(p["triage"] == "likely credential identity" for p in proposals)
+    learning_signals = sum(p["triage"] == "learning-content signal" for p in proposals)
 
     JSON_OUT.write_text(json.dumps({
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "catalog_sha256": catalog_sha256,
         "candidate_records": len(candidates),
         "reviewable": reviewable,
         "high_confidence": high,
+        "likely_credential_identity": likely_credentials,
+        "learning_content_signals": learning_signals,
         "rows_shown": min(500, len(proposals)),
         "advisory_only": True,
         "auto_promotion": False,
@@ -110,21 +189,24 @@ def main() -> int:
         f"- candidate records reviewed: {len(candidates)}",
         f"- deterministic review candidates (score ≥ 6): {reviewable}",
         f"- high-confidence review candidates (score ≥ 8): {high}",
+        f"- likely credential identities: {likely_credentials}",
+        f"- learning-content signals: {learning_signals}",
         f"- rows shown: {min(500, len(proposals))}",
         f"- catalog SHA-256: `{catalog_sha256}`",
         "",
         "This report is advisory only. It never changes catalog records, Evidence Status, or free status.",
+        "Credential-language and learning-content heuristics affect triage only; they are not proof of credential identity.",
         "A row is not eligible for automatic promotion merely because it scores highly.",
-        "Manual review must confirm the issuer page, credential-bearing activity, current free route, and eligibility before any promotion decision.",
+        "Manual review must confirm the issuer page, credential-bearing activity, current free route, eligibility and source date before any promotion decision.",
         "",
-        "| Score | Tier | Organization | Candidate | Evidence | Method | Official URL | Reasons |",
-        "|---:|---|---|---|---|---|---|---|",
+        "| Score | Tier | Triage | Organization | Candidate | Evidence | Method | Official URL | Reasons |",
+        "|---:|---|---|---|---|---|---|---|---|",
     ]
     for p in proposals[:500]:
         def cell(value: str) -> str:
             return str(value or "").replace("|", "\\|").replace("\n", " ")
         lines.append(
-            f"| {p['score']} | {cell(p['tier'])} | {cell(p['organization'])} | {cell(p['name'])} | "
+            f"| {p['score']} | {cell(p['tier'])} | {cell(p['triage'])} | {cell(p['organization'])} | {cell(p['name'])} | "
             f"{cell(p['evidence'])} | {cell(p['method'])} | {cell(p['url'])} | {cell('; '.join(p['reasons']))} |"
         )
 
@@ -132,6 +214,8 @@ def main() -> int:
     print(f"promotion_candidates={len(candidates)}")
     print(f"promotion_reviewable={reviewable}")
     print(f"promotion_high_confidence={high}")
+    print(f"promotion_likely_credential_identity={likely_credentials}")
+    print(f"promotion_learning_content_signals={learning_signals}")
     print(f"promotion_catalog_sha256={catalog_sha256}")
     return 0
 
