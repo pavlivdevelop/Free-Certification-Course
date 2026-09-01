@@ -7,6 +7,7 @@ on:
       - 'site/**'
       - 'taxonomy/pathways.json'
       - 'data/catalog-expanded.json'
+      - 'data/catalog-lite.json'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -28,7 +29,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
       - name: Detect GitHub Pages availability
         id: pages_state
         shell: bash
@@ -41,17 +41,10 @@ jobs:
             -H "Authorization: Bearer ${GH_TOKEN}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")
-          if [ "$code" = "200" ]; then
-            echo 'enabled=true' >> "$GITHUB_OUTPUT"
-          else
-            echo 'enabled=false' >> "$GITHUB_OUTPUT"
-            echo "GitHub Pages is not configured (HTTP $code); build will be validated and deployment skipped."
-          fi
-
+          if [ "$code" = "200" ]; then echo 'enabled=true' >> "$GITHUB_OUTPUT"; else echo 'enabled=false' >> "$GITHUB_OUTPUT"; echo "GitHub Pages is not configured (HTTP $code); build will be validated and deployment skipped."; fi
       - name: Setup Pages
         if: steps.pages_state.outputs.enabled == 'true'
         uses: actions/configure-pages@v6
-
       - name: Assemble static site
         shell: bash
         run: |
@@ -60,8 +53,8 @@ jobs:
           mkdir -p _site/data
           cp -R site/. _site/
           cp data/catalog-expanded.json _site/data/catalog-expanded.json
+          cp data/catalog-lite.json _site/data/catalog-lite.json
           cp taxonomy/pathways.json _site/data/pathways.json
-
       - name: Validate assembled site
         shell: bash
         run: |
@@ -71,16 +64,15 @@ jobs:
           test -s _site/recommend.html
           test -s _site/pathways.html
           test -s _site/data/catalog-expanded.json
+          test -s _site/data/catalog-lite.json
           test -s _site/data/pathways.json
           test -s _site/manifest.webmanifest
           test -s _site/sw.js
-
       - name: Upload Pages artifact
         if: steps.pages_state.outputs.enabled == 'true'
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
-
       - name: Upload build artifact when Pages is unavailable
         if: steps.pages_state.outputs.enabled != 'true'
         uses: actions/upload-artifact@v4
@@ -88,7 +80,6 @@ jobs:
           name: opencertatlas-site-build
           path: _site
           if-no-files-found: error
-
   deploy:
     needs: build
     if: needs.build.outputs.pages_enabled == 'true'
