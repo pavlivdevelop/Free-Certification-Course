@@ -1,68 +1,14 @@
 {
-  "schema_version": "1.4",
-  "project": "OpenCertAtlas",
-  "canonical_branch": "main",
-  "purpose": "Portable continuation context for autonomous development sessions.",
-  "principles": [
-    "official-source-first",
-    "discovery-is-not-verification",
-    "reachability-is-not-status-proof",
-    "credential-type-is-preserved",
-    "free-status-requires-evidence",
-    "source-provenance-is-preserved-as-URL",
-    "user-progress-is-local-by-default",
-    "generated-data-must-pass-validation-before-publication"
-  ],
-  "current_scale_target": "10000+ observed records; grow only through official extraction/evidence",
-  "verified_recent_build": {
-    "run": 33474434642,
-    "status": "success",
-    "extracted_candidates": 10811,
-    "catalog_records": 10892,
-    "credential_records": 81,
-    "free_core_records": 81
-  },
-  "recent_engineering_changes": [
-    "GitHub-hosted runners are the primary execution environment.",
-    "Catalog and maintenance workflows use current Node-24-compatible action majors available to the repository.",
-    "Catalog and freshness publication use serialized concurrency plus rebase and force-with-lease.",
-    "Extractor preserves issuer source-page URLs and method metadata.",
-    "Generated outputs are excluded from seed ingestion to prevent recursive catalog growth.",
-    "Seed normalization preserves historical column spelling/case, including explicit free-status metadata.",
-    "Validator forbids Free status on candidate/reference/watch records.",
-    "Root branding is OpenCertAtlas.",
-    "Portable local-first progress tracker and offline site assets are present.",
-    "GitHub Pages workflow now builds and validates the site even when Pages is not enabled; deployment is skipped until configured.",
-    "Recommendation page provides deterministic local-first next-step ranking.",
-    "Progress and recommendation pages migrate legacy flat progress into the current versioned items map.",
-    "Repository now documents the recommendation model and its evidence boundaries."
-  ],
-  "current_verification": {
-    "catalog_run": 33474434642,
-    "catalog_conclusion": "success",
-    "catalog_records": 10892,
-    "catalog_candidates": 10811,
-    "free_core_records": 81,
-    "repo_hygiene_latest_known": "success",
-    "site_smoke_latest_known": "success",
-    "pages_latest_known": "success build with deployment skipped because Pages is not configured",
-    "latest_engineering_commit": "2f029a6ca6ba0f3c8e84028ceb4e7b08cc9a5112"
-  },
-  "known_non_blocking_items": [
-    "GitHub Pages still needs one account-level Settings → Pages → Source = GitHub Actions action before live deployment can occur.",
-    "The free-core remains intentionally conservative; extracted candidates require evidence promotion before becoming verified/free.",
-    "Self-hosted runner is optional and not required for the production catalog pipeline."
-  ],
-  "next_priority": [
-    "verify site smoke after recommender/progress compatibility changes",
-    "lightweight catalog payload for faster frontend startup",
-    "evidence promotion rules for credential/free classification",
-    "learning-path prerequisite graph",
-    "source health and review queue",
-    "site accessibility and keyboard navigation",
-    "reproducible release snapshots",
-    "expand multilingual UI coverage without translating official names"
-  ],
-  "human_intervention": "Only account-level GitHub settings, Pages/environment approval, secrets, or other privileged UI actions not exposed through repository tooling.",
-  "last_context_update": "2026-09-01"
+  "schema_version":"1.5",
+  "project":"OpenCertAtlas",
+  "canonical_branch":"main",
+  "purpose":"Portable continuation context for autonomous development sessions.",
+  "principles":["official-source-first","discovery-is-not-verification","reachability-is-not-status-proof","credential-type-is-preserved","free-status-requires-evidence","source-provenance-is-preserved-as-URL","user-progress-is-local-by-default","generated-data-must-pass-validation-before-publication"],
+  "verified_recent_build":{"run":33474434642,"status":"success","extracted_candidates":10811,"catalog_records":10892,"credential_records":81,"free_core_records":81},
+  "recent_engineering_changes":["GitHub-hosted runners are the primary execution environment.","Catalog and maintenance workflows use current Node-24-compatible action majors available to the repository.","Catalog and freshness publication use serialized concurrency plus rebase and force-with-lease.","Extractor preserves issuer source-page URLs and method metadata.","Generated outputs are excluded from seed ingestion to prevent recursive catalog growth.","Seed normalization preserves historical column spelling/case, including explicit free-status metadata.","Validator forbids Free status on candidate/reference/watch records.","Portable local-first progress tracker, recommender and offline site assets are present.","GitHub Pages workflow validates and packages the site even when Pages is not configured.","Canonical prerequisite learning pathways are stored in taxonomy/pathways.json and published to the static site as data/pathways.json.","Service worker caches the pathway explorer, offline fallback and published pathway payload.","Site smoke test covers catalogue, progress, recommender, pathways and offline assets.","Repository hygiene is passing after recent cleanup."],
+  "current_verification":{"catalog_run":33474434642,"catalog_conclusion":"success","catalog_records":10892,"catalog_candidates":10811,"free_core_records":81,"repo_hygiene_latest_known":"success","site_deploy_latest_known":"success_build_deployment_skipped_until_pages_configuration","site_smoke_latest_known":"latest pre-pathway run passed; pathway smoke was corrected after detecting a stale index expectation","pathways_page":"present","pathways_payload":"present in source; Pages workflow copies it to data/pathways.json","latest_engineering_commit":"b3da01e591ab2892130b0c69eda0562515a8c245"},
+  "known_non_blocking_items":["GitHub Pages still needs one account-level Settings → Pages → Source = GitHub Actions action before live deployment can occur.","The free-core remains intentionally conservative; extracted candidates require evidence promotion before becoming verified/free.","Self-hosted runner is optional and not required for the production catalog pipeline.","The frontend still loads the full canonical JSON; lightweight payload generation is the next performance optimization."],
+  "next_priority":["verify latest site smoke after pathway changes","lightweight catalog payload for faster frontend startup","evidence promotion rules for credential/free classification","expand prerequisite graph and credential-to-node matching","source health and review queue","site accessibility and keyboard navigation","reproducible release snapshots","expand multilingual UI coverage without translating official names"],
+  "human_intervention":"Only account-level GitHub settings, Pages/environment approval, secrets, or other privileged UI actions not exposed through repository tooling.",
+  "last_context_update":"2026-09-01"
 }
