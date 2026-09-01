@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a reproducible machine-readable release manifest from the repository state."""
 from __future__ import annotations
-import csv, hashlib, json
+import hashlib, json, os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -44,11 +44,12 @@ def line_count(path: Path) -> int:
 
 def main() -> int:
     stats_text = STATS.read_text(encoding='utf-8') if STATS.exists() else ''
+    build_trigger_sha = os.environ.get('GITHUB_SHA') or 'local'
     manifest = {
-        'manifest_version': '1.0',
+        'manifest_version': '1.1',
         'project': 'OpenCertAtlas',
         'generated_at_utc': datetime.now(timezone.utc).isoformat(),
-        'git_sha': __import__('os').environ.get('GITHUB_SHA') or 'local',
+        'build_trigger_sha': build_trigger_sha,
         'schema': {
             'catalog': 'status/CATALOG-SCHEMA.json',
             'data_contract': 'docs/DATA-CONTRACT.md',
@@ -81,13 +82,14 @@ def main() -> int:
             'generated_outputs_are_not_seed_inputs': True,
             'discovery_is_not_verification': True,
             'free_status_requires_verified_free_evidence': True,
+            'build_trigger_sha_is_not_the_publication_commit_sha': True,
         },
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'release_manifest={OUT.relative_to(ROOT)}')
     print(f'catalog_records={manifest["catalog"]["records"]}')
-    print(f'git_sha={manifest["git_sha"]}')
+    print(f'build_trigger_sha={build_trigger_sha}')
     return 0
 
 
