@@ -8,6 +8,8 @@ on:
       - 'status/review-queue-lite.json'
       - 'status/source-health.json'
       - 'status/release-manifest.json'
+      - 'status/CREDENTIAL-PATHWAY-CANDIDATES.csv'
+      - 'data/pathway-candidates-lite.json'
       - 'taxonomy/pathways.json'
       - 'data/catalog-expanded.json'
       - 'data/catalog-lite.json'
@@ -61,10 +63,12 @@ jobs:
           cp -R site/. _site/
           cp data/catalog-expanded.json _site/data/catalog-expanded.json
           cp data/catalog-lite.json _site/data/catalog-lite.json
+          cp data/pathway-candidates-lite.json _site/data/pathway-candidates-lite.json
           cp taxonomy/pathways.json _site/data/pathways.json
           cp status/review-queue-lite.json _site/status/review-queue-lite.json
           cp status/source-health.json _site/status/source-health.json
           cp status/release-manifest.json _site/status/release-manifest.json
+          cp status/CREDENTIAL-PATHWAY-CANDIDATES.csv _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv
       - name: Validate assembled site
         shell: bash
         run: |
@@ -78,8 +82,10 @@ jobs:
           test -s _site/status/review-queue-lite.json
           test -s _site/status/source-health.json
           test -s _site/status/release-manifest.json
+          test -s _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv
           test -s _site/data/catalog-expanded.json
           test -s _site/data/catalog-lite.json
+          test -s _site/data/pathway-candidates-lite.json
           test -s _site/data/pathways.json
           test -s _site/manifest.webmanifest
           test -s _site/sw.js
