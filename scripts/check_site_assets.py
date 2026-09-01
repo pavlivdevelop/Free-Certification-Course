@@ -9,7 +9,20 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
-HTML_FILES = [SITE / name for name in ("index.html", "progress.html", "recommend.html", "pathways.html", "offline.html")]
+HTML_FILES = [
+    SITE / name
+    for name in (
+        "index.html",
+        "progress.html",
+        "recommend.html",
+        "pathways.html",
+        "release.html",
+        "releases.html",
+        "review.html",
+        "sources.html",
+        "offline.html",
+    )
+]
 SW_FILE = SITE / "sw.js"
 IGNORED_SCHEMES = {"http", "https", "mailto", "javascript", "data", "blob", "tel"}
 GENERATED_ASSETS = {
@@ -78,6 +91,15 @@ def main() -> int:
             continue
         if not source.exists():
             fail(f"publication source is missing for {published.relative_to(ROOT)}: {source.relative_to(ROOT)}")
+    for required in (
+        SITE / "status/release-manifest.json",
+        SITE / "status/release-index.json",
+    ):
+        if not required.exists():
+            # These are generated into the Pages build; local checkout may omit them.
+            source = ROOT / required.relative_to(SITE)
+            if not source.exists():
+                fail(f"required release asset is missing: {required.relative_to(ROOT)}")
     catalog = ROOT / "data/catalog-lite.json"
     if not catalog.exists() or catalog.stat().st_size == 0:
         fail("required published asset is missing or empty: data/catalog-lite.json")
