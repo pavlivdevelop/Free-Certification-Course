@@ -36,6 +36,12 @@ Every published credential record should retain:
 
 `credential-candidate` → `credential` requires evidence. A successful HTTP request, a taxonomy match, or a plausible title is not sufficient evidence of a credential or free status.
 
+## Pathway mapping contract
+
+Credential-to-pathway mappings are a separate presentation/recommendation layer. The generated `CREDENTIAL-PATHWAY-CANDIDATES.csv` and `pathway-candidates-lite.json` files are **candidate mappings only**. They may use lexical/category signals to suggest relevant prerequisite nodes, but they must not claim that a credential teaches a node, must not alter `Evidence Status`, and must not promote `Price Status` or verification.
+
+Candidate mappings must reference an existing node from `taxonomy/pathways.json`, use `mapping_status=candidate`, preserve the credential ID, and remain independently reviewable.
+
 ## Compatibility
 
 Schema version is tracked separately from generated datasets. Additive fields are preferred. Renaming/removing fields requires a documented migration and validator update.
