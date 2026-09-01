@@ -18,8 +18,8 @@ def main()->int:
         if needle not in rec: fail(f"recommend.html missing {label}: {needle!r}")
     for needle,label in {'pathways.json':'published pathway graph source','oca-progress':'pathway local state','prerequisite':'prerequisite semantics'}.items():
         if needle.lower() not in pathways.lower(): fail(f"pathways.html missing {label}: {needle!r}")
-    if './pathways.html' not in sw: fail('service worker does not cache pathway page')
-    if './offline.html' not in sw: fail('service worker does not cache offline page')
+    for needle,label in {'./pathways.html':'pathway page cache','./offline.html':'offline page cache','./data/pathways.json':'published pathway payload cache','./data/catalog-lite.json':'lightweight catalog cache'}.items():
+        if needle not in sw: fail(f"service worker missing {label}: {needle!r}")
     for forbidden in ('free certification course','fcc-progress','my-certification-progress.json'):
         if forbidden in '\n'.join([index,progress,rec,pathways]).lower(): fail(f"legacy marker detected: {forbidden!r}")
     for name,path in FILES.items():
