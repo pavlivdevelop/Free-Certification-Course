@@ -1,7 +1,8 @@
 # Catalog statistics
 
-- records: 10705
-- free-core: 81
+- records: 10899
+- free signals: 81
+- verified free-core: 0
 - conditional: 0
-- candidates: 10624
+- candidates: 10818
 - built: 2026-09-01
