@@ -11,6 +11,9 @@ on:
       - 'site/**'
       - 'scripts/smoke_site.py'
       - '.github/workflows/site-smoke.yml'
+  workflow_run:
+    workflows: ['Build official catalog']
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -22,6 +25,7 @@ concurrency:
 
 jobs:
   smoke:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
