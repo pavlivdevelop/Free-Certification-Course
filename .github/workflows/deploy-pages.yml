@@ -9,6 +9,9 @@ on:
       - 'data/catalog-expanded.json'
       - 'data/catalog-lite.json'
       - '.github/workflows/deploy-pages.yml'
+  workflow_run:
+    workflows: ['Build official catalog']
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -22,6 +25,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
