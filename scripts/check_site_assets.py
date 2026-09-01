@@ -12,7 +12,10 @@ SITE = ROOT / "site"
 HTML_FILES = [SITE / name for name in ("index.html", "progress.html", "recommend.html", "pathways.html", "offline.html")]
 SW_FILE = SITE / "sw.js"
 IGNORED_SCHEMES = {"http", "https", "mailto", "javascript", "data", "blob", "tel"}
-GENERATED_ASSETS = {ROOT / "data/pathways.json": ROOT / "taxonomy/pathways.json"}
+GENERATED_ASSETS = {
+    SITE / "data/pathways.json": ROOT / "taxonomy/pathways.json",
+    ROOT / "data/pathways.json": ROOT / "taxonomy/pathways.json",
+}
 
 
 def fail(message: str) -> None:
@@ -70,6 +73,8 @@ def main() -> int:
 
     checked = sum(inspect_file(path) for path in HTML_FILES + [SW_FILE])
     for generated, source in GENERATED_ASSETS.items():
+        if generated.is_relative_to(SITE) and generated.exists():
+            continue
         if not source.exists():
             fail(f"generator source is missing for {generated.relative_to(ROOT)}: {source.relative_to(ROOT)}")
     catalog = ROOT / "data/catalog-lite.json"
