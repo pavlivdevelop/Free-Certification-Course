@@ -9,6 +9,8 @@ on:
       - 'status/source-health.json'
       - 'status/release-manifest.json'
       - 'status/release-index.json'
+      - 'status/REVIEW-QUEUE.csv'
+      - 'status/SOURCE-HEALTH.md'
       - 'status/CREDENTIAL-PATHWAY-CANDIDATES.csv'
       - 'data/pathway-candidates-lite.json'
       - 'taxonomy/pathways.json'
@@ -69,6 +71,8 @@ jobs:
           cp status/source-health.json _site/status/source-health.json
           cp status/release-manifest.json _site/status/release-manifest.json
           if [ -f status/release-index.json ]; then cp status/release-index.json _site/status/release-index.json; fi
+          if [ -f status/REVIEW-QUEUE.csv ]; then cp status/REVIEW-QUEUE.csv _site/status/REVIEW-QUEUE.csv; fi
+          if [ -f status/SOURCE-HEALTH.md ]; then cp status/SOURCE-HEALTH.md _site/status/SOURCE-HEALTH.md; fi
           if [ -f data/pathway-candidates-lite.json ]; then cp data/pathway-candidates-lite.json _site/data/pathway-candidates-lite.json; fi
           if [ -f status/CREDENTIAL-PATHWAY-CANDIDATES.csv ]; then cp status/CREDENTIAL-PATHWAY-CANDIDATES.csv _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv; fi
       - name: Validate assembled site
@@ -77,6 +81,8 @@ jobs:
           set -euo pipefail
           for page in index.html progress.html recommend.html pathways.html release.html releases.html review.html sources.html; do test -s "_site/$page"; done
           for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
+          if [ -f status/REVIEW-QUEUE.csv ]; then test -s _site/status/REVIEW-QUEUE.csv; fi
+          if [ -f status/SOURCE-HEALTH.md ]; then test -s _site/status/SOURCE-HEALTH.md; fi
           if [ -f _site/status/release-index.json ]; then test -s _site/status/release-index.json; fi
           if [ -f _site/data/pathway-candidates-lite.json ]; then test -s _site/data/pathway-candidates-lite.json; fi
           if [ -f _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv ]; then test -s _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv; fi
