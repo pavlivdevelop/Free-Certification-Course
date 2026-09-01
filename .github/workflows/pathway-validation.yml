@@ -1,0 +1,33 @@
+name: Pathway graph validation
+
+on:
+  push:
+    paths:
+      - 'taxonomy/pathways.json'
+      - 'scripts/validate_pathways.py'
+      - '.github/workflows/pathway-validation.yml'
+  pull_request:
+    paths:
+      - 'taxonomy/pathways.json'
+      - 'scripts/validate_pathways.py'
+      - '.github/workflows/pathway-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: opencertatlas-pathway-validation
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Validate prerequisite graph
+        run: python scripts/validate_pathways.py
