@@ -13,6 +13,7 @@ import datetime as dt
 import json
 import time
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
@@ -23,6 +24,7 @@ PROVIDER_FILES = [ROOT / "providers/providers.csv", ROOT / "providers/providers-
 OUT_JSON = ROOT / "status/source-health.json"
 OUT_MD = ROOT / "status/SOURCE-HEALTH.md"
 TIMEOUT = 18
+MAX_WORKERS = 16
 UA = "OpenCertAtlas/2026 (+https://github.com/pavlivdevelop/OpenCertAtlas)"
 
 
@@ -47,7 +49,8 @@ def load_providers() -> list[dict[str, str]]:
     return rows
 
 
-def probe(url: str) -> dict[str, object]:
+def probe(provider: dict[str, str]) -> dict[str, object]:
+    url = provider["url"]
     req = Request(url, headers={"User-Agent": UA, "Accept": "text/html,application/xhtml+xml"}, method="GET")
     started = time.monotonic()
     try:
@@ -55,27 +58,26 @@ def probe(url: str) -> dict[str, object]:
             elapsed = round((time.monotonic() - started) * 1000)
             status = int(response.status)
             final_url = response.geturl()
-            if 200 <= status < 400:
-                state = "reachable"
-            else:
-                state = "http-error"
-            return {"state": state, "http_status": status, "final_url": final_url, "latency_ms": elapsed, "error": ""}
+            state = "reachable" if 200 <= status < 400 else "http-error"
+            return {**provider, "state": state, "http_status": status, "final_url": final_url, "latency_ms": elapsed, "error": ""}
     except HTTPError as exc:
         elapsed = round((time.monotonic() - started) * 1000)
         status = int(exc.code)
         state = "reachable-restricted" if status in (401, 403, 405, 429) else "http-error"
-        return {"state": state, "http_status": status, "final_url": exc.geturl(), "latency_ms": elapsed, "error": str(exc.reason)}
+        return {**provider, "state": state, "http_status": status, "final_url": exc.geturl(), "latency_ms": elapsed, "error": str(exc.reason)}
     except (URLError, TimeoutError, OSError) as exc:
         elapsed = round((time.monotonic() - started) * 1000)
-        return {"state": "unreachable", "http_status": None, "final_url": url, "latency_ms": elapsed, "error": str(exc)}
+        return {**provider, "state": "unreachable", "http_status": None, "final_url": url, "latency_ms": elapsed, "error": str(exc)}
 
 
 def main() -> int:
     providers = load_providers()
     items: list[dict[str, object]] = []
-    for provider in providers:
-        result = probe(provider["url"])
-        items.append({**provider, **result})
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        futures = [pool.submit(probe, provider) for provider in providers]
+        for future in as_completed(futures):
+            items.append(future.result())
+    items.sort(key=lambda x: str(x["organization"]).casefold())
 
     states = Counter(str(item["state"]) for item in items)
     generated = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
@@ -84,7 +86,7 @@ def main() -> int:
         "generated_at": generated,
         "total": len(items),
         "states": dict(sorted(states.items())),
-        "items": sorted(items, key=lambda x: str(x["organization"]).casefold()),
+        "items": items,
     }
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -107,7 +109,7 @@ def main() -> int:
         "The public dashboard exposes provider-level health to avoid presenting a false sense of precision for individual credentials.",
     ]
     OUT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"providers={len(items)} states={dict(states)}")
+    print(f"providers={len(items)} states={dict(states)} workers={MAX_WORKERS}")
     return 0
 
 
