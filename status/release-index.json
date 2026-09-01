@@ -1,0 +1,16 @@
+{
+  "index_version": "1.0",
+  "project": "OpenCertAtlas",
+  "generated_at_utc": "2026-09-01T15:30:00Z",
+  "snapshot_count": 1,
+  "snapshots": [
+    {
+      "snapshot": "status/releases/20260901T151336Z-f942010e7677.json",
+      "generated_at_utc": "2026-09-01T15:13:36.598044+00:00",
+      "build_trigger_sha": "f942010e7677396eda5802f21cda8b0cdef40a70",
+      "catalog_records": 10587,
+      "verified_free_core": 0,
+      "candidates": 10506
+    }
+  ]
+}
