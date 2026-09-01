@@ -103,3 +103,13 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v5
+      - name: Verify live GitHub Pages site
+        shell: bash
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          test -n "$PAGE_URL"
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$PAGE_URL" -o /tmp/opencertatlas-home.html
+          grep -q "OpenCertAtlas" /tmp/opencertatlas-home.html
+          echo "live_pages_check=passed url=$PAGE_URL"
