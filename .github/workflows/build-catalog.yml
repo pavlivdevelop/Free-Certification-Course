@@ -38,12 +38,14 @@ jobs:
         run: python scripts/build_official_catalog.py
       - name: Validate canonical dataset
         run: python scripts/validate_catalog.py
+      - name: Build lightweight browser payload
+        run: python scripts/build_light_payload.py
       - name: Publish generated data safely
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv status/CATALOG-STATS.md
+          git add credentials/extracted-candidates.jsonl evidence/extraction-evidence.jsonl data/catalog-expanded.csv data/catalog-expanded.json data/free-core.csv data/conditional.csv data/catalog-lite.json status/CATALOG-STATS.md
           git diff --cached --quiet && exit 0
           git commit -m 'chore(data): refresh official credential catalog [skip ci]'
           git fetch origin main
