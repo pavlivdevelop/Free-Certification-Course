@@ -2,6 +2,7 @@
 """Validate the deterministic, advisory promotion preview contract."""
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 from urllib.parse import urlparse
@@ -9,6 +10,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "status/promotion-preview.md"
 PAYLOAD = ROOT / "status/promotion-preview.json"
+CATALOG = ROOT / "data/catalog-expanded.csv"
 ALLOWED_TIERS = {"high-confidence review candidate", "review candidate", "needs additional evidence"}
 
 
@@ -21,14 +23,20 @@ def main() -> int:
         fail("status/promotion-preview.md is missing or empty")
     if not PAYLOAD.exists() or not PAYLOAD.stat().st_size:
         fail("status/promotion-preview.json is missing or empty")
+    if not CATALOG.exists() or not CATALOG.stat().st_size:
+        fail("data/catalog-expanded.csv is missing or empty")
 
     data = json.loads(PAYLOAD.read_text(encoding="utf-8"))
-    if data.get("schema_version") != "1.0":
+    if data.get("schema_version") != "1.1":
         fail("unsupported schema_version")
     if data.get("advisory_only") is not True:
         fail("advisory_only must be true")
     if data.get("auto_promotion") is not False:
         fail("auto_promotion must be false")
+
+    catalog_sha256 = hashlib.sha256(CATALOG.read_bytes()).hexdigest()
+    if data.get("catalog_sha256") != catalog_sha256:
+        fail("catalog_sha256 does not match data/catalog-expanded.csv")
 
     records = data.get("records")
     if not isinstance(records, list):
@@ -77,6 +85,7 @@ def main() -> int:
     print(f"validated_promotion_candidates={data.get('candidate_records', 0)}")
     print(f"validated_promotion_reviewable={data.get('reviewable', 0)}")
     print(f"validated_promotion_high_confidence={data.get('high_confidence', 0)}")
+    print(f"validated_promotion_catalog_sha256={catalog_sha256}")
     print("promotion_preview=passed")
     return 0
 
