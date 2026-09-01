@@ -8,6 +8,7 @@ on:
       - 'status/review-queue-lite.json'
       - 'status/source-health.json'
       - 'status/release-manifest.json'
+      - 'status/release-index.json'
       - 'status/CREDENTIAL-PATHWAY-CANDIDATES.csv'
       - 'data/pathway-candidates-lite.json'
       - 'taxonomy/pathways.json'
@@ -67,14 +68,16 @@ jobs:
           cp status/review-queue-lite.json _site/status/review-queue-lite.json
           cp status/source-health.json _site/status/source-health.json
           cp status/release-manifest.json _site/status/release-manifest.json
+          if [ -f status/release-index.json ]; then cp status/release-index.json _site/status/release-index.json; fi
           if [ -f data/pathway-candidates-lite.json ]; then cp data/pathway-candidates-lite.json _site/data/pathway-candidates-lite.json; fi
           if [ -f status/CREDENTIAL-PATHWAY-CANDIDATES.csv ]; then cp status/CREDENTIAL-PATHWAY-CANDIDATES.csv _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv; fi
       - name: Validate assembled site
         shell: bash
         run: |
           set -euo pipefail
-          for page in index.html progress.html recommend.html pathways.html release.html review.html sources.html; do test -s "_site/$page"; done
+          for page in index.html progress.html recommend.html pathways.html release.html releases.html review.html sources.html; do test -s "_site/$page"; done
           for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
+          test -s _site/status/release-index.json
           if [ -f _site/data/pathway-candidates-lite.json ]; then test -s _site/data/pathway-candidates-lite.json; fi
           if [ -f _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv ]; then test -s _site/status/CREDENTIAL-PATHWAY-CANDIDATES.csv; fi
       - name: Upload Pages artifact
@@ -107,10 +110,15 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$PAGE_URL"
-          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$PAGE_URL" -o /tmp/opencertatlas-home.html
-          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "${PAGE_URL%/}/release.html" -o /tmp/opencertatlas-release.html
-          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "${PAGE_URL%/}/pathways.html" -o /tmp/opencertatlas-pathways.html
+          base="${PAGE_URL%/}"
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/" -o /tmp/opencertatlas-home.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/release.html" -o /tmp/opencertatlas-release.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/releases.html" -o /tmp/opencertatlas-releases.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/pathways.html" -o /tmp/opencertatlas-pathways.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/release-index.json" -o /tmp/opencertatlas-release-index.json
           grep -q "OpenCertAtlas" /tmp/opencertatlas-home.html
           grep -q "Reproducible release" /tmp/opencertatlas-release.html
+          grep -q "Immutable catalog release history" /tmp/opencertatlas-releases.html
           grep -q "Candidate catalog matches" /tmp/opencertatlas-pathways.html
+          grep -q '"snapshot_count"' /tmp/opencertatlas-release-index.json
           echo "live_pages_check=passed url=$PAGE_URL"
