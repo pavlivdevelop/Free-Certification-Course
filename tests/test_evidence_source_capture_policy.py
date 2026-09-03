@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import unittest
 from pathlib import Path
 from unittest.mock import patch
 
@@ -13,28 +14,30 @@ module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 
-def test_http_url_rejects_embedded_credentials() -> None:
-    assert not module.http_url("https://user:pass@example.com/path")
-    assert module.http_url("https://example.com/path")
+class SourceCapturePolicyTests(unittest.TestCase):
+    def test_http_url_rejects_embedded_credentials(self) -> None:
+        self.assertFalse(module.http_url("https://user:pass@example.com/path"))
+        self.assertTrue(module.http_url("https://example.com/path"))
+
+    def test_public_http_url_accepts_global_ip(self) -> None:
+        with patch.object(module.socket, "getaddrinfo", return_value=[(2, 1, 6, "", ("93.184.216.34", 443))]):
+            self.assertTrue(module.public_http_url("https://example.com"))
+
+    def test_public_http_url_rejects_private_resolution(self) -> None:
+        with patch.object(module.socket, "getaddrinfo", return_value=[(2, 1, 6, "", ("10.0.0.8", 443))]):
+            self.assertFalse(module.public_http_url("https://example.com"))
+
+    def test_public_http_url_rejects_mixed_resolution(self) -> None:
+        with patch.object(
+            module.socket,
+            "getaddrinfo",
+            return_value=[
+                (2, 1, 6, "", ("93.184.216.34", 443)),
+                (10, 1, 6, "", ("fc00::8", 443, 0, 0)),
+            ],
+        ):
+            self.assertFalse(module.public_http_url("https://example.com"))
 
 
-def test_public_http_url_accepts_global_ip(monkeypatch) -> None:
-    with patch.object(module.socket, "getaddrinfo", return_value=[(2, 1, 6, "", ("93.184.216.34", 443))]):
-        assert module.public_http_url("https://example.com")
-
-
-def test_public_http_url_rejects_private_resolution() -> None:
-    with patch.object(module.socket, "getaddrinfo", return_value=[(2, 1, 6, "", ("10.0.0.8", 443))]):
-        assert not module.public_http_url("https://example.com")
-
-
-def test_public_http_url_rejects_mixed_resolution() -> None:
-    with patch.object(
-        module.socket,
-        "getaddrinfo",
-        return_value=[
-            (2, 1, 6, "", ("93.184.216.34", 443)),
-            (10, 1, 6, "", ("fc00::8", 443, 0, 0)),
-        ],
-    ):
-        assert not module.public_http_url("https://example.com")
+if __name__ == "__main__":
+    unittest.main()
