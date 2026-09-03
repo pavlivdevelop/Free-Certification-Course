@@ -35,9 +35,13 @@ jobs:
         run: python scripts/capture_evidence_sources.py
       - name: Validate source-capture contract
         run: python scripts/validate_evidence_source_capture.py
+      - name: Summarize source-capture results
+        run: python scripts/summarize_evidence_source_capture.py
       - name: Upload source-capture artifact
         uses: actions/upload-artifact@v4
         with:
           name: opencertatlas-evidence-source-capture
-          path: status/evidence-source-capture.json
+          path: |
+            status/evidence-source-capture.json
+            status/evidence-source-capture-summary.md
           if-no-files-found: error
