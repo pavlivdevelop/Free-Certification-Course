@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '17 5 * * 2'
+  workflow_run:
+    workflows: ['Promotion preview']
+    types: [completed]
 
 permissions:
   contents: read
@@ -14,6 +17,11 @@ concurrency:
 
 jobs:
   capture:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_branch == github.event.repository.default_branch)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
