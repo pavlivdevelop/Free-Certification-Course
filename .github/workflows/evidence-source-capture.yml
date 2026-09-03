@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
+      - name: Test source-capture network policy
+        run: python -m unittest tests/test_evidence_source_capture_policy.py -v
       - name: Capture bounded issuer metadata
         run: python scripts/capture_evidence_sources.py
       - name: Validate source-capture contract
