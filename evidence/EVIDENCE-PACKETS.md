@@ -12,6 +12,8 @@ Candidate selection, ordering and the catalog binding are deterministic for the 
 
 The published evidence workspace may store checklist marks and working notes in the reviewer's browser `localStorage`. This is personal preparation state only. It is never written back into the generated packet payload, catalog CSV/JSON, verification state or price status.
 
+Local reviewer state is explicitly bound to the `catalog_sha256` of the currently displayed packet payload. When the catalog snapshot changes, the workspace starts with an empty local checklist for the new snapshot instead of silently applying marks from an older dataset.
+
 Clearing local reviewer state removes only that browser's checklist/notes. A reviewer must still use the controlled repository process to record any authoritative evidence or promotion decision.
 
 ## Required human checks
