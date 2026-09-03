@@ -31,8 +31,18 @@ A learning course, training page, exam-preparation page or generic academy page 
 
 The generator emits only `pending` packets. Review state must never be inserted into generated catalog data by the packet builder.
 
+## Source metadata capture
+
+The optional source-capture workflow records reachability metadata and a bounded response fingerprint for at most 50 high-value candidates. It is deliberately non-authoritative and exists only to make manual source review faster.
+
+For security, the capture process requires `http`/`https` URLs without embedded credentials, resolves the destination before connecting, permits only destinations whose resolved addresses are globally routable, and does not automatically follow HTTP redirects. Redirect targets are recorded for manual inspection only and are never fetched by the capture process.
+
+The capture reads at most 1 MB per source and applies a 12-second timeout plus a 0.75-second inter-request delay. A response fingerprint can identify an observed body but cannot establish its meaning, currentness, issuer ownership or credential validity.
+
 ## Boundaries
 
 Evidence packets are review scaffolds, not evidence themselves. They do not fetch or snapshot issuer pages, do not infer facts from URLs, do not change `Evidence Status`, do not change `Price Status`, and do not authorize automatic promotion.
+
+Source capture is also not verification. A reachable response is not proof that a credential exists, remains current, is free, or is owned by the issuer. The source-capture artifact is uploaded as an Actions artifact rather than persisted into canonical catalog data.
 
 The public payload is deliberately bounded. The complete working review queue remains the archival source for subsequent selection and review.
