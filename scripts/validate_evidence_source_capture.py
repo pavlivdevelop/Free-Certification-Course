@@ -11,7 +11,22 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "data/catalog-expanded.csv"
 PREVIEW = ROOT / "status/promotion-preview.json"
 CAPTURE = ROOT / "status/evidence-source-capture.json"
-ALLOWED = {"ok", "truncated", "invalid_url", "deduplicated", "http_error", "network_error", "capture_error", "not_attempted"}
+ALLOWED = {
+    "ok",
+    "truncated",
+    "invalid_url",
+    "deduplicated",
+    "blocked_url",
+    "redirect_blocked",
+    "http_error",
+    "network_error",
+    "capture_error",
+    "not_attempted",
+}
+REQUIRED_RESULT_KEYS = (
+    "position", "requested_url", "capture_status", "http_status", "final_url",
+    "content_type", "bytes_read", "body_sha256", "cross_origin_redirect", "error_type",
+)
 
 
 def fail(message: str) -> None:
@@ -23,7 +38,12 @@ def is_http_url(value: str) -> bool:
         parsed = urlparse(value)
     except ValueError:
         return False
-    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
+    return (
+        parsed.scheme in {"http", "https"}
+        and bool(parsed.netloc)
+        and parsed.username is None
+        and parsed.password is None
+    )
 
 
 def main() -> int:
@@ -40,7 +60,7 @@ def main() -> int:
         fail("source capture must consume an advisory-only promotion preview")
     if preview.get("catalog_sha256") != current_catalog_sha256:
         fail("promotion preview is stale relative to data/catalog-expanded.csv")
-    if data.get("schema_version") != "1.0":
+    if data.get("schema_version") not in {"1.0", "1.1"}:
         fail("unsupported schema_version")
     if data.get("advisory_only") is not True:
         fail("advisory_only must be true")
@@ -56,11 +76,15 @@ def main() -> int:
         fail("capture catalog binding does not match promotion preview")
     if data.get("promotion_preview_schema_version") != preview.get("schema_version"):
         fail("promotion preview schema binding does not match")
+    if data.get("redirect_policy") != "do-not-follow":
+        fail("redirect policy must remain do-not-follow")
+    if data.get("destination_policy") != "public-ip-only":
+        fail("destination policy must remain public-ip-only")
     results = data.get("results")
     if not isinstance(results, list) or len(results) > 50:
         fail("results must be a bounded list of at most 50 rows")
     for result in results:
-        for key in ("position", "requested_url", "capture_status", "http_status", "final_url", "content_type", "bytes_read", "body_sha256", "cross_origin_redirect", "error_type"):
+        for key in REQUIRED_RESULT_KEYS:
             if key not in result:
                 fail(f"result missing {key}")
         if result["capture_status"] not in ALLOWED:
@@ -75,12 +99,18 @@ def main() -> int:
             fail("bytes_read is outside the capture bound")
         if result["body_sha256"] and len(result["body_sha256"]) != 64:
             fail("body_sha256 must be a SHA-256 hex digest")
-        if result["capture_status"] == "ok" and (result["http_status"] is None or not result["body_sha256"]):
+        if result["capture_status"] in {"ok", "truncated"} and (result["http_status"] is None or not result["body_sha256"]):
             fail("successful capture must include HTTP status and body fingerprint")
+        if result["capture_status"] == "blocked_url" and result["error_type"] not in {"non_public_destination", "non_http_url_or_credentials", "redirect_not_followed"}:
+            fail("blocked_url must carry an explicit network-safety reason")
+        if result["capture_status"] == "redirect_blocked" and result["error_type"] != "redirect_not_followed":
+            fail("redirect_blocked must not follow redirects")
         if any(key in result for key in ("decision", "reviewer", "notes", "verified", "price_status", "evidence_status")):
             fail("capture result must not contain promotion/review authority fields")
     print(f"validated_source_capture_rows={len(results)}")
     print(f"validated_source_capture_unique_urls={data.get('unique_requested_urls', 0)}")
+    print(f"validated_source_capture_redirect_policy={data.get('redirect_policy')}")
+    print(f"validated_source_capture_destination_policy={data.get('destination_policy')}")
     print("source_capture_contract=passed")
     return 0
 
