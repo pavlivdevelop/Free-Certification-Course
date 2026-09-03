@@ -6,7 +6,13 @@ OpenCertAtlas uses bounded evidence packets to turn automated discovery into a r
 
 Each packet preserves the candidate's observed identity, issuer, official URL, source page, price signal, evidence state and extraction metadata. It then adds a fixed review checklist and an initially `pending` decision.
 
-The generated payload is deterministic for the same catalog ordering and records the catalog SHA-256 so a reviewer can tie the packet to a specific dataset snapshot.
+Candidate selection, ordering and the catalog binding are deterministic for the same catalog snapshot. The payload also carries a generation timestamp, so byte-for-byte output is intentionally not deterministic; the `catalog_sha256` is the authoritative snapshot binding for review continuity.
+
+## Local reviewer state
+
+The published evidence workspace may store checklist marks and working notes in the reviewer's browser `localStorage`. This is personal preparation state only. It is never written back into the generated packet payload, catalog CSV/JSON, verification state or price status.
+
+Clearing local reviewer state removes only that browser's checklist/notes. A reviewer must still use the controlled repository process to record any authoritative evidence or promotion decision.
 
 ## Required human checks
 
