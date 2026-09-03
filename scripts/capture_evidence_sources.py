@@ -17,6 +17,7 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "data/catalog-expanded.csv"
 PREVIEW = ROOT / "status/promotion-preview.json"
 OUT = ROOT / "status/evidence-source-capture.json"
 MAX_ROWS = 50
@@ -98,17 +99,21 @@ def capture(row: dict, position: int, seen: set[str]) -> dict:
 
 
 def main() -> int:
+    if not CATALOG.exists() or not CATALOG.stat().st_size:
+        raise SystemExit(f"missing {CATALOG.relative_to(ROOT)}")
     if not PREVIEW.exists() or not PREVIEW.stat().st_size:
         raise SystemExit(f"missing {PREVIEW.relative_to(ROOT)}")
+    catalog_sha256 = hashlib.sha256(CATALOG.read_bytes()).hexdigest()
     data = json.loads(PREVIEW.read_text(encoding="utf-8"))
     if data.get("advisory_only") is not True or data.get("auto_promotion") is not False:
         raise SystemExit("promotion preview must be advisory-only")
+    if data.get("catalog_sha256") != catalog_sha256:
+        raise SystemExit("promotion preview is stale: catalog_sha256 does not match data/catalog-expanded.csv")
     records = data.get("records")
     if not isinstance(records, list):
         raise SystemExit("promotion preview records must be a list")
 
     selected = records[:MAX_ROWS]
-    # Prefer high score first while preserving deterministic tie ordering from the preview.
     selected = sorted(
         enumerate(selected, start=1),
         key=lambda pair: (-float(pair[1].get("score") or 0), pair[0]),
@@ -123,7 +128,7 @@ def main() -> int:
     payload = {
         "schema_version": "1.0",
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "catalog_sha256": str(data.get("catalog_sha256") or ""),
+        "catalog_sha256": catalog_sha256,
         "promotion_preview_schema_version": str(data.get("schema_version") or ""),
         "candidate_records": int(data.get("candidate_records") or 0),
         "capture_limit": MAX_ROWS,
