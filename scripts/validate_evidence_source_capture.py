@@ -2,11 +2,13 @@
 """Validate the non-authoritative source-metadata capture artifact."""
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "data/catalog-expanded.csv"
 PREVIEW = ROOT / "status/promotion-preview.json"
 CAPTURE = ROOT / "status/evidence-source-capture.json"
 ALLOWED = {"ok", "truncated", "invalid_url", "deduplicated", "http_error", "network_error", "capture_error", "not_attempted"}
@@ -25,14 +27,19 @@ def is_http_url(value: str) -> bool:
 
 
 def main() -> int:
+    if not CATALOG.exists() or not CATALOG.stat().st_size:
+        fail("catalog is missing or empty")
     if not PREVIEW.exists() or not PREVIEW.stat().st_size:
         fail("promotion preview is missing")
     if not CAPTURE.exists() or not CAPTURE.stat().st_size:
         fail("capture artifact is missing or empty")
+    current_catalog_sha256 = hashlib.sha256(CATALOG.read_bytes()).hexdigest()
     preview = json.loads(PREVIEW.read_text(encoding="utf-8"))
     data = json.loads(CAPTURE.read_text(encoding="utf-8"))
     if preview.get("advisory_only") is not True or preview.get("auto_promotion") is not False:
         fail("source capture must consume an advisory-only promotion preview")
+    if preview.get("catalog_sha256") != current_catalog_sha256:
+        fail("promotion preview is stale relative to data/catalog-expanded.csv")
     if data.get("schema_version") != "1.0":
         fail("unsupported schema_version")
     if data.get("advisory_only") is not True:
@@ -43,8 +50,10 @@ def main() -> int:
         fail("verification_authority must be false")
     if data.get("evidence_role") != "reachability-and-content-fingerprint-only":
         fail("unexpected evidence role")
+    if data.get("catalog_sha256") != current_catalog_sha256:
+        fail("capture catalog binding does not match current catalog")
     if data.get("catalog_sha256") != preview.get("catalog_sha256"):
-        fail("catalog snapshot binding does not match promotion preview")
+        fail("capture catalog binding does not match promotion preview")
     if data.get("promotion_preview_schema_version") != preview.get("schema_version"):
         fail("promotion preview schema binding does not match")
     results = data.get("results")
