@@ -1,6 +1,8 @@
 # Registry snapshot — 2026-08-31
 
-The expanded local build contains **640 catalogue/source records** and **161 provider/source organisations**.
+> **Historical baseline snapshot.** The counts below describe the registry state captured on 2026-08-31 and are not the current generated catalog size. Use the latest validated catalog/release artifacts for current counts.
+
+The expanded local build at the time of this snapshot contained **640 catalogue/source records** and **161 provider/source organisations**.
 
 ## Core areas
 
