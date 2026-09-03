@@ -8,13 +8,15 @@ or verification decision.
 from __future__ import annotations
 
 import hashlib
+import ipaddress
 import json
+import socket
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlparse
-from urllib.request import Request, urlopen
+from urllib.parse import urljoin, urlparse
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "data/catalog-expanded.csv"
@@ -31,7 +33,42 @@ def http_url(value: str) -> bool:
         parsed = urlparse(value)
     except ValueError:
         return False
-    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
+    return (
+        parsed.scheme in {"http", "https"}
+        and bool(parsed.netloc)
+        and parsed.username is None
+        and parsed.password is None
+    )
+
+
+def public_http_url(value: str) -> bool:
+    if not http_url(value):
+        return False
+    parsed = urlparse(value)
+    hostname = parsed.hostname
+    if not hostname:
+        return False
+    try:
+        address = ipaddress.ip_address(hostname)
+        return address.is_global
+    except ValueError:
+        pass
+    try:
+        addresses = {
+            ipaddress.ip_address(item[4][0])
+            for item in socket.getaddrinfo(hostname, parsed.port or (443 if parsed.scheme == "https" else 80), type=socket.SOCK_STREAM)
+        }
+    except (OSError, ValueError):
+        return False
+    return bool(addresses) and all(address.is_global for address in addresses)
+
+
+class NoRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+OPENER = build_opener(NoRedirect)
 
 
 def capture(row: dict, position: int, seen: set[str]) -> dict:
@@ -59,7 +96,11 @@ def capture(row: dict, position: int, seen: set[str]) -> dict:
         return base
     if not http_url(requested):
         base["capture_status"] = "invalid_url"
-        base["error_type"] = "non_http_url"
+        base["error_type"] = "non_http_url_or_credentials"
+        return base
+    if not public_http_url(requested):
+        base["capture_status"] = "blocked_url"
+        base["error_type"] = "non_public_destination"
         return base
     if requested in seen:
         base["capture_status"] = "deduplicated"
@@ -73,22 +114,37 @@ def capture(row: dict, position: int, seen: set[str]) -> dict:
         },
     )
     try:
-        with urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+        with OPENER.open(request, timeout=TIMEOUT_SECONDS) as response:
             body = response.read(MAX_BYTES + 1)
             final_url = response.geturl()
+            if final_url != requested:
+                base["capture_status"] = "blocked_url"
+                base["http_status"] = int(getattr(response, "status", 200))
+                base["final_url"] = final_url if public_http_url(final_url) else ""
+                base["cross_origin_redirect"] = urlparse(final_url).netloc.lower() != urlparse(requested).netloc.lower()
+                base["error_type"] = "redirect_not_followed"
+                return base
             base["capture_status"] = "ok" if len(body) <= MAX_BYTES else "truncated"
             base["http_status"] = int(getattr(response, "status", 200))
             base["final_url"] = final_url
             base["content_type"] = response.headers.get_content_type() or ""
             base["bytes_read"] = min(len(body), MAX_BYTES)
             base["body_sha256"] = hashlib.sha256(body[:MAX_BYTES]).hexdigest()
-            base["cross_origin_redirect"] = urlparse(final_url).netloc.lower() != urlparse(requested).netloc.lower()
     except HTTPError as exc:
-        base["capture_status"] = "http_error"
         base["http_status"] = int(exc.code)
-        base["final_url"] = exc.geturl()
-        base["content_type"] = exc.headers.get_content_type() if exc.headers else ""
-        base["error_type"] = "HTTPError"
+        location = exc.headers.get("Location") if exc.headers else ""
+        if 300 <= exc.code < 400 and location:
+            target = urljoin(requested, location)
+            base["capture_status"] = "redirect_blocked"
+            base["final_url"] = target if public_http_url(target) else ""
+            base["cross_origin_redirect"] = urlparse(target).netloc.lower() != urlparse(requested).netloc.lower()
+            base["content_type"] = exc.headers.get_content_type() if exc.headers else ""
+            base["error_type"] = "redirect_not_followed"
+        else:
+            base["capture_status"] = "http_error"
+            base["final_url"] = exc.geturl() if public_http_url(exc.geturl()) else ""
+            base["content_type"] = exc.headers.get_content_type() if exc.headers else ""
+            base["error_type"] = "HTTPError"
     except (URLError, TimeoutError, OSError) as exc:
         base["capture_status"] = "network_error"
         base["error_type"] = type(exc).__name__
@@ -113,11 +169,11 @@ def main() -> int:
     if not isinstance(records, list):
         raise SystemExit("promotion preview records must be a list")
 
-    selected = records[:MAX_ROWS]
-    selected = sorted(
-        enumerate(selected, start=1),
+    ranked = sorted(
+        enumerate(records),
         key=lambda pair: (-float(pair[1].get("score") or 0), pair[0]),
     )
+    selected = ranked[:MAX_ROWS]
     seen: set[str] = set()
     results = []
     for position, (_, row) in enumerate(selected, start=1):
@@ -126,7 +182,7 @@ def main() -> int:
             time.sleep(DELAY_SECONDS)
 
     payload = {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "catalog_sha256": catalog_sha256,
         "promotion_preview_schema_version": str(data.get("schema_version") or ""),
@@ -136,6 +192,8 @@ def main() -> int:
         "unique_requested_urls": len(seen),
         "max_bytes_per_source": MAX_BYTES,
         "timeout_seconds": TIMEOUT_SECONDS,
+        "redirect_policy": "do-not-follow",
+        "destination_policy": "public-ip-only",
         "advisory_only": True,
         "evidence_role": "reachability-and-content-fingerprint-only",
         "promotion_authority": False,
