@@ -11,6 +11,8 @@ on:
       - 'status/release-index.json'
       - 'status/promotion-preview.json'
       - 'status/promotion-preview.md'
+      - 'status/evidence-packet-index.json'
+      - 'status/EVIDENCE-PACKETS-SUMMARY.md'
       - 'status/REVIEW-QUEUE.csv'
       - 'status/SOURCE-HEALTH.md'
       - 'status/CREDENTIAL-PATHWAY-CANDIDATES.csv'
@@ -18,6 +20,8 @@ on:
       - 'taxonomy/pathways.json'
       - 'data/catalog-expanded.json'
       - 'data/catalog-lite.json'
+      - 'scripts/build_evidence_packets.py'
+      - 'scripts/validate_evidence_packets.py'
       - '.github/workflows/deploy-pages.yml'
   workflow_run:
     workflows: ['Build official catalog','Source health']
@@ -59,6 +63,14 @@ jobs:
       - name: Setup Pages
         if: steps.pages_state.outputs.enabled == 'true'
         uses: actions/configure-pages@v6
+      - name: Setup Python for generated review assets
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Build and validate evidence packets
+        run: |
+          python scripts/build_evidence_packets.py
+          python scripts/validate_evidence_packets.py
       - name: Assemble static site
         shell: bash
         run: |
@@ -74,6 +86,8 @@ jobs:
           cp status/release-manifest.json _site/status/release-manifest.json
           cp status/promotion-preview.json _site/status/promotion-preview.json
           cp status/promotion-preview.md _site/status/promotion-preview.md
+          cp status/evidence-packet-index.json _site/status/evidence-packet-index.json
+          cp status/EVIDENCE-PACKETS-SUMMARY.md _site/status/EVIDENCE-PACKETS-SUMMARY.md
           if [ -f status/release-index.json ]; then cp status/release-index.json _site/status/release-index.json; fi
           if [ -f status/REVIEW-QUEUE.csv ]; then cp status/REVIEW-QUEUE.csv _site/status/REVIEW-QUEUE.csv; fi
           if [ -f status/SOURCE-HEALTH.md ]; then cp status/SOURCE-HEALTH.md _site/status/SOURCE-HEALTH.md; fi
@@ -83,8 +97,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for page in index.html progress.html recommend.html pathways.html release.html releases.html review.html sources.html promotion.html; do test -s "_site/$page"; done
-          for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json status/promotion-preview.json status/promotion-preview.md data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
+          for page in index.html progress.html recommend.html pathways.html release.html releases.html review.html sources.html promotion.html evidence-packets.html; do test -s "_site/$page"; done
+          for asset in status/review-queue-lite.json status/source-health.json status/release-manifest.json status/promotion-preview.json status/promotion-preview.md status/evidence-packet-index.json status/EVIDENCE-PACKETS-SUMMARY.md data/catalog-expanded.json data/catalog-lite.json data/pathways.json manifest.webmanifest sw.js; do test -s "_site/$asset"; done
           if [ -f status/release-index.json ]; then test -s _site/status/release-index.json; fi
           if [ -f status/REVIEW-QUEUE.csv ]; then test -s _site/status/REVIEW-QUEUE.csv; fi
           if [ -f status/SOURCE-HEALTH.md ]; then test -s _site/status/SOURCE-HEALTH.md; fi
@@ -127,19 +141,28 @@ jobs:
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/releases.html" -o /tmp/opencertatlas-releases.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/pathways.html" -o /tmp/opencertatlas-pathways.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/promotion.html" -o /tmp/opencertatlas-promotion.html
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/evidence-packets.html" -o /tmp/opencertatlas-evidence.html
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/promotion-preview.json" -o /tmp/opencertatlas-promotion.json
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/promotion-preview.md" -o /tmp/opencertatlas-promotion.md
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/evidence-packet-index.json" -o /tmp/opencertatlas-evidence.json
+          curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/EVIDENCE-PACKETS-SUMMARY.md" -o /tmp/opencertatlas-evidence.md
           grep -q "OpenCertAtlas" /tmp/opencertatlas-home.html
           grep -q "Recommended next steps" /tmp/opencertatlas-recommend.html
           grep -q "Reproducible release" /tmp/opencertatlas-release.html
           grep -q "Immutable catalog release history" /tmp/opencertatlas-releases.html
           grep -q "Candidate catalog matches" /tmp/opencertatlas-pathways.html
           grep -q "Promotion preview" /tmp/opencertatlas-promotion.html
+          grep -q "Evidence packets" /tmp/opencertatlas-evidence.html
           grep -Eq '"advisory_only"[[:space:]]*:[[:space:]]*true' /tmp/opencertatlas-promotion.json
           grep -qi "This report is advisory only" /tmp/opencertatlas-promotion.md
           grep -qi "Manual review must confirm" /tmp/opencertatlas-promotion.md
+          grep -Eq '"auto_promotion"[[:space:]]*:[[:space:]]*false' /tmp/opencertatlas-evidence.json
+          grep -q '"packets_shown"' /tmp/opencertatlas-evidence.json
+          grep -qi "Required human checks" /tmp/opencertatlas-evidence.md
           test -s /tmp/opencertatlas-promotion.json
           test -s /tmp/opencertatlas-promotion.md
+          test -s /tmp/opencertatlas-evidence.json
+          test -s /tmp/opencertatlas-evidence.md
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/review-queue-lite.json" -o /tmp/opencertatlas-review.json
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/source-health.json" -o /tmp/opencertatlas-health.json
           curl -fsSL --retry 8 --retry-delay 5 --retry-all-errors "$base/status/REVIEW-QUEUE.csv" -o /tmp/opencertatlas-review.csv
