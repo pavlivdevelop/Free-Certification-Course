@@ -1,0 +1,33 @@
+name: Evidence source capture
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 5 * * 2'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: opencertatlas-evidence-source-capture
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Capture bounded issuer metadata
+        run: python scripts/capture_evidence_sources.py
+      - name: Validate source-capture contract
+        run: python scripts/validate_evidence_source_capture.py
+      - name: Upload source-capture artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: opencertatlas-evidence-source-capture
+          path: status/evidence-source-capture.json
+          if-no-files-found: error
