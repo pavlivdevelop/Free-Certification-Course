@@ -7,6 +7,9 @@ on:
       - 'data/catalog-lite.json'
       - 'data/pathways.json'
       - 'scripts/check_site_assets.py'
+      - 'scripts/build_evidence_packets.py'
+      - 'scripts/validate_evidence_packets.py'
+      - 'data/catalog-expanded.csv'
       - '.github/workflows/site-assets.yml'
   pull_request:
     paths:
@@ -14,6 +17,9 @@ on:
       - 'data/catalog-lite.json'
       - 'data/pathways.json'
       - 'scripts/check_site_assets.py'
+      - 'scripts/build_evidence_packets.py'
+      - 'scripts/validate_evidence_packets.py'
+      - 'data/catalog-expanded.csv'
       - '.github/workflows/site-assets.yml'
   workflow_run:
     workflows: ['Build official catalog']
@@ -37,5 +43,9 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
+      - name: Build and validate generated evidence assets
+        run: |
+          python scripts/build_evidence_packets.py
+          python scripts/validate_evidence_packets.py
       - name: Verify local site assets
         run: python scripts/check_site_assets.py
